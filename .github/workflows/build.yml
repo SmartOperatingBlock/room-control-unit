@@ -31,6 +31,6 @@ jobs:
       - name: Install platform
         run: |
           arduino-cli core update-index
-          arduino-cli core install $
+          arduino-cli core install ${{ matrix.arduino-platform }}
       - name: Compile Sketch
-        run: arduino-cli compile --fqbn $ ./room_control_unit --warnings more
+        run: arduino-cli compile --fqbn ${{ matrix.arduino-platform }} ./room_control_unit --warnings more

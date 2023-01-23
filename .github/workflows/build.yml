@@ -1,16 +1,14 @@
-name: Arduino Build
+name: Build
 
 on:
   push:
   pull_request:
-
+  
 jobs:
   build:
     strategy:
       matrix:
-        # The matrix will produce one job for each configuration
-        # parameter of type `arduino-platform`, in this case, it
-        # is only 1.
+
         arduino-platform: ["arduino:avr"]
         # This is usually optional but we need to statically define the
         # FQBN of the boards we want to test for each platform. In the
@@ -22,6 +20,7 @@ jobs:
           # variable `fqbn` is set to "arduino:avr:uno".
           - arduino-platform: "arduino:avr"
             fqbn: "arduino:avr:uno"
+
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -33,4 +32,4 @@ jobs:
           arduino-cli core update-index
           arduino-cli core install ${{ matrix.arduino-platform }}
       - name: Compile Sketch
-        run: arduino-cli compile --fqbn ${{ matrix.arduino-platform }} ./room_control_unit --warnings more
+        run: arduino-cli compile --fqbn ${{ matrix.fqbn }} ./room_control_unit --warnings more

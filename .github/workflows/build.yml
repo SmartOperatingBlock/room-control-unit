@@ -19,7 +19,7 @@ jobs:
           # This works like this: when the platformn is "arduino:avr", the
           # variable `fqbn` is set to "arduino:avr:uno".
           - arduino-platform: "arduino:avr"
-            fqbn: "arduino:avr:uno"
+            fqbn: "arduino:avr:mega"
 
     runs-on: ubuntu-latest
     steps:

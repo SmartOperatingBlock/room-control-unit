@@ -8,8 +8,8 @@
 
 #include "Scheduler.h"
 #include <TimerOne.h>
-#include "../utils/Math.h"
-#include "../utils/ArrayStream.h"
+#include "../../utils/Math.h"
+#include "../../utils/ArrayStream.h"
 
 /*
     Variable used to specify if the scheduler has to tick.

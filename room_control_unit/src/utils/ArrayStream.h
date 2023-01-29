@@ -14,18 +14,31 @@
     This class allow to perform stream's operation java-like with the
     constructs that are avaible for the c++ implementation on the AVR CPU.
 
-    Its implementation is simple without the intenction of being super efficient.
+    Its implementation is simple without the intenction of being super efficient, not lazy.
 */
 template<typename T>
 class ArrayStream {
     public:
         /*
-            Create a Stream from an array.
+            Create an ArrayStream to perform stream operation on an array.
 
             @param array the array.
             @param size the size of the array.
         */
-        ArrayStream(T* array, int size): array(array), size(size) {}
+        ArrayStream(T* array, int size): size(size) {
+            this->array = new T[size];
+            // Copy the array in order to handle cleaning internally.
+            for(int i = 0; i < size; i++) {
+                this->array[i] = array[i];
+            }
+        }
+
+        /*
+            Deconstructor.
+        */
+        ~ArrayStream() {
+            delete this->array;
+        }
 
         /*
             Java-like Map of the content of the array.
@@ -36,16 +49,16 @@ class ArrayStream {
         */
         template<typename X>
         ArrayStream<X> map(X (*func)(T)) {
-            X* newArray = new X[this->size];
             for(int i = 0; i < this->size; i++) {
-                newArray[i] = func(this->array[i]);
+                this->array[i] = func(this->array[i]); // Safe: we are working on a copy.
             }
-            return ArrayStream<X>(newArray, this->size);
+            return this;
         }
 
         /*
             Check if a value exist within the array.
             This function is terminator of the Stream.
+            This terminator will also clean the memory used internally.
 
             @param func the strategy to find the element.
             @return true if a matching element exists, false instead.
@@ -56,11 +69,13 @@ class ArrayStream {
                     return true;
                 }
             }
+            delete this->array;
             return false;
         }
 
         /*
             Execute the sum of summable types.
+            This terminator will also clean the memory used internally.
 
             @return the sum.
         */
@@ -69,11 +84,13 @@ class ArrayStream {
             for(int i = 0; i < this->size; i++) {
                 sum += this->array[i];
             }
+            delete this->array;
             return sum;
         }
 
         /*
             Obtain the computed array.
+            Note that with this method it is your care to clean the dynamic allocated memory (or delete the ArrayStream obj).
 
             @return the array.
         */

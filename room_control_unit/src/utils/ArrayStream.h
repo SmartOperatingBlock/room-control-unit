@@ -25,7 +25,7 @@ class ArrayStream {
             @param array the array.
             @param size the size of the array.
         */
-        ArrayStream(const T* array, const int size): array(array), size(size) {}
+        ArrayStream(T* array, int size): array(array), size(size) {}
 
         /*
             Java-like Map of the content of the array.
@@ -40,7 +40,7 @@ class ArrayStream {
             for(int i = 0; i < this->size; i++) {
                 newArray[i] = func(this->array[i]);
             }
-            return ArrayStream(newArray, this->size);
+            return ArrayStream<X>(newArray, this->size);
         }
 
         /*

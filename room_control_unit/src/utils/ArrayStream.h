@@ -15,6 +15,7 @@
     constructs that are avaible for the c++ implementation on the AVR CPU.
 
     Its implementation is simple without the intenction of being super efficient, not lazy.
+    @tparam T the type stored in the array.
 */
 template<typename T>
 class ArrayStream {
@@ -37,74 +38,98 @@ class ArrayStream {
             Deconstructor.
         */
         ~ArrayStream() {
-            delete this->array;
+            delete[] this->array;
         }
 
         /*
             Java-like Map of the content of the array.
-            NOTE: After calling map, this instance of ArrayStream will be destroyed.
 
             @tparam X the new type to map.
-            @param func the strategy of the mapping
-            @return the mapped array.
+            @param func the strategy of the mapping.
+            @param deepMap if it is true then the previous elements will be deleted from memory.
+            @return the mapped stream.
         */
         template<typename X>
-        ArrayStream<X> map(X (*func)(T)) {
+        ArrayStream<X> map(X (*func)(T), bool deepMap = false) {
             X newArray[this->size];
             for(int i = 0; i < this->size; i++) {
                 newArray[i] = func(this->array[i]);
             }
-            int newSize = this->size;
-            delete this; // Clean memory
-            return ArrayStream<X>(newArray, newSize);
+            this->cleanup(deepMap);
+            return ArrayStream<X>(newArray, this->size);
         }
 
         /*
             Check if a value exist within the array.
-            This function is terminator of the Stream.
-            This terminator will also clean the memory used internally.
+            This function is a terminator of the Stream.
+            This terminator will also clean the memory used internally (see deepClean parameter).
 
             @param func the strategy to find the element.
+            @param deepClean if it is true then the previous elements inside the array will be deleted from memory.
             @return true if a matching element exists, false instead.
         */
-        bool exist(bool (*func)(T)) {
+        bool exist(bool (*func)(T), bool deepClean = false) {
             for(int i = 0; i < this->size; i++) {
                 if(func(this->array[i])) {
                     return true;
                 }
             }
-            delete this->array;
+            this->cleanup(deepClean);
             return false;
         }
 
         /*
             Execute the sum of summable types.
             This terminator will also clean the memory used internally.
-
+            
+            @param deepClean if it is true then the previous elements inside the array will be deleted from memory.
             @return the sum.
         */
-        T sum() {
+        T sum(bool deepClean = false) {
             T sum;
             for(int i = 0; i < this->size; i++) {
                 sum += this->array[i];
             }
-            delete this->array;
+            this->cleanup(deepClean);
             return sum;
         }
 
         /*
             Obtain the computed array.
-            Note that with this method it is your care to clean the dynamic allocated memory (or delete the ArrayStream obj).
+            Note that with this method it is your care to clean the dynamic allocated memory returned.
 
+            @param deepClean if it is true then the previous elements inside the array (of the ArrayStream) will be deleted from memory.
             @return the array.
         */
-        T* toArray() {
-            return this->array;
+        T* toArray(bool deepClean = false) {
+            T* returnedArray = new T[this->size];
+            for(int i = 0; i < this->size; i++) {
+                returnedArray[i] = this->array[i];
+            }
+            this->cleanup(deepClean);
+            return returnedArray;
         }
 
     private:
         T* array;
         const int size;
+
+        void cleanup(bool deep) {
+            if(deep) {
+                for(int i = 0; i < this->size; i++) {
+                    deleteIfPointer(this->array[i]);
+                }
+            }
+
+            delete[] this->array;
+            this->array = NULL;
+        }
+
+        template<typename X>
+        void deleteIfPointer(X & item) {}  //do nothing: item is not pointer
+
+        template<typename X>
+        void deleteIfPointer(X* item) { delete item; } //delete: item is pointer
 };
 
 

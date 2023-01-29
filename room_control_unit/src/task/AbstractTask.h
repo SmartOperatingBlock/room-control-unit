@@ -41,7 +41,7 @@ class AbstractTask: public Task {
         }
     private:
         int timeElapsed;
-        int period;
+        const int period;
 };
 
 #endif

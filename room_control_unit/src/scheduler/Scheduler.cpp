@@ -40,7 +40,9 @@ bool Scheduler::addTask(Task* newTask) {
 
 void Scheduler::setPeriod() {
     //Get the period of all tasks
-    int* tasksPeriod = ArrayStream<Task*>(this->tasks, this->taskNumber).map<int>([](Task* t) {return t->getPeriod();}).toArray();
+    int* tasksPeriod = ArrayStream<Task*>(this->tasks, this->taskNumber)
+                            .map<int>([](Task* t) {return t->getPeriod();})
+                            .toArray();
 
     //Get the GCD (Greatest commond divisor)
     this->schedulerPeriod = MathHelper::gcdOfArray(tasksPeriod, this->taskNumber);

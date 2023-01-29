@@ -42,6 +42,7 @@ class ArrayStream {
 
         /*
             Java-like Map of the content of the array.
+            NOTE: After calling map, this instance of ArrayStream will be destroyed.
 
             @tparam X the new type to map.
             @param func the strategy of the mapping
@@ -49,10 +50,13 @@ class ArrayStream {
         */
         template<typename X>
         ArrayStream<X> map(X (*func)(T)) {
+            X newArray[this->size];
             for(int i = 0; i < this->size; i++) {
-                this->array[i] = func(this->array[i]); // Safe: we are working on a copy.
+                newArray[i] = func(this->array[i]);
             }
-            return this;
+            int newSize = this->size;
+            delete this; // Clean memory
+            return ArrayStream<X>(newArray, newSize);
         }
 
         /*

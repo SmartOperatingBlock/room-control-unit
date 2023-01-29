@@ -33,6 +33,7 @@ class AbstractTask: public Task {
         AbstractTask(const int period) : period(period) {
             this->timeElapsed = 0;
         }
+        
         /*
             Allow the task to be executed immediately without wait the first period time.
         */

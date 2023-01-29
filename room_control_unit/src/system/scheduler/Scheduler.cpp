@@ -48,8 +48,8 @@ void Scheduler::setPeriod() {
     this->schedulerPeriod = MathHelper::gcdOfArray(tasksPeriod, this->taskNumber);
 
     //clean memory
-    delete tasksPeriod;
-
+    delete[] tasksPeriod;
+    
     noInterrupts();
     TCCR1A = 0;           //reset timer configs
     TCCR1B = 0;           //stop the timer and clear configs that will be set based on the period by the library

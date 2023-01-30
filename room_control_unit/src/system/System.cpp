@@ -28,6 +28,7 @@ bool System::addTask(Task* newTask) {
 
 void System::run() {
     this->scheduler->schedule();
+    // Put the Arduino (avr cpu) in sleep mode to save energy.
     this->sleep();
 }
 

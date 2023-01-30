@@ -13,12 +13,13 @@
     Interface to model an humidity sensor.
 */
 class HumiditySensor {
-    /*
-        Get the current humidity.
+    public:
+        /*
+            Get the current humidity.
 
-        @return the current humidity.
-    */
-    virtual float getHumidity() = 0;
+            @return the current humidity.
+        */
+        virtual float getHumidity() = 0;
 };
 
 #endif

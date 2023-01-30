@@ -13,12 +13,13 @@
     Interface to model a temperature sensor.
 */
 class TemperatureSensor {
-    /*
-        Get the current temperature.
+    public:
+        /*
+            Get the current temperature.
 
-        @return the current temperature.
-    */
-    virtual float getTemperature() = 0;
+            @return the current temperature.
+        */
+        virtual float getTemperature() = 0;
 };
 
 #endif

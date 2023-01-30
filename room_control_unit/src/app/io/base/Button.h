@@ -13,11 +13,11 @@
 * Interface for defining buttons-like io.
 */
 class Button {
-public:
-    /*
-        @return true if the button is pressed, false otherwise.
-    */
-    virtual bool isPressed() = 0;
+    public:
+        /*
+            @return true if the button is pressed, false otherwise.
+        */
+        virtual bool isPressed() = 0;
 };
 
 #endif

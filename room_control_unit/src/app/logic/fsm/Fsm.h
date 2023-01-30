@@ -10,7 +10,7 @@
 #define __FSM__
 
 #include "State.h"
-#include "../../system/task/Task.h"
+#include "../../../system/task/Task.h"
 
 /*
     Interface that describe a Task modeled as a Finite State Machine.

@@ -10,7 +10,7 @@
 #define __ABSTRACT_FSM__
 
 #include "Fsm.h"
-#include "../../system/task/AbstractTask.h"
+#include "../../../system/task/AbstractTask.h"
 
 /*
     Abstract implementation of an Finite State Machine.

@@ -9,7 +9,7 @@
 #ifndef __STRETCHER_PRESSURE_SENSOR__
 #define __STRETCHER_PRESSURE_SENSOR__
 
-#include "Button.h"
+#include "../base/Button.h"
 
 /*
     Stretcher pressure sensor that is need to detect if a patient is on a stretcher.

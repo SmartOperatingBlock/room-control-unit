@@ -9,8 +9,8 @@
 #ifndef __TEMPERATURE_HUMIDITY_SENSOR__
 #define __TEMPERATURE_HUMIDITY_SENSOR__
 
-#include "TemperatureSensor.h"
-#include "HumiditySensor.h"
+#include "../base/TemperatureSensor.h"
+#include "../base/HumiditySensor.h"
 #include <dht.h>
 
 /*

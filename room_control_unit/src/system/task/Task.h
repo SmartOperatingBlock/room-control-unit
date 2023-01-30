@@ -19,16 +19,19 @@ class Task {
             N.B. This code will be executed outside ISR.
         */
         virtual void tick() = 0;
+
         /*
             It is possibile to get the period of the task.
             @return the period of the task.
         */
         virtual int getPeriod() = 0;
+
         /*
             Update the internal time and decide if the task has to be executed.
             @return true if the task must be executed, false instead.
         */
         virtual bool updateAndCheck(int schedulerPeriod) = 0;
+        
         /*
             Tasks must also specify their destructor in order to clean the memory.
         */

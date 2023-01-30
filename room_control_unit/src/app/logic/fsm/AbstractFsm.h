@@ -18,8 +18,8 @@
 class AbstractFsm: public Fsm, public AbstractTask {
     public:
         AbstractFsm(const int period): AbstractTask(period) {
-            this->prevState = NULL;
-            this->currentState = NULL;
+            this->prevState = nullptr;
+            this->currentState = nullptr;
         }
 
         State* getState() {
@@ -37,7 +37,7 @@ class AbstractFsm: public Fsm, public AbstractTask {
             //Delete old allocated state, in order to save heap memory.
             if(this->prevState != nullptr) {
                 delete this->prevState;
-                this->prevState = NULL;
+                this->prevState = nullptr;
             }
         }
 

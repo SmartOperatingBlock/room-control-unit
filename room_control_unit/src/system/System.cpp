@@ -9,10 +9,10 @@
 #include "System.h"
 #include <avr/sleep.h>
 
-System* System::instance = 0;
+System* System::instance = nullptr;
 
 System* System::getInstance() {
-    if(instance == 0) {
+    if(instance == nullptr) {
         instance = new System();
     }
     return instance;

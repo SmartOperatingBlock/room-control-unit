@@ -122,7 +122,7 @@ class ArrayStream {
             }
 
             delete[] this->array;
-            this->array = NULL;
+            this->array = nullptr;
         }
 
         template<typename X>

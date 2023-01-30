@@ -41,6 +41,11 @@ class AbstractFsm: public Fsm, public AbstractTask {
             }
         }
 
+        virtual ~AbstractFsm() {
+            delete this->currentState;
+            delete this->prevState;
+        }
+
     private:
         State* currentState;
         State* prevState; //Save the prev state in order to delete it when unnecessary.

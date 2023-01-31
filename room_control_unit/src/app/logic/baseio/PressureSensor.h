@@ -6,16 +6,16 @@
  * https://opensource.org/licenses/MIT.
  */
 
-#ifndef __BUTTON__
-#define __BUTTON__
+#ifndef __PRESSURE_SENSOR__
+#define __PRESSURE_SENSOR__
 
 /*
-* Interface for defining buttons-like io.
+* Interface for defining buttons-like pressure sensor.
 */
-class Button {
+class PressureSensor {
     public:
         /*
-            @return true if the button is pressed, false otherwise.
+            @return true if the sensor is pressed, false otherwise.
         */
         virtual bool isPressed() = 0;
 };

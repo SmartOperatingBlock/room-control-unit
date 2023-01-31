@@ -9,12 +9,12 @@
 #ifndef __STRETCHER_PRESSURE_SENSOR__
 #define __STRETCHER_PRESSURE_SENSOR__
 
-#include "../../logic/baseio/Button.h"
+#include "../../logic/baseio/PressureSensor.h"
 
 /*
     Stretcher pressure sensor that is need to detect if a patient is on a stretcher.
 */
-class StretcherPressureSensor: public Button {
+class StretcherPressureSensor: public PressureSensor {
     public:
         /*
             Simple constructor.

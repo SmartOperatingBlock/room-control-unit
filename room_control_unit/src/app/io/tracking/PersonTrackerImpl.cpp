@@ -39,5 +39,5 @@ bool PersonTrackerImpl::checkNewPerson() {
 
 Person PersonTrackerImpl::getLastPersonDetected() {
     // return a new stack instance so it will not be deleted by the class.
-    return Person(this->lastPersonDetected->getId(), this->lastPersonDetected->getRole())
+    return Person(this->lastPersonDetected->getId(), this->lastPersonDetected->getRole());
 }

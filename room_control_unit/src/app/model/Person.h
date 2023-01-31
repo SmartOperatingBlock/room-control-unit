@@ -9,6 +9,8 @@
 #ifndef __PERSON__
 #define __PERSON__
 
+#include "Arduino.h"
+
 /*
     This enum models the role of a Person.
 */

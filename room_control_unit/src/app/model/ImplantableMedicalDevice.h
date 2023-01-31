@@ -9,6 +9,8 @@
 #ifndef __IMPLANTABLE_MEDICAL_DEVICE__
 #define __IMPLANTABLE_MEDICAL_DEVICE__
 
+#include "Arduino.h"
+
 /*
     This enum models the type of an implantable medical device.
 */

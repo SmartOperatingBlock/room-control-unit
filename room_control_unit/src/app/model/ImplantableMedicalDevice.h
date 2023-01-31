@@ -14,7 +14,7 @@
 /*
     This enum models the type of an implantable medical device.
 */
-enum class DeviceType {
+enum class ImplantableMedicalDeviceType {
     /*
         Pace maker.
     */
@@ -32,7 +32,7 @@ class ImplantableMedicalDevice {
             @param id the id of the implantable medical device.
             @param type the type of the implantable medical device.
         */
-        ImplantableMedicalDevice(const String id, const DeviceType type): id(id), type(type) {}
+        ImplantableMedicalDevice(const String id, const ImplantableMedicalDeviceType type): id(id), type(type) {}
 
         /*
             Get the Implantable medical device's ID.
@@ -48,13 +48,13 @@ class ImplantableMedicalDevice {
 
             @return the type.
         */
-        DeviceType getType() {
+        ImplantableMedicalDeviceType getType() {
             return this->type;
         }
     
     private:
         const String id;
-        const DeviceType type;
+        const ImplantableMedicalDeviceType type;
 };
 
 #endif

@@ -9,7 +9,7 @@
 #ifndef __DIGITAL__
 #define __DIGITAL__
 
-#include "../../logic/baseio/PowerStatus.h"
+#include "../../model/PowerStatus.h"
 #include "Arduino.h"
 
 /*

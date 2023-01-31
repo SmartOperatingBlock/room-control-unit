@@ -9,7 +9,7 @@
 #ifndef __HVAC__
 #define __HVAC__
 
-#include "PowerStatus.h"
+#include "../../model/PowerStatus.h"
 
 /*
     Interface for modeling the HVAC System.

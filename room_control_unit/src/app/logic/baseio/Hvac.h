@@ -22,21 +22,21 @@ class Hvac {
             @param state if it is set to PowerStatus::ON then the ventilation will be turned on.
             Instead if it is set to PowerStatus::OFF then the ventilation will be turned off.
         */
-        void turnVentilation(PowerStatus state);
+        virtual void turnVentilation(PowerStatus state) = 0;
 
         /*
             Set che ventilation speed.
 
             @param speedPercentage the speed percentage of the ventilation.
         */
-        void setVentilationSpeed(float speedPercentage);
+        virtual void setVentilationSpeed(float speedPercentage) = 0;
 
         /*
             Get the current ventilation speed percentage.
 
             @return the current ventilation speed percentage.
         */
-        int getVentilationSpeedPercentage();
+        virtual int getVentilationSpeedPercentage() = 0;
 
         /*
             Turn the heating on/off based on the parameter.
@@ -44,7 +44,7 @@ class Hvac {
             @param state if it is set to PowerStatus::ON then the heating will be turned on.
             Instead if it is set to PowerStatus::OFF then the heating will be turned off.
         */
-        void turnHeating(PowerStatus state);
+        virtual void turnHeating(PowerStatus state) = 0;
 
         /*
             Turn the cooling on/off based on the parameter.
@@ -52,7 +52,7 @@ class Hvac {
             @param state if it is set to PowerStatus::ON then the cooling will be turned on.
             Instead if it is set to PowerStatus::OFF then the cooling will be turned off.
         */
-        void turnCooling(PowerStatus state);
+        virtual void turnCooling(PowerStatus state) = 0;
 };
 
 #endif

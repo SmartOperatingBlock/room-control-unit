@@ -8,7 +8,7 @@
 
 #include "SurgicalLightImpl.h"
 
-SurgicalLightImpl::SurgicalLightImpl(const int lightPin): LightImpl(lightPin) {}
+SurgicalLightImpl::SurgicalLightImpl(const String id, const int lightPin): LightImpl(id, lightPin) {}
 
 void SurgicalLightImpl::turnOn(const int intensityPercentage) {
     LightImpl::turnOn(intensityPercentage);
@@ -16,4 +16,8 @@ void SurgicalLightImpl::turnOn(const int intensityPercentage) {
 
 void SurgicalLightImpl::turnOff() {
     LightImpl::turnOff();
+}
+
+String SurgicalLightImpl::getId() {
+    return LightImpl::getId();
 }

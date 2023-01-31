@@ -19,19 +19,22 @@ class HvacSystem: public Hvac {
         /*
             Constructor.
 
+            @param id the identificator of the hvac system.
             @param ventilationPin the pin of the ventilation.
             @param heatingPin the pin of the heating.
             @param coolingPin the pin of the cooling.
         */
-        HvacSystem(int ventilationPin, int heatingPin, int coolingPin);
+        HvacSystem(String id, int ventilationPin, int heatingPin, int coolingPin);
 
         void turnVentilation(PowerStatus state);
         void setVentilationSpeed(float speedPercentage);
         int getVentilationSpeedPercentage();
         void turnHeating(PowerStatus state);
         void turnCooling(PowerStatus state);
+        String getId();
 
     private:
+        const String id;
         const int ventilationPin;
         int ventilationSpeed;
         const int heatingPin;

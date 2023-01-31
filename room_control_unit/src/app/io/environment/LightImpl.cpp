@@ -10,7 +10,7 @@
 #include "Arduino.h"
 #include "../utils/Digital.h"
 
-LightImpl::LightImpl(const int lightPin): lightPin(lightPin) {
+LightImpl::LightImpl(const String id, const int lightPin): id(id), lightPin(lightPin) {
     pinMode(lightPin, OUTPUT);
 }
 
@@ -20,5 +20,9 @@ void LightImpl::turnOn(const int intensityPercentage) {
 
 void LightImpl::turnOff() {
     Digital::turnPin(this->lightPin, PowerStatus::OFF);
+}
+
+String LightImpl::getId() {
+    return this->id;
 }
 

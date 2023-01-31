@@ -10,11 +10,12 @@
 #define __HVAC__
 
 #include "../../model/PowerStatus.h"
+#include "../../model/Actuator.h"
 
 /*
     Interface for modeling the HVAC System.
 */
-class Hvac {
+class Hvac: public Actuator{
     public:
         /*
             Turn the ventilation on/off.

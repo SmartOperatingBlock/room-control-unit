@@ -20,11 +20,13 @@ class SurgicalLightImpl: public SurgicalLight, public LightImpl {
         /*
             Constructor.
 
+            @param id the identificator of the surgical light.
             @param pin the pin of the surgical light.
         */
-        SurgicalLightImpl(int lightPin);
+        SurgicalLightImpl(String id, int lightPin);
         void turnOn(int intensityPercentage);
         void turnOff();
+        String getId();
 };
 
 #endif

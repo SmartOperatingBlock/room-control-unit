@@ -11,8 +11,8 @@
 #include "Arduino.h"
 #include "../utils/Digital.h"
 
-HvacSystem::HvacSystem(const int ventilationPin, const int heatingPin, const int coolingPin): 
-    ventilationPin(ventilationPin), heatingPin(heatingPin), coolingPin(coolingPin) {
+HvacSystem::HvacSystem(const String id, const int ventilationPin, const int heatingPin, const int coolingPin): 
+    id(id), ventilationPin(ventilationPin), heatingPin(heatingPin), coolingPin(coolingPin) {
         pinMode(ventilationPin, OUTPUT);
         pinMode(heatingPin, OUTPUT);
         pinMode(coolingPin, OUTPUT);
@@ -49,4 +49,8 @@ void HvacSystem::turnHeating(const PowerStatus state) {
 
 void HvacSystem::turnCooling(const PowerStatus state) {
     Digital::turnPin(this->coolingPin, state);
+}
+
+String HvacSystem::getId() {
+    return this->id;
 }

@@ -9,11 +9,12 @@
 #ifndef __LIGHT__
 #define __LIGHT__
 
+#include "../../model/Actuator.h"
 
 /*
     Interface that models a light.
 */
-class Light {
+class Light: public Actuator {
     /*
         Turn the light on with an intensity.
 

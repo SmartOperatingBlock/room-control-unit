@@ -16,13 +16,16 @@ class LightImpl: public Light {
         /*
             Constructor.
 
+            @param id the identificator of the light.
             @param pin the pin of the light to control.
         */
-        LightImpl(int lightPin);
+        LightImpl(String id, int lightPin);
         void turnOn(int intensityPercentage);
         void turnOff();
+        String getId();
 
     private:
+        const String id;
         const int lightPin;
 };
 

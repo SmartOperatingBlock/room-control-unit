@@ -9,28 +9,7 @@
 #ifndef __HVAC__
 #define __HVAC__
 
-
-enum class HvacStatus {
-    /*
-        Only ventilation without heating or cooling.
-    */
-    VENTILATION,
-
-    /*
-        The Hvac system is off.
-    */
-    OFF,
-
-    /*
-        Heating is on, so also ventilation.
-    */
-    HEATING,
-
-    /*
-        Cooling is on, so also ventilation.
-    */
-    COOLING
-};
+#include "PowerStatus.h"
 
 /*
     Interface for modeling the HVAC System.
@@ -38,35 +17,42 @@ enum class HvacStatus {
 class Hvac {
     public:
         /*
-            Get the current status of the Hvac system.
+            Turn the ventilation on/off.
 
-            @return the status
+            @param state if it is set to PowerStatus::ON then the ventilation will be turned on.
+            Instead if it is set to PowerStatus::OFF then the ventilation will be turned off.
         */
-        HvacStatus getCurrentStatus();
+        void turnVentilation(PowerStatus state);
 
         /*
-            Turn the ventilation on/off based on the parameter.
+            Set che ventilation speed.
 
-            @param state if it is set to true then the ventilation will be turned on.
-            Instead if it is set to off then the ventilation will be turned off.
+            @param speedPercentage the speed percentage of the ventilation.
         */
-        void turnVentilation(bool state);
+        void setVentilationSpeed(float speedPercentage);
+
+        /*
+            Get the current ventilation speed percentage.
+
+            @return the current ventilation speed percentage.
+        */
+        int getVentilationSpeedPercentage();
 
         /*
             Turn the heating on/off based on the parameter.
 
-            @param state if it is set to true then the heating will be turned on.
-            Instead if it is set to off then the heating will be turned off.
+            @param state if it is set to PowerStatus::ON then the heating will be turned on.
+            Instead if it is set to PowerStatus::OFF then the heating will be turned off.
         */
-        void turnHeating(bool state);
+        void turnHeating(PowerStatus state);
 
         /*
             Turn the cooling on/off based on the parameter.
 
-            @param state if it is set to true then the cooling will be turned on.
-            Instead if it is set to off then the cooling will be turned off.
+            @param state if it is set to PowerStatus::ON then the cooling will be turned on.
+            Instead if it is set to PowerStatus::OFF then the cooling will be turned off.
         */
-        void turnCooling(bool state);
+        void turnCooling(PowerStatus state);
 };
 
 #endif

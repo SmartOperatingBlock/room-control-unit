@@ -7,6 +7,7 @@
  */
 
 #include "System.h"
+#include <SPI.h>
 #include <avr/sleep.h>
 
 System* System::instance = nullptr;
@@ -24,6 +25,10 @@ System::System() {
 
 bool System::addTask(Task* newTask) {
     return this->scheduler->addTask(newTask);
+}
+
+void System::init() {
+    SPI.begin();
 }
 
 void System::run() {

@@ -16,12 +16,18 @@ class MyTask: public AbstractTask {
             Serial.println("[" + name + "@" + String(millis()) + "]computing...");
         }
 
+        ~MyTask() {
+            Serial.println("deleted");
+        }
+
     private:
         String name;
 };
 
 void setup() {
     Serial.begin(9600);
+    System::getInstance()->init();
+    
     System::getInstance()->addTask(new MyTask(1000, "Task-1"));
     System::getInstance()->addTask(new MyTask(500, "Task-2"));
     System::getInstance()->addTask(new MyTask(300, "Task-3"));

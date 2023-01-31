@@ -31,6 +31,11 @@ public:
         @param task it is the task to add.
     */
     bool addTask(Task* task);
+
+    /*
+        Init the system.
+    */
+    void init();
     
     /*
         Perform a single run-cycle of the System.

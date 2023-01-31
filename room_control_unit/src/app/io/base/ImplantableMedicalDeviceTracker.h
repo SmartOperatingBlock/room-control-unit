@@ -12,7 +12,7 @@
 #include "../../model/ImplantableMedicalDevice.h"
 
 /*
-    Interface that model a tracker to track implantable medical devices.
+    Interface that model a tracker device to track implantable medical devices.
 */
 class ImplantableMedicalDeviceTracker {
     public:

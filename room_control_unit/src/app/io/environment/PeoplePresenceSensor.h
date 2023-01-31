@@ -9,7 +9,7 @@
 #ifndef __PEOPLE_PRESENCE_SENSOR__
 #define __PEOPLE_PRESENCE_SENSOR__
 
-#include "../base/PresenceSensor.h"
+#include "../../logic/baseio/PresenceSensor.h"
 
 class PeoplePresenceSensor: public PresenceSensor {
     public:

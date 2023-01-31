@@ -9,7 +9,7 @@
 #ifndef __IMPLANTABLE_MEDICAL_DEVICE_TRACKER_IMPL__
 #define __IMPLANTABLE_MEDICAL_DEVICE_TRACKER_IMPL__
 
-#include "../base/ImplantableMedicalDeviceTracker.h"
+#include "../../logic/baseio/ImplantableMedicalDeviceTracker.h"
 #include "rfid/TagReader.h"
 
 /*

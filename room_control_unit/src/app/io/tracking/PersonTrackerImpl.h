@@ -9,7 +9,7 @@
 #ifndef __PERSON_TRACKER_IMPL__
 #define __PERSON_TRACKER_IMPL__
 
-#include "../base/PersonTracker.h"
+#include "../../logic/baseio/PersonTracker.h"
 #include "rfid/TagReader.h"
 
 /*

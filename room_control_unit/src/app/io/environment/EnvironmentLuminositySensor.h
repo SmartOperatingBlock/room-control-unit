@@ -9,7 +9,7 @@
 #ifndef __ENV_LUMINOSITY_SENSOR
 #define __ENV_LUMINOSITY_SENSOR
 
-#include "../base/LuminositySensor.h"
+#include "../../logic/baseio/LuminositySensor.h"
 #include "../../model/Luminosity.h"
 
 #define ADC_RESOLUTION 1023

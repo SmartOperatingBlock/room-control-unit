@@ -12,7 +12,7 @@
 #include "../../model/Person.h"
 
 /*
-    Interface that model a tracker to track people.
+    Interface that model a tracker device to track people.
 */
 class PersonTracker {
     public:

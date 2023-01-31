@@ -9,6 +9,8 @@
 #ifndef __HUMIDITY_SENSOR__
 #define __HUMIDITY_SENSOR__
 
+#include "../../model/Humidity.h"
+
 /*
     Interface to model an humidity sensor.
 */
@@ -19,7 +21,7 @@ class HumiditySensor {
 
             @return the current humidity.
         */
-        virtual float getHumidity() = 0;
+        virtual Humidity getHumidity() = 0;
 };
 
 #endif

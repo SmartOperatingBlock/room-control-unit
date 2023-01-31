@@ -10,6 +10,7 @@
 #define __ENV_LUMINOSITY_SENSOR
 
 #include "../base/LuminositySensor.h"
+#include "../../model/Luminosity.h"
 
 #define ADC_RESOLUTION 1023
 #define VOLTAGE 5
@@ -29,7 +30,7 @@ class EnvironmentLuminositySensor: public LuminositySensor {
             @param pin the pin to which the sensor is attached to.
         */
         EnvironmentLuminositySensor(int pin);
-        float getLuminosity();
+        Luminosity getLuminosity();
 
     private:
         const int pin; // the pin to which the sensor is attached to.

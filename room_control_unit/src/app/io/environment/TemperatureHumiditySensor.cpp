@@ -13,14 +13,14 @@
 
 TemperatureHumiditySensor::TemperatureHumiditySensor(const uint8_t pin): pin(pin) {}
 
-float TemperatureHumiditySensor::getTemperature() {
+Temperature TemperatureHumiditySensor::getTemperature() {
     this->readNewData();
-    return this->sensor.temperature;
+    return Temperature(this->sensor.temperature, TemperatureUnit::CELSIUS);
 }
 
-float TemperatureHumiditySensor::getHumidity() {
+Humidity TemperatureHumiditySensor::getHumidity() {
     this->readNewData();
-    return this->sensor.humidity;
+    return Humidity(this->sensor.humidity);
 }
 
 void TemperatureHumiditySensor::readNewData() {

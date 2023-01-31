@@ -9,17 +9,19 @@
 #ifndef __LUMINOSITY_SENSOR__
 #define __LUMINOSITY_SENSOR__
 
+#include "../../model/Luminosity.h"
+
 /*
     Interface that model a luminosity sensor.
 */
 class LuminositySensor {
     public:
         /*
-            Get luminosity in lumen.
+            Get luminosity.
 
-            @return the luminosity expressed in lumen.
+            @return the luminosity.
         */
-        virtual float getLuminosity() = 0;
+        virtual Luminosity getLuminosity() = 0;
 };
 
 #endif

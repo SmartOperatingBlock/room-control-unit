@@ -9,6 +9,8 @@
 #ifndef __TEMPERATURE_SENSOR__
 #define __TEMPERATURE_SENSOR__
 
+#include "../../model/Temperature.h"
+
 /*
     Interface to model a temperature sensor.
 */
@@ -19,7 +21,7 @@ class TemperatureSensor {
 
             @return the current temperature.
         */
-        virtual float getTemperature() = 0;
+        virtual Temperature getTemperature() = 0;
 };
 
 #endif

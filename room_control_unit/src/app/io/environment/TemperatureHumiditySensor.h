@@ -11,6 +11,8 @@
 
 #include "../base/TemperatureSensor.h"
 #include "../base/HumiditySensor.h"
+#include "../../model/Temperature.h"
+#include "../../model/Humidity.h"
 #include <dht.h>
 
 /*
@@ -25,14 +27,14 @@ class TemperatureHumiditySensor: public TemperatureSensor, public HumiditySensor
 
             @return the current temperature.  
         */
-        float getTemperature();
+        Temperature getTemperature();
 
         /*
             Get the current humidity.
 
             @return the current humidity.  
         */
-        float getHumidity();
+        Humidity getHumidity();
     
     private:
         const uint8_t pin; // Pin to which the temperature and humidity sensor is attached.

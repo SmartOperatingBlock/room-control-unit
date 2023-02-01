@@ -26,7 +26,8 @@ enum class EventType {
     PATIENT_TRACKING,
     IMPLANTABLE_MEDICAL_DEVICE_TRACKING,
     PATIENT_ON_OPERATING_TABLE,
-    NEW_ACTUATOR
+    NEW_ACTUATOR,
+    ROOM_ENTRY
 };
 
 /*
@@ -65,10 +66,19 @@ class RoomEvent: public AbstractEvent {
     public:
         /*
             Constructor.
+            This constructor set as default event type the EventType::ROOM one.
 
             @param room the room in which the event is occurred.
         */
-        RoomEvent(const Room room): AbstractEvent(EventType::ROOM), room(room) {}
+        RoomEvent(const Room room): RoomEvent(room, EventType::ROOM) {}
+
+        /*
+            Constructor.
+
+            @param room the room in which the event is occurred.
+            @param eventType the type of the event occured in that room.
+        */
+        RoomEvent(const Room room, const EventType eventType): AbstractEvent(eventType), room(room) {}
 
         /*
             Get the room of the event.
@@ -194,7 +204,7 @@ class ActuatorStateEvent: public AbstractEvent {
             @param status the status of the actuator.
             @param intensity the intensity of work of the actuator.
         */
-        ActuatorStateEvent(const Actuator actuator, const PowerStatus status, const Percentage intensityPercentage):
+        ActuatorStateEvent(Actuator* const actuator, const PowerStatus status, const Percentage intensityPercentage):
             AbstractEvent(EventType::ACTUATOR_STATE), actuator(actuator), status(status), intensityPercentage(intensityPercentage) {}
         
         /*
@@ -202,7 +212,7 @@ class ActuatorStateEvent: public AbstractEvent {
 
             @return the actuator.
         */
-        Actuator getActuator() {
+        Actuator* getActuator() {
             return this->actuator;
         }
 
@@ -224,7 +234,7 @@ class ActuatorStateEvent: public AbstractEvent {
             return this->intensityPercentage;
         }
     private:
-        const Actuator actuator;
+        Actuator* const actuator;
         const PowerStatus status;
         const Percentage intensityPercentage;
 };

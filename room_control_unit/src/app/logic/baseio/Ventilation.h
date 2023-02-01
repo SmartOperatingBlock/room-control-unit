@@ -11,6 +11,7 @@
 
 #include "../../model/Actuator.h"
 #include "../../model/PowerStatus.h"
+#include "../../model/Percentage.h"
 
 /*
     Interface that models the Ventilation System inside a Room.
@@ -31,7 +32,7 @@ class Ventilation: public Actuator {
 
             @param speedPercentage the speed percentage of the ventilation.
         */
-        virtual void setSpeedPercentage(int speedPercentage) = 0;
+        virtual void setSpeedPercentage(Percentage speedPercentage) = 0;
 };
 
 #endif

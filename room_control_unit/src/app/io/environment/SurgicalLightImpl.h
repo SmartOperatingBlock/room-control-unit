@@ -24,7 +24,7 @@ class SurgicalLightImpl: public SurgicalLight, public LightImpl {
             @param pin the pin of the surgical light.
         */
         SurgicalLightImpl(String id, int lightPin);
-        void turnOn(int intensityPercentage);
+        void turnOn(Percentage intensityPercentage);
         void turnOff();
         String getId();
 };

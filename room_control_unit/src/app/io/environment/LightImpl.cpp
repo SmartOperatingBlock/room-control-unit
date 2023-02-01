@@ -14,8 +14,8 @@ LightImpl::LightImpl(const String id, const int lightPin): id(id), lightPin(ligh
     pinMode(lightPin, OUTPUT);
 }
 
-void LightImpl::turnOn(const int intensityPercentage) {
-    Digital::turnPinPwm(this->lightPin, map(intensityPercentage, 0, 100, 0, 255));
+void LightImpl::turnOn(Percentage intensityPercentage) {
+    Digital::turnPinPwm(this->lightPin, map(intensityPercentage.get(), 0, 100, 0, 255));
 }
 
 void LightImpl::turnOff() {

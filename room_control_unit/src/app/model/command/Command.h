@@ -11,6 +11,7 @@
 
 #include "../Room.h"
 #include "../PowerStatus.h"
+#include "../Percentage.h"
 
 /*
     Enum of all the types of command.
@@ -125,16 +126,16 @@ class VentilationCommand: public AbstractCommand {
             @param dstRoom the room to which the command is destinated.
             @param intensityPercentage the intensity of the ventilation.
         */
-        VentilationCommand(const Room dstRoom, const int intensityPercentage): AbstractCommand(CommandType::VENTILATION, dstRoom), intensityPercentage(intensityPercentage) {}
+        VentilationCommand(const Room dstRoom, const Percentage intensityPercentage): AbstractCommand(CommandType::VENTILATION, dstRoom), intensityPercentage(intensityPercentage) {}
 
         /*
             Get the wanted intensity.
 
             @return the intesity expressed as a percentage.
         */
-        int getIntensityPercentage();
+        Percentage getIntensityPercentage();
     private:
-        const int intensityPercentage;
+        const Percentage intensityPercentage;
 };
 
 /*
@@ -148,16 +149,16 @@ class AmbientLigthCommand: public AbstractCommand {
             @param dstRoom the room to which the command is destinated.
             @param intensityPercentage the intensity of the ambient light.
         */
-        AmbientLigthCommand(const Room dstRoom, const int intensityPercentage): AbstractCommand(CommandType::VENTILATION, dstRoom), intensityPercentage(intensityPercentage) {}
+        AmbientLigthCommand(const Room dstRoom, const Percentage intensityPercentage): AbstractCommand(CommandType::VENTILATION, dstRoom), intensityPercentage(intensityPercentage) {}
 
         /*
             Get the wanted intensity.
 
             @return the intesity expressed as a percentage.
         */
-        int getIntensityPercentage();
+        Percentage getIntensityPercentage();
     private:
-        const int intensityPercentage;
+        const Percentage intensityPercentage;
 };
 
 /*
@@ -171,16 +172,16 @@ class SurgicalLightCommand: public AbstractCommand {
             @param dstRoom the room to which the command is destinated.
             @param intensityPercentage the intensity of the surgical light.
         */
-        SurgicalLightCommand(const Room dstRoom, const int intensityPercentage): AbstractCommand(CommandType::VENTILATION, dstRoom), intensityPercentage(intensityPercentage) {}
+        SurgicalLightCommand(const Room dstRoom, const Percentage intensityPercentage): AbstractCommand(CommandType::VENTILATION, dstRoom), intensityPercentage(intensityPercentage) {}
 
         /*
             Get the wanted intensity.
 
             @return the intesity expressed as a percentage.
         */
-        int getIntensityPercentage();
+        Percentage getIntensityPercentage();
     private:
-        const int intensityPercentage;
+        const Percentage intensityPercentage;
 };
 
 

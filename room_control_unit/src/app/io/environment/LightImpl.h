@@ -20,7 +20,7 @@ class LightImpl: public Light {
             @param pin the pin of the light to control.
         */
         LightImpl(String id, int lightPin);
-        void turnOn(int intensityPercentage);
+        void turnOn(Percentage intensityPercentage);
         void turnOff();
         String getId();
 

@@ -9,11 +9,10 @@
 #include "VentilationSystem.h"
 #include "../utils/Digital.h"
 
-VentilationSystem::VentilationSystem(const String id, const int ventilationPin): id(id), ventilationPin(ventilationPin) {
+VentilationSystem::VentilationSystem(const String id, const int ventilationPin): id(id), ventilationPin(ventilationPin), speedPercentage(0) {
     pinMode(this->ventilationPin, OUTPUT);
 
     this->turn(PowerStatus::OFF);
-    this->speedPercentage = 0;
 }
 
 String VentilationSystem::getId() {
@@ -24,7 +23,7 @@ void VentilationSystem::turn(const PowerStatus status) {
     switch (status)
     {
         case PowerStatus::ON:
-                Digital::turnPinPwm(this->ventilationPin, this->speedPercentage);    
+                Digital::turnPinPwm(this->ventilationPin, map(this->speedPercentage.get(), 0, 100, 0, 255));
             break;
         
         case PowerStatus::OFF:
@@ -33,7 +32,7 @@ void VentilationSystem::turn(const PowerStatus status) {
     }
 }
 
-void VentilationSystem::setSpeedPercentage(const int speedPercentage) {
+void VentilationSystem::setSpeedPercentage(Percentage speedPercentage) {
     this->speedPercentage = speedPercentage;
 }
 

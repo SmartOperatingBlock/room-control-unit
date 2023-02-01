@@ -10,6 +10,7 @@
 #define __LIGHT__
 
 #include "../../model/Actuator.h"
+#include "../../model/Percentage.h"
 
 /*
     Interface that models a light.
@@ -20,7 +21,7 @@ class Light: public Actuator {
 
         @param intensityPercentage the percentage of intensity with which turn on the light.
     */
-    virtual void turnOn(int intensityPercentage) = 0;
+    virtual void turnOn(Percentage intensityPercentage) = 0;
 
     /*
         Turn the light off.

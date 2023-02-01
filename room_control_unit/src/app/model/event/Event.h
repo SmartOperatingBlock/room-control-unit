@@ -167,7 +167,18 @@ class PresenceEvent: public RoomEvent {
 
             @param room the room in which the event is occurred.
         */
-        PresenceEvent(const Room room): RoomEvent(room) {}
+        PresenceEvent(const Room room, const bool isPresent): RoomEvent(room), isPresent(isPresent) {}
+
+        /*
+            Check is the event signal the presence of the absence in the room.
+
+            @return true if someone is in the room, false otherwise.
+        */
+        bool isSomeonePresent() {
+            return this->isPresent;
+        }
+    private:
+        const bool isPresent;
 };
 
 /*

@@ -22,8 +22,7 @@
 enum class EventType {
     ROOM,
     ACTUATOR_STATE,
-    HEALTH_PROFESSIONAL_TRACKING,
-    PATIENT_TRACKING,
+    PERSON_TRACKING,
     IMPLANTABLE_MEDICAL_DEVICE_TRACKING,
     PATIENT_ON_OPERATING_TABLE,
     NEW_ACTUATOR,
@@ -65,6 +64,16 @@ class AbstractEvent: public Event {
 class RoomEvent: public AbstractEvent {
     public:
         /*
+            Get the room of the event.
+
+            @return the room.
+        */
+        Room getRoom() {
+            return this->room;
+        }
+    
+    protected:
+        /*
             Constructor.
             This constructor set as default event type the EventType::ROOM one.
 
@@ -79,15 +88,7 @@ class RoomEvent: public AbstractEvent {
             @param eventType the type of the event occured in that room.
         */
         RoomEvent(const Room room, const EventType eventType): AbstractEvent(eventType), room(room) {}
-
-        /*
-            Get the room of the event.
-
-            @return the room.
-        */
-        Room getRoom() {
-            return this->room;
-        }
+        
     private:
         const Room room;
 };
@@ -239,5 +240,147 @@ class ActuatorStateEvent: public AbstractEvent {
         const Percentage intensityPercentage;
 };
 
+/*
+    It represents the event of a Person that leaves a room.
+*/
+class PersonTrackExit: public AbstractEvent {
+    public:
+        /*
+            Constructor.
+
+            @param person the person that has been tracked.
+        */
+        PersonTrackExit(const Person person): AbstractEvent(EventType::PERSON_TRACKING), person(person) {}
+
+        /*
+            Get the interested person.
+
+            @return the person.
+        */
+        Person getPerson() {
+            return this->person;
+        }
+
+    private:
+        const Person person;
+};
+
+/*
+    It represents the event of a Person that enters a room.
+*/
+class PersonTrack: public RoomEvent {
+    public:
+        /*
+            Constructor.
+
+            @param person the person that has been tracked.
+            @param room the interested room.
+        */
+        PersonTrack(const Person person, const Room room): RoomEvent(room, EventType::PERSON_TRACKING), person(person) {}
+
+        /*
+            Get the interested person.
+
+            @return the person.
+        */
+        Person getPerson() {
+            return this->person;
+        }
+
+    private:
+        const Person person;
+};
+
+/*
+    It represents the tracking of implantable medical device usage inside an Operating Room.
+*/
+class ImplantableMedicalDeviceTrack: public RoomEvent {
+    public:
+        /*
+            Constructor.
+
+            @param device the device that has been tracked.
+            @param room the room in which the device has been used.
+        */
+        ImplantableMedicalDeviceTrack(const ImplantableMedicalDevice device, const Room room):
+            RoomEvent(room, EventType::IMPLANTABLE_MEDICAL_DEVICE_TRACKING), device(device) {}
+
+        /*
+            Get the interested device.
+
+            @return the device.
+        */
+        ImplantableMedicalDevice getDevice() {
+            return this->device;
+        }
+        
+    private:
+        const ImplantableMedicalDevice device;
+};
+
+/*
+    It represents the fact that the patient has been moved on the Operating table.
+*/
+class PatientOnOperatingTable: public AbstractEvent {
+    public:
+        /*
+            Constructor.
+
+            @param patient the patient that has been moved on the Operating table.
+        */
+        PatientOnOperatingTable(const Person patient): AbstractEvent(EventType::PATIENT_ON_OPERATING_TABLE), patient(patient) {}
+
+        /*
+            Get the interested patient.
+
+            @return the person object that represents the patient.
+        */
+        Person getPatient() {
+            return this->patient;
+        }
+    
+    private:
+        const Person patient;
+
+};
+
+/*
+    It represents the event that signal the gateway the presence of a new type of actuator.
+*/
+class NewActuator: public RoomEvent {
+    public:
+        /*
+            Constructor.
+
+            @param actuator the new detected actuator.
+            @param room the room in which the actuator is active.
+        */
+        NewActuator(Actuator* const actuator, const Room room): RoomEvent(room, EventType::NEW_ACTUATOR), actuator(actuator) {}
+
+        /*
+            Get the interested actuator.
+
+            @return the actuator.
+        */
+        Actuator* getActuator() {
+            return this->actuator;
+        }
+    
+    private:
+        Actuator* const actuator;
+};
+
+/*
+    It represents the event that signal the gateway a room that this system is controlling.
+*/
+class RoomEntry: public RoomEvent {
+    public:
+        /*
+            Constructor.
+
+            @param room the room that is monitored by this device.
+        */
+        RoomEntry(const Room room): RoomEvent(room, EventType::ROOM_ENTRY) {}
+};
 
 #endif

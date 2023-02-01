@@ -19,6 +19,10 @@ String HeatingModule::getId() {
     return this->id;
 }
 
+ActuatorType HeatingModule::getType() {
+    return ActuatorType::HEATING;
+}
+
 void HeatingModule::turn(const PowerStatus status) {
     Digital::turnPin(this->heatingPin, status);
 }

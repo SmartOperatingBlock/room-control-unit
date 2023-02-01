@@ -24,6 +24,7 @@ class CoolingModule: public Cooling {
 
         void turn(PowerStatus status);
         String getId();
+        ActuatorType getType();
 
     private:
         const String id;

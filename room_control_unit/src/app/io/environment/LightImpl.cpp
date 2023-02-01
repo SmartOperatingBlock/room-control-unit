@@ -26,3 +26,7 @@ String LightImpl::getId() {
     return this->id;
 }
 
+ActuatorType LightImpl::getType() {
+    return ActuatorType::AMBIENT_LIGHT;
+}
+

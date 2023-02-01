@@ -11,6 +11,14 @@
 
 #include "Arduino.h"
 
+enum class ActuatorType {
+    VENTILATION,
+    HEATING,
+    COOLING,
+    AMBIENT_LIGHT,
+    SURGICAL_LIGHT
+};
+
 /*
     Interface that model the base information about an Actuator.
 */
@@ -22,7 +30,14 @@ class Actuator {
 
             @return the id.
         */
-        virtual String getId();
+        virtual String getId() = 0;
+
+        /*
+            Get the actuator type.
+
+            @return the actuator type.
+        */
+        virtual ActuatorType getType() = 0;
 };
 
 #endif

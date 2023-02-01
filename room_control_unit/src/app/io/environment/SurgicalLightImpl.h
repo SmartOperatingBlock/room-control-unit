@@ -27,6 +27,7 @@ class SurgicalLightImpl: public SurgicalLight, public LightImpl {
         void turnOn(Percentage intensityPercentage);
         void turnOff();
         String getId();
+        ActuatorType getType();
 };
 
 #endif

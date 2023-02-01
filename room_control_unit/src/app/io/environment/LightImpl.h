@@ -23,6 +23,7 @@ class LightImpl: public Light {
         void turnOn(Percentage intensityPercentage);
         void turnOff();
         String getId();
+        virtual ActuatorType getType();
 
     private:
         const String id;

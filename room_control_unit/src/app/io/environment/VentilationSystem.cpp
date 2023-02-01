@@ -19,6 +19,10 @@ String VentilationSystem::getId() {
     return this->id;
 }
 
+ActuatorType VentilationSystem::getType() {
+    return ActuatorType::VENTILATION;
+}
+
 void VentilationSystem::turn(const PowerStatus status) {
     switch (status)
     {

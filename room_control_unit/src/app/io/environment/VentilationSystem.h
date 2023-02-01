@@ -25,6 +25,7 @@ class VentilationSystem: public Ventilation {
         void turn(PowerStatus status);
         void setSpeedPercentage(Percentage speedPercentage);
         String getId();
+        ActuatorType getType();
 
     private:
         const String id;

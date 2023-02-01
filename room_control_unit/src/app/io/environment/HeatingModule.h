@@ -24,6 +24,7 @@ class HeatingModule: public Heating {
 
         void turn(PowerStatus status);
         String getId();
+        ActuatorType getType();
 
     private:
         const String id;

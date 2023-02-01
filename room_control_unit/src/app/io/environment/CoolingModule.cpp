@@ -19,6 +19,10 @@ String CoolingModule::getId() {
     return this->id;
 }
 
+ActuatorType CoolingModule::getType() {
+    return ActuatorType::COOLING;
+}
+
 void CoolingModule::turn(const PowerStatus status) {
     Digital::turnPin(this->coolingPin, status);
 }

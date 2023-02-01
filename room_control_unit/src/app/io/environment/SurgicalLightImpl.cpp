@@ -21,3 +21,7 @@ void SurgicalLightImpl::turnOff() {
 String SurgicalLightImpl::getId() {
     return LightImpl::getId();
 }
+
+ActuatorType SurgicalLightImpl::getType() {
+    return ActuatorType::SURGICAL_LIGHT;
+}

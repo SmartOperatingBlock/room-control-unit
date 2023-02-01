@@ -17,6 +17,7 @@
 #include "../ImplantableMedicalDevice.h"
 #include "../PowerStatus.h"
 #include "../Actuator.h"
+#include "../Percentage.h"
 
 enum class EventType {
     ROOM,
@@ -193,8 +194,8 @@ class ActuatorStateEvent: public AbstractEvent {
             @param status the status of the actuator.
             @param intensity the intensity of work of the actuator.
         */
-        ActuatorStateEvent(const Actuator actuator, const PowerStatus status, const int intensity):
-            AbstractEvent(EventType::ACTUATOR_STATE), actuator(actuator), status(status), intensity(intensity) {}
+        ActuatorStateEvent(const Actuator actuator, const PowerStatus status, const Percentage intensityPercentage):
+            AbstractEvent(EventType::ACTUATOR_STATE), actuator(actuator), status(status), intensityPercentage(intensityPercentage) {}
         
         /*
             Get the actuator.
@@ -219,13 +220,13 @@ class ActuatorStateEvent: public AbstractEvent {
 
             @return the insity.
         */
-        int getIntensity() {
-            return this->intensity;
+        Percentage getIntensity() {
+            return this->intensityPercentage;
         }
     private:
         const Actuator actuator;
         const PowerStatus status;
-        const int intensity;
+        const Percentage intensityPercentage;
 };
 
 

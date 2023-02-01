@@ -28,6 +28,11 @@ class TagReader {
             @return the read string.
         */
         virtual String readBlock(int blockNumber) = 0;
+
+        /*
+            Deconstructor.
+        */
+        virtual ~TagReader() {};
 };
 
 #endif

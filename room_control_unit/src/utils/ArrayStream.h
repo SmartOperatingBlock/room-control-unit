@@ -24,9 +24,8 @@ class ArrayStream {
             Create an ArrayStream to perform stream operation on an array.
 
             @param array the array.
-            @param size the size of the array.
         */
-        ArrayStream(T* array, int size): size(size) {
+        ArrayStream(T* array): size(sizeof(array)/sizeof(array[0])) {
             this->array = new T[size];
             // Copy the array in order to handle cleaning internally.
             for(int i = 0; i < size; i++) {
@@ -56,7 +55,7 @@ class ArrayStream {
                 newArray[i] = func(this->array[i]);
             }
             this->cleanup(deepMap);
-            return ArrayStream<X>(newArray, this->size);
+            return ArrayStream<X>(newArray);
         }
 
         /*

@@ -12,6 +12,8 @@
 #include "State.h"
 #include "../../../system/task/Task.h"
 
+class State;
+
 /*
     Interface that describe a Task modeled as a Finite State Machine.
     In this way we can add directly fsms to the system's scheduler.

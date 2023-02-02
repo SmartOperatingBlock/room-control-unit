@@ -11,6 +11,8 @@
 
 #include "Fsm.h"
 
+class Fsm;
+
 /*
     Models a state of a fsm.
 */

@@ -29,6 +29,7 @@ jobs:
           arduino-cli lib install TimerOne@1.1.0
           arduino-cli lib install MFRC522@1.4.10
           arduino-cli lib install DHTlib@0.1.35
+          arduino-cli lib install ArduinoJson@6.20.0
       - name: Compile Sketch
         run: arduino-cli compile --fqbn ${{ matrix.fqbn }} ./room_control_unit --warnings more
   release:

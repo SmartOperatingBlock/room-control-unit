@@ -18,6 +18,9 @@
 #include "../PowerStatus.h"
 #include "../Actuator.h"
 #include "../Percentage.h"
+#include "../baseserialization/Serializer.h"
+#include "../baseserialization/Serializable.h"
+
 
 enum class EventType {
     ROOM,
@@ -32,7 +35,7 @@ enum class EventType {
 /*
     Interface that models an Event of the system.
 */
-class Event {
+class Event : public Serializable {
     public:
         /*
             Get the event type.
@@ -115,6 +118,11 @@ class TemperatureEvent: public RoomEvent {
         Temperature getTemperature() {
             return this->temperature;
         }
+
+        String accept(Serializer *serializer) {
+            return serializer->serialize(this);
+        }
+
     private:
         const Temperature temperature;
 };
@@ -139,6 +147,10 @@ class HumidityEvent: public RoomEvent {
         */
         Humidity getHumidity() {
             return this->humidity;
+        }
+
+        String accept(Serializer *serializer) {
+            return serializer->serialize(this);
         }
     private:
         const Humidity humidity;
@@ -165,6 +177,11 @@ class LuminosityEvent: public RoomEvent {
         Luminosity getLuminosity() {
             return this->luminosity;
         }
+
+        String accept(Serializer *serializer) {
+            return serializer->serialize(this);
+        }
+
     private:
         const Luminosity luminosity;
 };
@@ -189,6 +206,10 @@ class PresenceEvent: public RoomEvent {
         bool isSomeonePresent() {
             return this->isPresent;
         }
+
+        String accept(Serializer *serializer) {
+            return serializer->serialize(this);
+        }
     private:
         const bool isPresent;
 };
@@ -208,6 +229,9 @@ class ActuatorStateEvent: public AbstractEvent {
         ActuatorStateEvent(Actuator* const actuator, const PowerStatus status, const Percentage intensityPercentage):
             AbstractEvent(EventType::ACTUATOR_STATE), actuator(actuator), status(status), intensityPercentage(intensityPercentage) {}
         
+        ActuatorStateEvent(Actuator* const actuator, const PowerStatus status): 
+            ActuatorStateEvent(actuator, status, status == PowerStatus::ON ? Percentage(100) : Percentage(0)) {}
+
         /*
             Get the actuator.
 
@@ -233,6 +257,10 @@ class ActuatorStateEvent: public AbstractEvent {
         */
         Percentage getIntensity() {
             return this->intensityPercentage;
+        }
+
+        String accept(Serializer *serializer) {
+            return serializer->serialize(this);
         }
     private:
         Actuator* const actuator;
@@ -261,6 +289,10 @@ class PersonTrackExit: public AbstractEvent {
             return this->person;
         }
 
+        String accept(Serializer *serializer) {
+            return serializer->serialize(this);
+        }
+
     private:
         const Person person;
 };
@@ -287,6 +319,9 @@ class PersonTrack: public RoomEvent {
             return this->person;
         }
 
+        String accept(Serializer *serializer) {
+            return serializer->serialize(this);
+        }
     private:
         const Person person;
 };
@@ -312,6 +347,10 @@ class ImplantableMedicalDeviceTrack: public RoomEvent {
         */
         ImplantableMedicalDevice getDevice() {
             return this->device;
+        }
+
+        String accept(Serializer *serializer) {
+            return serializer->serialize(this);
         }
         
     private:
@@ -339,6 +378,10 @@ class PatientOnOperatingTable: public AbstractEvent {
             return this->patient;
         }
     
+        String accept(Serializer *serializer) {
+            return serializer->serialize(this);
+        }
+
     private:
         const Person patient;
 
@@ -366,6 +409,10 @@ class NewActuator: public RoomEvent {
             return this->actuator;
         }
     
+        String accept(Serializer *serializer) {
+            return serializer->serialize(this);
+        }
+
     private:
         Actuator* const actuator;
 };
@@ -381,6 +428,11 @@ class RoomEntry: public RoomEvent {
             @param room the room that is monitored by this device.
         */
         RoomEntry(const Room room): RoomEvent(room, EventType::ROOM_ENTRY) {}
+
+        String accept(Serializer *serializer) {
+            return serializer->serialize(this);
+        }
+
 };
 
 #endif

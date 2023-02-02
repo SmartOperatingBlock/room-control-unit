@@ -40,7 +40,7 @@ bool Scheduler::addTask(Task* newTask) {
 
 void Scheduler::setPeriod() {
     //Get the period of all tasks
-    int* tasksPeriod = ArrayStream<Task*>(this->tasks, this->taskNumber)
+    int* tasksPeriod = ArrayStream<Task*>(this->tasks)
                             .map<int>([](Task* t) {return t->getPeriod();})
                             .toArray();
 

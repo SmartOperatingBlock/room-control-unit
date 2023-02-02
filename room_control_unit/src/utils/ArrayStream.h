@@ -95,6 +95,17 @@ class ArrayStream {
         }
 
         /*
+            Perform a function on each element of the stream.
+
+            @param fun the function to execute on each element.
+        */
+        void foreach(void (*fun)(T)) {
+            for(int i = 0; i < this->size; i++) {
+                fun(this->array[i]);
+            }
+        }
+
+        /*
             Obtain the computed array.
             Note that with this method it is your care to clean the dynamic allocated memory returned.
 

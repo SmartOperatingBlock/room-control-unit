@@ -83,6 +83,7 @@ class List {
             const int size = this->size();
             T* array = new T[size];
             int counter = 0;
+            Node* iteratorHead = this->head;
             while(iteratorHead != nullptr) {
                 array[counter] = iteratorHead->value;
                 iteratorHead = iteratorHead->next;
@@ -101,7 +102,7 @@ class List {
         struct Node {
             T value;
             Node* next;
-        }
+        };
 
         Node* head;
 };

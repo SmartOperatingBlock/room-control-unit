@@ -12,6 +12,8 @@
 #include "../../model/event/Event.h"
 
 #define stringify( name ) #name
+#define BASE_SIZE 64
+#define LARGE_SIZE 128
 
 String JsonSerializer::serialize(Serializable *serializable) {
     return serializable->accept(this);
@@ -20,7 +22,7 @@ String JsonSerializer::serialize(Serializable *serializable) {
 String JsonSerializer::serialize(TemperatureEvent *temperatureEvent) {
 
     String output;
-    DynamicJsonDocument doc(JSON_OBJECT_SIZE(4));
+    DynamicJsonDocument doc(BASE_SIZE);
     doc["type"] = static_cast<int>(temperatureEvent->getType());
     doc["room_id"] = temperatureEvent->getRoom().getId();
     doc["temperature_value"] = temperatureEvent->getTemperature().getTemperatureValue();
@@ -33,7 +35,7 @@ String JsonSerializer::serialize(TemperatureEvent *temperatureEvent) {
 String JsonSerializer::serialize(HumidityEvent *humidityEvent){
     
     String output;
-    DynamicJsonDocument doc(JSON_OBJECT_SIZE(3));
+    DynamicJsonDocument doc(BASE_SIZE);
     doc["type"] = static_cast<int>(humidityEvent->getType());
     doc["room_id"] = humidityEvent->getRoom().getId();
     doc["humidity_percentage"] = humidityEvent->getHumidity().getHumidityPercentage().get();
@@ -44,7 +46,7 @@ String JsonSerializer::serialize(HumidityEvent *humidityEvent){
 String JsonSerializer::serialize(LuminosityEvent *luminosityEvent){
 
     String output;
-    DynamicJsonDocument doc(JSON_OBJECT_SIZE(4));
+    DynamicJsonDocument doc(LARGE_SIZE);
     doc["type"] = static_cast<int>(luminosityEvent->getType());
     doc["room_id"] = luminosityEvent->getRoom().getId();
     doc["luminosity_value"] = luminosityEvent->getLuminosity().getLuminosityValue();
@@ -56,7 +58,7 @@ String JsonSerializer::serialize(LuminosityEvent *luminosityEvent){
 String JsonSerializer::serialize(PresenceEvent *presenceEvent){
     
     String output;
-    DynamicJsonDocument doc(JSON_OBJECT_SIZE(3));
+    DynamicJsonDocument doc(BASE_SIZE);
     doc["type"] = static_cast<int>(presenceEvent->getType());
     doc["room_id"] = presenceEvent->getRoom().getId();
     doc["persone_inside"] = presenceEvent->isSomeonePresent();
@@ -67,7 +69,7 @@ String JsonSerializer::serialize(PresenceEvent *presenceEvent){
 String JsonSerializer::serialize(ActuatorStateEvent *actuatorStateEvent){
     
     String output;
-    DynamicJsonDocument doc(JSON_OBJECT_SIZE(4));
+    DynamicJsonDocument doc(LARGE_SIZE);
     doc["type"] = static_cast<int>(actuatorStateEvent->getType());
     doc["actuator_id"] = actuatorStateEvent->getActuator()->getId();
     doc["state"] = stringify(actuatorStateEvent->getStatus());
@@ -79,7 +81,7 @@ String JsonSerializer::serialize(ActuatorStateEvent *actuatorStateEvent){
 String JsonSerializer::serialize(PersonTrackExit *personTrackExit){
 
     String output;
-    DynamicJsonDocument doc(JSON_OBJECT_SIZE(4));
+    DynamicJsonDocument doc(LARGE_SIZE);
     doc["person_id"] = personTrackExit->getPerson().getId();
     doc["type"] = static_cast<int>(personTrackExit->getType());
     doc["person_role"] = stringify(personTrackExit->getPerson().getRole());
@@ -90,7 +92,7 @@ String JsonSerializer::serialize(PersonTrackExit *personTrackExit){
 
 String JsonSerializer::serialize(PersonTrack *personTrack){
     String output;
-    DynamicJsonDocument doc(JSON_OBJECT_SIZE(4));
+    DynamicJsonDocument doc(LARGE_SIZE);
     doc["person_id"] = personTrack->getPerson().getId();
     doc["type"] = static_cast<int>(personTrack->getType());
     doc["person_role"] = stringify(personTrack->getPerson().getRole());
@@ -102,7 +104,7 @@ String JsonSerializer::serialize(PersonTrack *personTrack){
 String JsonSerializer::serialize(ImplantableMedicalDeviceTrack *implantableMedicalDeviceTrack){
 
     String output;
-    DynamicJsonDocument doc(JSON_OBJECT_SIZE(4));
+    DynamicJsonDocument doc(LARGE_SIZE);
     doc["type"] = static_cast<int>(implantableMedicalDeviceTrack->getType());
     doc["device_id"] = implantableMedicalDeviceTrack->getDevice().getId();
     doc["device_type"] = stringify(implantableMedicalDeviceTrack -> getDevice().getType());
@@ -113,7 +115,7 @@ String JsonSerializer::serialize(ImplantableMedicalDeviceTrack *implantableMedic
 
 String JsonSerializer::serialize(PatientOnOperatingTable *patientOnOperatingTable){
     String output;
-    DynamicJsonDocument doc(JSON_OBJECT_SIZE(2));
+    DynamicJsonDocument doc(BASE_SIZE);
     doc["type"] = static_cast<int>(patientOnOperatingTable->getType());
     doc["patient_id"] = patientOnOperatingTable->getPatient().getId();
     serializeJson(doc, output);
@@ -122,7 +124,7 @@ String JsonSerializer::serialize(PatientOnOperatingTable *patientOnOperatingTabl
 
 String JsonSerializer::serialize(NewActuator *newActuator){
     String output;
-    DynamicJsonDocument doc(JSON_OBJECT_SIZE(4));
+    DynamicJsonDocument doc(LARGE_SIZE);
     doc["type"] = static_cast<int>(newActuator->getType());
     doc["actuator_id"] = newActuator->getActuator()->getId();
     doc["actuator_type"] = stringify(newActuator->getActuator()->getType());
@@ -133,7 +135,7 @@ String JsonSerializer::serialize(NewActuator *newActuator){
 
 String JsonSerializer::serialize(RoomEntry *roomEntry){
     String output;
-    DynamicJsonDocument doc(JSON_OBJECT_SIZE(2));
+    DynamicJsonDocument doc(BASE_SIZE);
     doc["type"] = static_cast<int>(roomEntry->getType());
     doc["room_id"] = roomEntry->getRoom().getId();
     serializeJson(doc, output);

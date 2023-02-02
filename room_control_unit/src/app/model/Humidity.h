@@ -9,6 +9,8 @@
 #ifndef __HUMIDITY__
 #define __HUMIDITY__
 
+#include "Percentage.h"
+
 /*
     Class that models the humidity concepts.
 */
@@ -19,17 +21,17 @@ class Humidity {
 
             @param percentage the value of humidity percentage.
         */
-        Humidity(const float percentage): percentage(percentage) {}
+        Humidity(const Percentage percentage): percentage(percentage) {}
 
         /*
             Get the value of humidity percentage.
 
             @return the humidity percentage.
         */
-        float getHumidityPercentage();
+        Percentage getHumidityPercentage();
 
     private:
-        const float percentage;
+        const Percentage percentage;
 };
 
 #endif

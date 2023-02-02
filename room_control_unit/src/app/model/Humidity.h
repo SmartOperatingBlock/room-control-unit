@@ -28,7 +28,9 @@ class Humidity {
 
             @return the humidity percentage.
         */
-        Percentage getHumidityPercentage();
+        Percentage getHumidityPercentage() {
+            return this->percentage;
+        }
 
     private:
         const Percentage percentage;

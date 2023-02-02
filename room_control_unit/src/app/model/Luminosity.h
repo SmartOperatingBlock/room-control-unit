@@ -35,14 +35,18 @@ class Luminosity {
 
             @return the luminosity.
         */
-        float getLuminosityValue();
+        float getLuminosityValue() {
+            return this->value;
+        }
 
         /*
             Get the unit used to express the value.
 
             @return the unit.
         */
-        LuminosityUnit getLuminosityUnit();
+        LuminosityUnit getLuminosityUnit() {
+            return this->unit;
+        }
 
     private:
         const float value;

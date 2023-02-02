@@ -35,14 +35,18 @@ class Temperature {
 
             @return the temperature.
         */
-        float getTemperatureValue();
+        float getTemperatureValue() {
+            return this->value;
+        }
 
         /*
             Get the unit used to express the value.
 
             @return the unit.
         */
-        TemperatureUnit getTemperatureUnit();
+        TemperatureUnit getTemperatureUnit() {
+            return this->unit;
+        }
 
     private:
         const float value;

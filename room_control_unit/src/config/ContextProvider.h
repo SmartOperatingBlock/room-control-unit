@@ -18,6 +18,7 @@
 #include "../app/logic/baseio/HumiditySensor.h"
 #include "../app/model/event/Event.h"
 #include "../app/logic/fsm/thmonitoring/TemperatureHumidityMonitoring.h"
+#include "../app/logic/fsm/gatewayexporter/GatewayExporter.h"
 
 
 
@@ -41,6 +42,10 @@ TemperatureHumidityMonitoringContext* getTemperatureHumidityMonitoringContext(Li
         temperatureSensors,
         humiditySensors
     };
+}
+
+GatewayExporterContext* getGatewayExporterContext(List<Event*>* eventList, ExternalGateway* gateway) {
+    return new GatewayExporterContext {eventList, gateway};
 }
 
 

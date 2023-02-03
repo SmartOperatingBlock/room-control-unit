@@ -14,6 +14,7 @@
 #include "src/app/io/communication/SerialInterface.h"
 #include "src/app/logic/fsm/thmonitoring/TemperatureHumidityMonitoring.h"
 #include "src/app/logic/fsm/gatewayexporter/GatewayExporter.h"
+#include "src/app/logic/fsm/luminositymonitoring/LuminosityMonitoring.h"
 
 void setup() {
     System::getInstance()->init();
@@ -22,6 +23,7 @@ void setup() {
     
     System::getInstance()->addTask(new TemperatureHumidityMonitoring(TEMPERATURE_HUMIDITY_PERIOD, getTemperatureHumidityMonitoringContext(eventList)));
     System::getInstance()->addTask(new GatewayExporter(GATEWAY_EXPORTER_PERIOD, getGatewayExporterContext(eventList, SerialInterface::getInstance())));
+    System::getInstance()->addTask(new LuminosityMonitoring(LUMINOSITY_PERIOD, getLuminosityMonitoringContext(eventList)));
 }
 
 void loop() {

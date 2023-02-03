@@ -8,18 +8,20 @@
 
 #include "src/system/System.h"
 #include "src/utils/List.h"
+#include "src/config/FsmPeriod.h"
 #include "src/app/model/event/Event.h"
-#include "src/app/logic/fsm/thmonitoring/TemperatureHumidityMonitoring.h"
 #include "src/config/ContextProvider.h"
+#include "src/app/io/communication/SerialInterface.h"
+#include "src/app/logic/fsm/thmonitoring/TemperatureHumidityMonitoring.h"
+#include "src/app/logic/fsm/gatewayexporter/GatewayExporter.h"
 
 void setup() {
-    Serial.begin(9600);
     System::getInstance()->init();
     List<Event*>* const eventList = new List<Event*>();
+    SerialInterface::getInstance()->init(115200);
     
-    
-    System::getInstance()->addTask(new TemperatureHumidityMonitoring(5000, getTemperatureHumidityMonitoringContext(eventList)));
-    
+    System::getInstance()->addTask(new TemperatureHumidityMonitoring(TEMPERATURE_HUMIDITY_PERIOD, getTemperatureHumidityMonitoringContext(eventList)));
+    System::getInstance()->addTask(new GatewayExporter(GATEWAY_EXPORTER_PERIOD, getGatewayExporterContext(eventList, SerialInterface::getInstance())));
 }
 
 void loop() {

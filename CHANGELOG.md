@@ -1,3 +1,17 @@
+## [1.1.0](https://github.com/SmartOperatingBlock/room-control-unit/compare/1.0.0...1.1.0) (2023-02-03)
+
+
+### Features
+
+* implement luminosity monitoring task ([0e579f0](https://github.com/SmartOperatingBlock/room-control-unit/commit/0e579f0b8de752edee1333374dab0f4779d19229))
+
+
+### General maintenance
+
+* add luminosity monitoring context ([82f8cac](https://github.com/SmartOperatingBlock/room-control-unit/commit/82f8cac49acccf66f802079089f0fed43a3be7bc))
+* add luminosity monitoring task to the system ([10bc1eb](https://github.com/SmartOperatingBlock/room-control-unit/commit/10bc1eb258f27ef195b65de993cf92732f4a3834))
+* set lux as luminosity unit ([0f33841](https://github.com/SmartOperatingBlock/room-control-unit/commit/0f33841f975fd928014ce2e88b4a1787bce347f8))
+
 ## 1.0.0 (2023-02-03)
 
 

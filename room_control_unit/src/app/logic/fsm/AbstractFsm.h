@@ -41,6 +41,14 @@ class AbstractFsm: public Fsm, public AbstractTask {
             }
         }
 
+        int getPeriod() {
+            return AbstractTask::getPeriod();
+        }
+
+        bool updateAndCheck(const int schedulerPeriod) {
+            return AbstractTask::updateAndCheck(schedulerPeriod);
+        }
+
         virtual ~AbstractFsm() {
             delete this->currentState;
             delete this->prevState;

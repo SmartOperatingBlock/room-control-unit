@@ -16,11 +16,14 @@
 #include "../app/logic/baseio/TemperatureSensor.h"
 #include "../app/io/environment/TemperatureHumiditySensor.h"
 #include "../app/io/environment/EnvironmentLuminositySensor.h"
+#include "../app/io/environment/PeoplePresenceSensor.h"
 #include "../app/logic/baseio/HumiditySensor.h"
+#include "../app/logic/baseio/PresenceSensor.h"
 #include "../app/model/event/Event.h"
 #include "../app/logic/fsm/thmonitoring/TemperatureHumidityMonitoring.h"
 #include "../app/logic/fsm/gatewayexporter/GatewayExporter.h"
 #include "../app/logic/fsm/luminositymonitoring/LuminosityMonitoring.h"
+#include "../app/logic/fsm/presencemonitoring/PresenceMonitoring.h"
 
 
 
@@ -63,6 +66,22 @@ LuminosityMonitoringContext* getLuminosityMonitoringContext(List<Event*>* eventL
         eventList,
         2,
         luminositySensors
+    };
+}
+
+PresenceMonitoringContext* getPresenceMonitoringContext(List<Event*>* eventList) {
+    PresenceSensor* pOR = new PeoplePresenceSensor(PRESENCE_SENSOR_OR);
+    PresenceSensor* pPRE = new PeoplePresenceSensor(PRESENCE_SENSOR_PRE);
+
+    RoomEquipment<PresenceSensor*>** presenceSensors = new RoomEquipment<PresenceSensor*>*[2] {
+            new RoomEquipment<PresenceSensor*>(pOR, Room(OPERATING_ROOM_ID)),
+            new RoomEquipment<PresenceSensor*>(pPRE, Room(PRE_OPERATING_ROOM_ID))
+    };
+
+    return new PresenceMonitoringContext {
+        eventList,
+        2,
+        presenceSensors
     };
 }
 

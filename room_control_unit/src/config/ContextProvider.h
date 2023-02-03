@@ -15,10 +15,12 @@
 #include "../app/logic/baseio/equipment/RoomEquipment.h"
 #include "../app/logic/baseio/TemperatureSensor.h"
 #include "../app/io/environment/TemperatureHumiditySensor.h"
+#include "../app/io/environment/EnvironmentLuminositySensor.h"
 #include "../app/logic/baseio/HumiditySensor.h"
 #include "../app/model/event/Event.h"
 #include "../app/logic/fsm/thmonitoring/TemperatureHumidityMonitoring.h"
 #include "../app/logic/fsm/gatewayexporter/GatewayExporter.h"
+#include "../app/logic/fsm/luminositymonitoring/LuminosityMonitoring.h"
 
 
 
@@ -36,7 +38,7 @@ TemperatureHumidityMonitoringContext* getTemperatureHumidityMonitoringContext(Li
             new RoomEquipment<HumiditySensor*>(thPRE, Room(PRE_OPERATING_ROOM_ID))
     };
 
-    return new TemperatureHumidityMonitoringContext{
+    return new TemperatureHumidityMonitoringContext {
         eventList,
         2,
         temperatureSensors,
@@ -48,5 +50,20 @@ GatewayExporterContext* getGatewayExporterContext(List<Event*>* eventList, Exter
     return new GatewayExporterContext {eventList, gateway};
 }
 
+LuminosityMonitoringContext* getLuminosityMonitoringContext(List<Event*>* eventList) {
+    LuminositySensor* lOR = new EnvironmentLuminositySensor(LUMINOSITY_SENSOR_OR);
+    LuminositySensor* lPRE = new EnvironmentLuminositySensor(LUMINOSITY_SENSOR_PRE);
+
+    RoomEquipment<LuminositySensor*>** luminositySensors = new RoomEquipment<LuminositySensor*>*[2] {
+            new RoomEquipment<LuminositySensor*>(lOR, Room(OPERATING_ROOM_ID)),
+            new RoomEquipment<LuminositySensor*>(lPRE, Room(PRE_OPERATING_ROOM_ID))
+    };
+
+    return new LuminosityMonitoringContext {
+        eventList,
+        2,
+        luminositySensors
+    };
+}
 
 #endif

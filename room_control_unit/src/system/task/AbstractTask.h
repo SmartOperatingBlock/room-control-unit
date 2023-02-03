@@ -15,7 +15,7 @@
     Abstract implementation of a task.
     Concrete tasks can extend this class in order to specify only the tick and the clean (deconstructor) strategy.
 */
-class AbstractTask: public Task {
+class AbstractTask: virtual public Task {
     public:
         int getPeriod() {
             return this->period;

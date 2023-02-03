@@ -18,7 +18,7 @@ class State;
     Interface that describe a Task modeled as a Finite State Machine.
     In this way we can add directly fsms to the system's scheduler.
 */
-class Fsm: public Task {
+class Fsm: virtual public Task {
     public:
         /*
             Change the current state of the fsm.

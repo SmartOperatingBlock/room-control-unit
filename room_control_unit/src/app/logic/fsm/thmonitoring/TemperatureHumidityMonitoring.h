@@ -18,7 +18,7 @@
 
 struct TemperatureHumidityMonitoringContext {
     List<Event*>* const eventList;
-    int sensorCount;
+    const int sensorCount;
     RoomEquipment<TemperatureSensor*>** temperatureSensors;
     RoomEquipment<HumiditySensor*>** humiditySensors;
 };

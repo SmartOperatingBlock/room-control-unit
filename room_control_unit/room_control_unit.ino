@@ -7,30 +7,19 @@
  */
 
 #include "src/system/System.h"
-#include "src/system/task/AbstractTask.h"
-
-class MyTask: public AbstractTask {
-    public:
-        MyTask(int period, String name) : AbstractTask(period), name(name) {}
-        void tick() {
-            Serial.println("[" + name + "@" + String(millis()) + "]computing...");
-        }
-
-        ~MyTask() {
-            Serial.println("deleted");
-        }
-
-    private:
-        String name;
-};
+#include "src/utils/List.h"
+#include "src/app/model/event/Event.h"
+#include "src/app/logic/fsm/thmonitoring/TemperatureHumidityMonitoring.h"
+#include "src/config/ContextProvider.h"
 
 void setup() {
     Serial.begin(9600);
     System::getInstance()->init();
+    List<Event*>* const eventList = new List<Event*>();
     
-    System::getInstance()->addTask(new MyTask(1000, "Task-1"));
-    System::getInstance()->addTask(new MyTask(500, "Task-2"));
-    System::getInstance()->addTask(new MyTask(300, "Task-3"));
+    
+    System::getInstance()->addTask(new TemperatureHumidityMonitoring(5000, getTemperatureHumidityMonitoringContext(eventList)));
+    
 }
 
 void loop() {

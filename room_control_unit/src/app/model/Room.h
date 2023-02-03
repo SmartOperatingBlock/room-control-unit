@@ -9,11 +9,18 @@
 #ifndef __ROOM__
 #define __ROOM__
 
+#include "Arduino.h"
+
 /*
     Class that models a Room.
 */
 class Room {
     public:
+        /*
+            Default constructor.
+        */
+        Room() {}
+        
         /*
             Constructor.
 
@@ -30,7 +37,7 @@ class Room {
             return this->roomId;
         }
     private:
-        const String roomId;
+        String roomId;
 };
 
 #endif

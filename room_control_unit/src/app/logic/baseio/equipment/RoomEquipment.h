@@ -20,19 +20,24 @@ template<typename T>
 class RoomEquipment {
     public:
         /*
+            Default constructor.
+        */
+       
+        RoomEquipment() {}
+        /*
             Constructor.
 
             @param tool the tool in use.
             @param room the room in which the tool is used.
         */
-        RoomEquipment(T* const tool, Room* const room): tool(tool), room(room) {}
+        RoomEquipment(T tool, Room room): tool(tool), room(room) {}
 
         /*
             Get the used tool.
 
             @return the tool.
         */
-        T* getTool() {
+        T getTool() {
             return this->tool;
         }
 
@@ -41,12 +46,12 @@ class RoomEquipment {
 
             @return the room.
         */
-        Room* getRoom() {
+        Room getRoom() {
             return this->room;
         }
     private:
-        T* const tool;
-        Room* const room;
+        T tool;
+        Room room;
 
 };
 

@@ -22,10 +22,19 @@ class ArrayStream {
     public:
         /*
             Create an ArrayStream to perform stream operation on an array.
+            With this constructor size is automatically computed, so it is for statically-allocated arrays.
 
             @param array the array.
         */
-        ArrayStream(T* array): size(sizeof(array)/sizeof(array[0])) {
+        ArrayStream(T* array): ArrayStream(array, sizeof(array)/sizeof(array[0])) {}
+
+        /*
+            Create an ArrayStream to perform stream operation on an array.
+
+            @param array the array
+            @param size the size of the array (this is useful when dealing with dynamically-allocated arrays).
+        */
+        ArrayStream(T* array, int size): size(size) {
             this->array = new T[size];
             // Copy the array in order to handle cleaning internally.
             for(int i = 0; i < size; i++) {
@@ -97,8 +106,10 @@ class ArrayStream {
             Perform a function on each element of the stream.
 
             @param fun the function to execute on each element.
+            @tparam Lambda the type of the passed lambda
         */
-        void foreach(void (*fun)(T)) {
+        template<typename Lambda>
+        void foreach(Lambda&& fun) {
             for(int i = 0; i < this->size; i++) {
                 fun(this->array[i]);
             }

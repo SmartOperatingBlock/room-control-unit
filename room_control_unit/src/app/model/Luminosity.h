@@ -14,7 +14,7 @@
     Enum that models the luminosity unit of measurement.
 */
 enum class LuminosityUnit {
-    LUMEN
+    LUX
 };
 
 /*

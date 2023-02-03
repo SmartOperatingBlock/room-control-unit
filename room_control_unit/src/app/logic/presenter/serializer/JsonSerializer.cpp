@@ -43,7 +43,7 @@ String JsonSerializer::serialize(HumidityEvent *humidityEvent){
 }
         
 String JsonSerializer::serialize(LuminosityEvent *luminosityEvent){
-    const char* luminosityUnitString[] = {"lumen"};
+    const char* luminosityUnitString[] = {"lux"};
     String output;
     DynamicJsonDocument doc(LARGE_SIZE);
     doc["type"] = static_cast<int>(luminosityEvent->getType());

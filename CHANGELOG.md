@@ -1,3 +1,16 @@
+## [1.2.0](https://github.com/SmartOperatingBlock/room-control-unit/compare/1.1.0...1.2.0) (2023-02-03)
+
+
+### Features
+
+* implement presence monitoring task ([b6bd985](https://github.com/SmartOperatingBlock/room-control-unit/commit/b6bd985c99235d8278170934f5e5eaeecc94dd57))
+
+
+### General maintenance
+
+* add presence monitoring context ([a6e0508](https://github.com/SmartOperatingBlock/room-control-unit/commit/a6e0508034785935ffa90c54fc005b0535977841))
+* add presence monitoring task to the system ([ccc4388](https://github.com/SmartOperatingBlock/room-control-unit/commit/ccc438858d81c06f893e1a64b54f9dbc2a099109))
+
 ## [1.1.0](https://github.com/SmartOperatingBlock/room-control-unit/compare/1.0.0...1.1.0) (2023-02-03)
 
 

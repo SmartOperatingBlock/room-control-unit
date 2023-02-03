@@ -10,9 +10,9 @@
 #define __JSON_SERIALIZER__
 
 #include "Arduino.h"
-#include "../../model/event/Event.h"
-#include "../../model/baseserialization/Serializer.h"
-#include "../../model/baseserialization/Serializable.h"
+#include "../../../model/event/Event.h"
+#include "../../../model/baseserialization/Serializer.h"
+#include "../../../model/baseserialization/Serializable.h"
 
 /**
  * Implementation of a JSON serializer for events serialization.

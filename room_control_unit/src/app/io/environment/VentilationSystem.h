@@ -23,13 +23,16 @@ class VentilationSystem: public Ventilation {
         VentilationSystem(String id, int ventilationPin);
 
         void turn(PowerStatus status);
+        PowerStatus getStatus();
         void setSpeedPercentage(Percentage speedPercentage);
+        Percentage getSpeedPercentage();
         String getId();
         ActuatorType getType();
 
     private:
         const String id;
         const int ventilationPin;
+        PowerStatus currentStatus;
         Percentage speedPercentage;
 };
 

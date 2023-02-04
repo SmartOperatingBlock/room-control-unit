@@ -28,11 +28,25 @@ class Ventilation: public Actuator {
         virtual void turn(PowerStatus status) = 0;
 
         /*
+            Get the status of the ventilation.
+
+            @return the current status.
+        */
+        virtual PowerStatus getStatus() = 0;
+
+        /*
             Set che ventilation speed percentage.
 
             @param speedPercentage the speed percentage of the ventilation.
         */
         virtual void setSpeedPercentage(Percentage speedPercentage) = 0;
+
+        /*
+            Get the speed percentage.
+
+            @return the speed percentage of the ventilation.
+        */
+        virtual Percentage getSpeedPercentage() = 0;
 };
 
 #endif

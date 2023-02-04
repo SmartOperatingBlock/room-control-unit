@@ -11,7 +11,7 @@
 
 VentilationSystem::VentilationSystem(const String id, const int ventilationPin): id(id), ventilationPin(ventilationPin), speedPercentage(0) {
     pinMode(this->ventilationPin, OUTPUT);
-
+    this->currentStatus = PowerStatus::OFF;
     this->turn(PowerStatus::OFF);
 }
 
@@ -24,6 +24,7 @@ ActuatorType VentilationSystem::getType() {
 }
 
 void VentilationSystem::turn(const PowerStatus status) {
+    this->currentStatus = status;
     switch (status)
     {
         case PowerStatus::ON:
@@ -38,5 +39,16 @@ void VentilationSystem::turn(const PowerStatus status) {
 
 void VentilationSystem::setSpeedPercentage(Percentage speedPercentage) {
     this->speedPercentage = speedPercentage;
+    if(this->currentStatus == PowerStatus::ON) {
+        this->turn(this->currentStatus);
+    }
+}
+
+Percentage VentilationSystem::getSpeedPercentage() {
+    return this->speedPercentage;
+}
+
+PowerStatus VentilationSystem::getStatus() {
+    return this->currentStatus;
 }
 

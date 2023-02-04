@@ -32,14 +32,14 @@ CommandListener::L::~L() {
 }
 
 void CommandListener::L::run(Fsm* const parentFsm) {
-    delete this->context->currentCommand; // clean previous command
-    this->context->currentCommand = nullptr;
+    delete *this->context->currentCommand; // clean previous command
+    *this->context->currentCommand = nullptr;
 
     if(this->context->dataProvider->isNewDataAvailable()) {
         String rawData = this->context->dataProvider->getData();
         Command* newCommand = this->commandDeserializer->deserialize(rawData);
         if(newCommand != nullptr) {
-            this->context->currentCommand = newCommand;
+            *this->context->currentCommand = newCommand;
         }
     }
 }

@@ -16,7 +16,7 @@
 
 struct CommandListenerContext {
     DataProvider* dataProvider;
-    Command* currentCommand;
+    Command** currentCommand;
 };
 
 /*

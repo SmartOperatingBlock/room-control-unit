@@ -1,3 +1,22 @@
+## [1.4.0](https://github.com/SmartOperatingBlock/room-control-unit/compare/1.3.0...1.4.0) (2023-02-04)
+
+
+### Features
+
+* implement operating room advanced monitoring task ([adf3e05](https://github.com/SmartOperatingBlock/room-control-unit/commit/adf3e0581f5f35db970a1eb62355425c06ad2fee))
+
+
+### Bug Fixes
+
+* correct memory issues ([c4cbf5c](https://github.com/SmartOperatingBlock/room-control-unit/commit/c4cbf5cc7118051c89305ddcf8e8860d2528dfca))
+
+
+### General maintenance
+
+* add operating room advanced monitoring context ([1f86895](https://github.com/SmartOperatingBlock/room-control-unit/commit/1f8689533fb8bd997d0c2ec4816d5bf3962c074c))
+* add operating room advanced monitoring task to the system ([f7d0313](https://github.com/SmartOperatingBlock/room-control-unit/commit/f7d0313a719fde6aa72d6647fc2a87870c41a785))
+* change patient on operating block event to take room ([3e8eefd](https://github.com/SmartOperatingBlock/room-control-unit/commit/3e8eefd424e3e151f73ff10562c74ec300188dcf))
+
 ## [1.3.0](https://github.com/SmartOperatingBlock/room-control-unit/compare/1.2.0...1.3.0) (2023-02-04)
 
 

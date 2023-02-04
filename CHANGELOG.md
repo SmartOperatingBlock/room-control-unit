@@ -1,3 +1,26 @@
+## [1.6.0](https://github.com/SmartOperatingBlock/room-control-unit/compare/1.5.0...1.6.0) (2023-02-04)
+
+
+### Features
+
+* implement hvac system task ([ead6111](https://github.com/SmartOperatingBlock/room-control-unit/commit/ead6111308fb1e54d0f3adc3f92820542cfede4e))
+
+
+### Bug Fixes
+
+* correct command passing strategy ([cd78627](https://github.com/SmartOperatingBlock/room-control-unit/commit/cd78627a40ca829c2042fc2aeffcc018b898976b))
+* correct status deserialization ([63bf978](https://github.com/SmartOperatingBlock/room-control-unit/commit/63bf978afc6c35ee325c9fe26f69422e49120961))
+
+
+### General maintenance
+
+* add actuator id list ([a500cc6](https://github.com/SmartOperatingBlock/room-control-unit/commit/a500cc6f32e7ac25bd41831a06a1dedd5fa30faf))
+* add hvac system context ([9fef994](https://github.com/SmartOperatingBlock/room-control-unit/commit/9fef99474bbe57bb665f099da4f111c16c260b39))
+* add hvac system to the system ([de435ed](https://github.com/SmartOperatingBlock/room-control-unit/commit/de435ede71dcdbb5f7f43ee682de251fe71c5f04))
+* implement getter and setter for speed and status ([05a6a21](https://github.com/SmartOperatingBlock/room-control-unit/commit/05a6a219e2ea72a7c39bfc7d56d0f97d4b0e290f))
+* implement getters ([4bebc1d](https://github.com/SmartOperatingBlock/room-control-unit/commit/4bebc1df24177c65635584760db703059c1581eb))
+* rename pins ([6265110](https://github.com/SmartOperatingBlock/room-control-unit/commit/6265110e6a910c46fa3615c1cf09989dbd4531a6))
+
 ## [1.5.0](https://github.com/SmartOperatingBlock/room-control-unit/compare/1.4.0...1.5.0) (2023-02-04)
 
 

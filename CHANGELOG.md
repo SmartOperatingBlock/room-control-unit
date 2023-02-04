@@ -1,3 +1,31 @@
+## [1.7.0](https://github.com/SmartOperatingBlock/room-control-unit/compare/1.6.0...1.7.0) (2023-02-04)
+
+
+### Features
+
+* implement ambient light system task ([e42d465](https://github.com/SmartOperatingBlock/room-control-unit/commit/e42d4650feb2118113affd0fd6defc1544a2407e))
+
+
+### Bug Fixes
+
+* correct light interface visibility ([353dc7b](https://github.com/SmartOperatingBlock/room-control-unit/commit/353dc7bca42e7ab155cedc361ed42d6a2773d7d3))
+
+
+### Refactoring
+
+* separate room events ([558a7c7](https://github.com/SmartOperatingBlock/room-control-unit/commit/558a7c7225357858de2f70c15e93c96dac4c33d0))
+
+
+### General maintenance
+
+* add ambient light system context ([8510650](https://github.com/SmartOperatingBlock/room-control-unit/commit/8510650fcbfa15cb25749d4b7c0ca86e18a43800))
+* add ambient light system to the system ([449af66](https://github.com/SmartOperatingBlock/room-control-unit/commit/449af663f30f9928c19207df4eb3c6f4c1ea46b1))
+* add anymatch ([0d3e51e](https://github.com/SmartOperatingBlock/room-control-unit/commit/0d3e51e0de546561905aef24445086a6413a6fad))
+* add equal operator ([207f587](https://github.com/SmartOperatingBlock/room-control-unit/commit/207f587161fff5a034c78a031206ceed0b562279))
+* implement getters ([39a7186](https://github.com/SmartOperatingBlock/room-control-unit/commit/39a718670e09339ee4a4f99100b17ca6ab80fcb7))
+* increase number of tasks that the scheduler can handle ([ca1c018](https://github.com/SmartOperatingBlock/room-control-unit/commit/ca1c018bbe2a30729da61a045057056b86ee5151))
+* rename pins ([dded643](https://github.com/SmartOperatingBlock/room-control-unit/commit/dded643fe76d3156cc8b18b32a60f134e8bccf6b))
+
 ## [1.6.0](https://github.com/SmartOperatingBlock/room-control-unit/compare/1.5.0...1.6.0) (2023-02-04)
 
 

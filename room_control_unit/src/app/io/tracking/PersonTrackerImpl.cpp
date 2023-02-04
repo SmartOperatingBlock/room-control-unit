@@ -9,10 +9,10 @@
 #include "PersonTrackerImpl.h"
 #include "rfid/RfidTagReader.h"
 
-#define PERSON_ID_BLOCK 2
-#define PERSON_TYPE_BLOCK 3
+#define PERSON_BLOCK 16
+#define SPLIT_CHAR "#"
 
-PersonTrackerImpl::PersonTrackerImpl(const int readerPin, const int resetPin) {
+PersonTrackerImpl::PersonTrackerImpl(const int readerPin, const int resetPin, Room* const previousRoom, Room* const nextRoom): previousRoom(previousRoom), nextRoom(nextRoom) {
     this->tagReader = new RfidTagReader(readerPin, resetPin);
     this->lastPersonDetected = nullptr;
 }
@@ -24,8 +24,10 @@ PersonTrackerImpl::~PersonTrackerImpl() {
 
 bool PersonTrackerImpl::checkNewPerson() {
     if(this->tagReader->isTagAvailable()) {
-        String personID = this->tagReader->readBlock(PERSON_ID_BLOCK);
-        String rawPersonType = this->tagReader->readBlock(PERSON_TYPE_BLOCK);
+        String data = this->tagReader->readBlock(PERSON_BLOCK);
+        int splitIndex = data.indexOf(SPLIT_CHAR);
+        String personID = data.substring(0, splitIndex);
+        String rawPersonType = data.substring(splitIndex + 1);
 
         if(personID != "" && rawPersonType != "") {
             PersonRole personRole = rawPersonType == "health" ? PersonRole::HEALTH_PROFESSIONAL : PersonRole::PATIENT;
@@ -40,4 +42,12 @@ bool PersonTrackerImpl::checkNewPerson() {
 Person PersonTrackerImpl::getLastPersonDetected() {
     // return a new stack instance so it will not be deleted by the class.
     return Person(this->lastPersonDetected->getId(), this->lastPersonDetected->getRole());
+}
+
+Room* PersonTrackerImpl::getPreviousRoom() {
+    return this->previousRoom;
+}
+
+Room* PersonTrackerImpl::getNextRoom() {
+    return this->nextRoom;
 }

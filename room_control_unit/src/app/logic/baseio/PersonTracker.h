@@ -10,6 +10,7 @@
 #define __PERSON_TRACKER__
 
 #include "../../model/Person.h"
+#include "../../model/Room.h"
 
 /*
     Interface that model a tracker device to track people.
@@ -30,6 +31,20 @@ class PersonTracker {
             @return the last detected person.
         */
         virtual Person getLastPersonDetected() = 0;
+
+        /*
+            Get the room that is before the reader.
+
+            @return the room or nullptr if there is no room before the reader.
+        */
+        virtual Room* getPreviousRoom() = 0;
+
+        /*
+            Get the room that is after the reader.
+
+            @return the room or nullptr if there is no room after the reader.
+        */
+        virtual Room* getNextRoom() = 0;
 };
 
 #endif

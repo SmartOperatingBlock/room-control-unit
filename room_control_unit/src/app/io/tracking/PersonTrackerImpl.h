@@ -22,8 +22,10 @@ class PersonTrackerImpl: public PersonTracker {
 
             @param readerPin the tag reader pin.
             @param resetPin the pin to reset the tag reader.
+            @param previousRoom the room before the tag reader.
+            @param nextRoom the room after the tag reader.
         */
-        PersonTrackerImpl(int readerPin, int resetPin);
+        PersonTrackerImpl(int readerPin, int resetPin, Room* const previousRoom, Room* const nextRoom);
 
         /*
             Deconstructor to clean memory.
@@ -31,9 +33,14 @@ class PersonTrackerImpl: public PersonTracker {
         ~PersonTrackerImpl();
         bool checkNewPerson();
         Person getLastPersonDetected();
+        Room* getPreviousRoom();
+        Room* getNextRoom();
+        
     private:
         TagReader* tagReader;
         Person* lastPersonDetected;
+        Room* const previousRoom;
+        Room* const nextRoom;
 };
 
 #endif

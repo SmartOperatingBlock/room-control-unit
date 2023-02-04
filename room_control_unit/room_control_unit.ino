@@ -23,6 +23,7 @@ void setup() {
     System::getInstance()->addTask(new LuminosityMonitoring(LUMINOSITY_PERIOD, getLuminosityMonitoringContext(eventList)));
     System::getInstance()->addTask(new PresenceMonitoring(PRESENCE_MONITORING_PERIOD, getPresenceMonitoringContext(eventList)));
     System::getInstance()->addTask(new PeopleTracking(PEOPLE_TRACKING_PERIOD, getPeopleTrackingContext(eventList)));
+    System::getInstance()->addTask(new ORAdvancedMonitoring(OR_ADVANCE_MONITORING_PERIOD, getORAdvancedMonitoringContext(eventList)));
 }
 
 void loop() {

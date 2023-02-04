@@ -1,3 +1,18 @@
+## [1.5.0](https://github.com/SmartOperatingBlock/room-control-unit/compare/1.4.0...1.5.0) (2023-02-04)
+
+
+### Features
+
+* implement command listener task ([98a77b7](https://github.com/SmartOperatingBlock/room-control-unit/commit/98a77b7ec3fb3a09d0a9094dd3d21423545ee5fb))
+
+
+### General maintenance
+
+* add command listener context ([668a98b](https://github.com/SmartOperatingBlock/room-control-unit/commit/668a98bd7a463e1ed9f670d9697b057884bba2e6))
+* add command listener to the system ([0c03c16](https://github.com/SmartOperatingBlock/room-control-unit/commit/0c03c164c5882268cde4849f2a6ee1df61be3ab5))
+* change protocol ([5f0a73a](https://github.com/SmartOperatingBlock/room-control-unit/commit/5f0a73a11a374479c08c4b8e9d06d0685cba8c2a))
+* change surgical light pin name ([8215580](https://github.com/SmartOperatingBlock/room-control-unit/commit/8215580c2ac18c493a406ee768db6683f61ff55f))
+
 ## [1.4.0](https://github.com/SmartOperatingBlock/room-control-unit/compare/1.3.0...1.4.0) (2023-02-04)
 
 

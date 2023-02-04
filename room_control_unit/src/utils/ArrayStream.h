@@ -87,6 +87,26 @@ class ArrayStream {
         }
 
         /*
+            Check if any match is available.
+            This function is a terminator of the Stream.
+            This terminator will also clean the memory used internally (see deepClean parameter).
+
+            @tparam Lambda the type of function to check the match.
+            @param fun the function to check the match.
+            @param deepClean if it is true then the previous elements inside the array will be deleted from memory.
+        */
+        template<typename Lambda>
+        bool anyMatch(Lambda&& fun, bool deepClean = false) {
+            for(int i = 0; i < this->size; i++) {
+                if(fun(this->array[i])) {
+                    return true;
+                }
+            }
+            this->cleanup(deepClean);
+            return false;
+        }
+
+        /*
             Execute the sum of summable types.
             This terminator will also clean the memory used internally.
             

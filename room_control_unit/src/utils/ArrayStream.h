@@ -72,13 +72,13 @@ class ArrayStream {
             This function is a terminator of the Stream.
             This terminator will also clean the memory used internally (see deepClean parameter).
 
-            @param func the strategy to find the element.
+            @param elem the element to check.
             @param deepClean if it is true then the previous elements inside the array will be deleted from memory.
             @return true if a matching element exists, false instead.
         */
-        bool exist(bool (*func)(T), bool deepClean = false) {
+        bool exist(T elem, bool deepClean = false) {
             for(int i = 0; i < this->size; i++) {
-                if(func(this->array[i])) {
+                if(this->array[i] == elem) {
                     return true;
                 }
             }

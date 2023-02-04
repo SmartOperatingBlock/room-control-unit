@@ -29,6 +29,7 @@
 #include "../app/logic/fsm/presencemonitoring/PresenceMonitoring.h"
 #include "../app/logic/fsm/peopletracking/PeopleTracking.h"
 #include "../app/logic/fsm/oradvancedmonitoring/ORAdvancedMonitoring.h"
+#include "../app/logic/fsm/commandlistener/CommandListener.h"
 
 
 
@@ -109,6 +110,13 @@ ORAdvancedMonitoringContext* getORAdvancedMonitoringContext(List<Event*>* eventL
         Room(OPERATING_ROOM_ID),
         new StretcherPressureSensor(OPERATING_TABLE_PRESSURE_SENSOR),
         new ImplantableMedicalDeviceTrackerImpl(IMPLANTABLE_MEDICAL_DEVICE_BIN, READER_RESET_PIN)
+    };
+}
+
+CommandListenerContext* getCommandListenerContext(DataProvider* dataProvider) {
+    return new CommandListenerContext {
+        dataProvider,
+        nullptr
     };
 }
 

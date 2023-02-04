@@ -83,7 +83,7 @@ String JsonSerializer::serialize(PersonTrackExit *personTrackExit){
     doc["person_id"] = personTrackExit->getPerson().getId();
     doc["type"] = static_cast<int>(personTrackExit->getType());
     doc["person_role"] = personRoleString[static_cast<int>(personTrackExit->getPerson().getRole())];
-    doc["room_id"] =  NULL;
+    doc["room_id"] =  nullptr;
     serializeJson(doc, output);
     return output;
 }

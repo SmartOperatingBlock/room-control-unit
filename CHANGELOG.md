@@ -1,3 +1,29 @@
+## [1.3.0](https://github.com/SmartOperatingBlock/room-control-unit/compare/1.2.0...1.3.0) (2023-02-04)
+
+
+### Features
+
+* implement people tracking task ([1cf0c2c](https://github.com/SmartOperatingBlock/room-control-unit/commit/1cf0c2cb1e3a0c3bec85895ec8d9131bef90c9aa))
+
+
+### Dependency updates
+
+* **deps:** update node.js to 18.14 ([90c726c](https://github.com/SmartOperatingBlock/room-control-unit/commit/90c726c3be070b192985c4e2061ca154b076469d))
+
+
+### General maintenance
+
+* add delete functionality ([fdc23c3](https://github.com/SmartOperatingBlock/room-control-unit/commit/fdc23c3c7f61d3ce12c83bb0c1e88e0fb8bdbd27))
+* add pair concept ([dec02fc](https://github.com/SmartOperatingBlock/room-control-unit/commit/dec02fc5388e08625cecd8f63681dc43293749d8))
+* add people tracking context ([77a7bbc](https://github.com/SmartOperatingBlock/room-control-unit/commit/77a7bbc0616672d3b8e8762be3f07e24342c5e8e))
+* add people tracking task to the system ([adc1320](https://github.com/SmartOperatingBlock/room-control-unit/commit/adc132062f8896ea1a8a033cb0e1c081dd8e4af5))
+* change exist strategy to take the element to check ([4f778ce](https://github.com/SmartOperatingBlock/room-control-unit/commit/4f778ce4d191d176da73c8a87f343feb397abb47))
+* change serialization of person track exit event ([e3d58f2](https://github.com/SmartOperatingBlock/room-control-unit/commit/e3d58f21c10d8c33d7e0246ffd7537678fcfd791))
+* change storing strategy ([deaa7bf](https://github.com/SmartOperatingBlock/room-control-unit/commit/deaa7bf4433100a3229481de6d12d44e78a13c85))
+* make tracker aware of previous and next room connected to it ([1d711c8](https://github.com/SmartOperatingBlock/room-control-unit/commit/1d711c845eb6c210a92135af9c80f6c7869173bf))
+* update pin list ([52ffb25](https://github.com/SmartOperatingBlock/room-control-unit/commit/52ffb256871672552f8f1db31f57ff37c3d1c9b1))
+* update README workflow badge ([08218b3](https://github.com/SmartOperatingBlock/room-control-unit/commit/08218b388a3b6524fc5033c99369e8f529e40b81))
+
 ## [1.2.0](https://github.com/SmartOperatingBlock/room-control-unit/compare/1.1.0...1.2.0) (2023-02-03)
 
 

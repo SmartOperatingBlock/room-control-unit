@@ -18,6 +18,8 @@
 #include "../app/io/environment/EnvironmentLuminositySensor.h"
 #include "../app/io/environment/PeoplePresenceSensor.h"
 #include "../app/io/tracking/PersonTrackerImpl.h"
+#include "../app/io/tracking/ImplantableMedicalDeviceTrackerImpl.h"
+#include "../app/io/stretcher/StretcherPressureSensor.h"
 #include "../app/logic/baseio/HumiditySensor.h"
 #include "../app/logic/baseio/PresenceSensor.h"
 #include "../app/model/event/Event.h"
@@ -26,6 +28,7 @@
 #include "../app/logic/fsm/luminositymonitoring/LuminosityMonitoring.h"
 #include "../app/logic/fsm/presencemonitoring/PresenceMonitoring.h"
 #include "../app/logic/fsm/peopletracking/PeopleTracking.h"
+#include "../app/logic/fsm/oradvancedmonitoring/ORAdvancedMonitoring.h"
 
 
 
@@ -97,6 +100,15 @@ PeopleTrackingContext* getPeopleTrackingContext(List<Event*>* eventList) {
         eventList,
         2,
         personTrackers
+    };
+}
+
+ORAdvancedMonitoringContext* getORAdvancedMonitoringContext(List<Event*>* eventList) {
+    return new ORAdvancedMonitoringContext {
+        eventList,
+        Room(OPERATING_ROOM_ID),
+        new StretcherPressureSensor(OPERATING_TABLE_PRESSURE_SENSOR),
+        new ImplantableMedicalDeviceTrackerImpl(IMPLANTABLE_MEDICAL_DEVICE_BIN, READER_RESET_PIN)
     };
 }
 

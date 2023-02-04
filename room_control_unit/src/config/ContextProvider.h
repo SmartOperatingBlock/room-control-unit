@@ -12,6 +12,7 @@
 #include "PinList.h"
 #include "RoomId.h"
 #include "../utils/List.h"
+#include "../config/ActuatorId.h"
 #include "../app/logic/baseio/equipment/RoomEquipment.h"
 #include "../app/logic/baseio/TemperatureSensor.h"
 #include "../app/io/environment/TemperatureHumiditySensor.h"
@@ -20,6 +21,9 @@
 #include "../app/io/tracking/PersonTrackerImpl.h"
 #include "../app/io/tracking/ImplantableMedicalDeviceTrackerImpl.h"
 #include "../app/io/stretcher/StretcherPressureSensor.h"
+#include "../app/io/environment/CoolingModule.h"
+#include "../app/io/environment/HeatingModule.h"
+#include "../app/io/environment/VentilationSystem.h"
 #include "../app/logic/baseio/HumiditySensor.h"
 #include "../app/logic/baseio/PresenceSensor.h"
 #include "../app/model/event/Event.h"
@@ -30,6 +34,7 @@
 #include "../app/logic/fsm/peopletracking/PeopleTracking.h"
 #include "../app/logic/fsm/oradvancedmonitoring/ORAdvancedMonitoring.h"
 #include "../app/logic/fsm/commandlistener/CommandListener.h"
+#include "../app/logic/fsm/hvacsystem/HvacSystem.h"
 
 
 
@@ -113,10 +118,32 @@ ORAdvancedMonitoringContext* getORAdvancedMonitoringContext(List<Event*>* eventL
     };
 }
 
-CommandListenerContext* getCommandListenerContext(DataProvider* dataProvider) {
+CommandListenerContext* getCommandListenerContext(DataProvider* dataProvider, Command** currentCommand) {
     return new CommandListenerContext {
         dataProvider,
-        nullptr
+        currentCommand
+    };
+}
+
+HvacSystemContext* getHvacSystemContextOperatingRoom(List<Event*>* eventList, Command** currentCommand) {
+    return new HvacSystemContext {
+        eventList,
+        currentCommand,
+        Room(OPERATING_ROOM_ID),
+        new VentilationSystem(VENTILATION_OR_ID, VENTILATION_OR_PIN),
+        new HeatingModule(HEATING_OR_ID, HEATING_OR_PIN),
+        new CoolingModule(COOLING_OR_ID, COOLING_OR_PIN)
+    };
+}
+
+HvacSystemContext* getHvacSystemContextPreOperatingRoom(List<Event*>* eventList, Command** currentCommand) {
+    return new HvacSystemContext {
+        eventList,
+        currentCommand,
+        Room(PRE_OPERATING_ROOM_ID),
+        new VentilationSystem(VENTILATION_PRE_ID, VENTILATION_PRE_PIN),
+        new HeatingModule(HEATING_PRE_ID, HEATING_PRE_PIN),
+        new CoolingModule(COOLING_PRE_ID, COOLING_PRE_PIN)
     };
 }
 

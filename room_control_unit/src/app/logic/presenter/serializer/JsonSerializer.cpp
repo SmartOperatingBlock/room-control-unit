@@ -116,7 +116,7 @@ String JsonSerializer::serialize(PatientOnOperatingTable *patientOnOperatingTabl
     String output;
     DynamicJsonDocument doc(BASE_SIZE);
     doc["type"] = static_cast<int>(patientOnOperatingTable->getType());
-    doc["patient_id"] = patientOnOperatingTable->getPatient().getId();
+    doc["room_id"] = patientOnOperatingTable->getRoom().getId();
     serializeJson(doc, output);
     return output;
 }

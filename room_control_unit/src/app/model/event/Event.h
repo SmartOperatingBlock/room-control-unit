@@ -43,6 +43,7 @@ class Event : public Serializable {
             @return the event type.
         */
         virtual EventType getType() = 0;
+        virtual ~Event() {}
 };
 
 class AbstractEvent: public Event {
@@ -360,30 +361,18 @@ class ImplantableMedicalDeviceTrack: public RoomEvent {
 /*
     It represents the fact that the patient has been moved on the Operating table.
 */
-class PatientOnOperatingTable: public AbstractEvent {
+class PatientOnOperatingTable: public RoomEvent {
     public:
         /*
             Constructor.
 
-            @param patient the patient that has been moved on the Operating table.
+            @param room the room of the operating table.
         */
-        PatientOnOperatingTable(const Person patient): AbstractEvent(EventType::PATIENT_ON_OPERATING_TABLE), patient(patient) {}
-
-        /*
-            Get the interested patient.
-
-            @return the person object that represents the patient.
-        */
-        Person getPatient() {
-            return this->patient;
-        }
+        PatientOnOperatingTable(const Room room): RoomEvent(room, EventType::PATIENT_ON_OPERATING_TABLE) {}
     
         String accept(Serializer *serializer) {
             return serializer->serialize(this);
         }
-
-    private:
-        const Person patient;
 
 };
 

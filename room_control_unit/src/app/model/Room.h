@@ -36,6 +36,10 @@ class Room {
         String getId() {
             return this->roomId;
         }
+
+        bool operator==(Room& room) {
+            return this->roomId == room.getId();
+        }
     private:
         String roomId;
 };

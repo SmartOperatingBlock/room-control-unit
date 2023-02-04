@@ -25,31 +25,31 @@ Command* JsonCommandDeserializer::deserialize(const String rawCommand) {
         switch(commandType) {
             case static_cast<int>(CommandType::HEATING): {
                     const String roomId = doc["room_id"];
-                    const PowerStatus statusToSet = statusFromString(doc["on"]);
+                    const PowerStatus statusToSet = statusFromString(doc["status"]);
                     result = new HeatingCommand(Room(roomId), statusToSet);
                 break;
             }
             case static_cast<int>(CommandType::COOLING): {
                     const String roomId = doc["room_id"];
-                    const PowerStatus statusToSet = statusFromString(doc["on"]);
+                    const PowerStatus statusToSet = statusFromString(doc["status"]);
                     result = new CoolingCommand(Room(roomId), statusToSet);
                 break;
             }
             case static_cast<int>(CommandType::VENTILATION): {
                     const String roomId = doc["room_id"];
-                    const int intensityPercentage = doc["intensity"];
+                    const int intensityPercentage = doc["status"];
                     result = new VentilationCommand(Room(roomId), Percentage(intensityPercentage));
                 break;
             }
             case static_cast<int>(CommandType::AMBIENT_LIGHT): {
                     const String roomId = doc["room_id"];
-                    const int intensityPercentage = doc["intensity"];
+                    const int intensityPercentage = doc["status"];
                     result = new AmbientLigthCommand(Room(roomId), Percentage(intensityPercentage));
                 break;
             }
             case static_cast<int>(CommandType::SURGICAL_LIGHT): {
                     const String roomId = doc["room_id"];
-                    const int intensityPercentage = doc["intensity"];
+                    const int intensityPercentage = doc["status"];
                     result = new SurgicalLightCommand(Room(roomId), Percentage(intensityPercentage));
                 break;
             }

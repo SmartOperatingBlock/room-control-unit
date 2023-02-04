@@ -23,7 +23,10 @@
 
 
 enum class EventType {
-    ROOM,
+    TEMPERATURE,
+    HUMIDITY,
+    LUMINOSITY,
+    PRESENCE,
     ACTUATOR_STATE,
     PERSON_TRACKING,
     IMPLANTABLE_MEDICAL_DEVICE_TRACKING,
@@ -79,14 +82,6 @@ class RoomEvent: public AbstractEvent {
     protected:
         /*
             Constructor.
-            This constructor set as default event type the EventType::ROOM one.
-
-            @param room the room in which the event is occurred.
-        */
-        RoomEvent(const Room room): RoomEvent(room, EventType::ROOM) {}
-
-        /*
-            Constructor.
 
             @param room the room in which the event is occurred.
             @param eventType the type of the event occured in that room.
@@ -109,7 +104,7 @@ class TemperatureEvent: public RoomEvent {
             @param room the room in which the event is occurred.
             @param temperature the temperature of the room.
         */
-        TemperatureEvent(const Room room, const Temperature temperature): RoomEvent(room), temperature(temperature) {}
+        TemperatureEvent(const Room room, const Temperature temperature): RoomEvent(room, EventType::TEMPERATURE), temperature(temperature) {}
 
         /*
             Get the temperature that is inside this event.
@@ -139,7 +134,7 @@ class HumidityEvent: public RoomEvent {
             @param room the room in which the event is occurred.
             @param humidity the humidity of the room.
         */
-        HumidityEvent(const Room room, const Humidity humidity): RoomEvent(room), humidity(humidity) {}
+        HumidityEvent(const Room room, const Humidity humidity): RoomEvent(room, EventType::HUMIDITY), humidity(humidity) {}
 
         /*
             Get the humidity that is inside this event.
@@ -168,7 +163,7 @@ class LuminosityEvent: public RoomEvent {
             @param room the room in which the event is occurred.
             @param luminosity the luminosity of the room.
         */
-        LuminosityEvent(const Room room, const Luminosity luminosity): RoomEvent(room), luminosity(luminosity) {}
+        LuminosityEvent(const Room room, const Luminosity luminosity): RoomEvent(room, EventType::LUMINOSITY), luminosity(luminosity) {}
 
         /*
             Get the luminosity that is inside this event.
@@ -197,7 +192,7 @@ class PresenceEvent: public RoomEvent {
 
             @param room the room in which the event is occurred.
         */
-        PresenceEvent(const Room room, const bool isPresent): RoomEvent(room), isPresent(isPresent) {}
+        PresenceEvent(const Room room, const bool isPresent): RoomEvent(room, EventType::PRESENCE), isPresent(isPresent) {}
 
         /*
             Check is the event signal the presence of the absence in the room.

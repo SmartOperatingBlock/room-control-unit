@@ -16,17 +16,18 @@
     Interface that models a light.
 */
 class Light: public Actuator {
-    /*
-        Turn the light on with an intensity.
+    public:
+        /*
+            Turn the light on with an intensity.
 
-        @param intensityPercentage the percentage of intensity with which turn on the light.
-    */
-    virtual void turnOn(Percentage intensityPercentage) = 0;
+            @param intensityPercentage the percentage of intensity with which turn on the light.
+        */
+        virtual void turnOn(Percentage intensityPercentage) = 0;
 
-    /*
-        Turn the light off.
-    */
-    virtual void turnOff() = 0;
+        /*
+            Turn the light off.
+        */
+        virtual void turnOff() = 0;
 };
 
 #endif

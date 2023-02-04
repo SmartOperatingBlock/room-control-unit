@@ -20,15 +20,17 @@ void setup() {
     Command** currentCommand = &startCommand;
     SerialInterface::getInstance()->init(115200);
     
+    System::getInstance()->addTask(new CommandListener(COMMAND_LISTENER_PERIOD, getCommandListenerContext(SerialInterface::getInstance(), currentCommand)));
     System::getInstance()->addTask(new TemperatureHumidityMonitoring(TEMPERATURE_HUMIDITY_PERIOD, getTemperatureHumidityMonitoringContext(eventList)));
-    System::getInstance()->addTask(new GatewayExporter(GATEWAY_EXPORTER_PERIOD, getGatewayExporterContext(eventList, SerialInterface::getInstance())));
     System::getInstance()->addTask(new LuminosityMonitoring(LUMINOSITY_PERIOD, getLuminosityMonitoringContext(eventList)));
     System::getInstance()->addTask(new PresenceMonitoring(PRESENCE_MONITORING_PERIOD, getPresenceMonitoringContext(eventList)));
     System::getInstance()->addTask(new PeopleTracking(PEOPLE_TRACKING_PERIOD, getPeopleTrackingContext(eventList)));
     System::getInstance()->addTask(new ORAdvancedMonitoring(OR_ADVANCE_MONITORING_PERIOD, getORAdvancedMonitoringContext(eventList)));
-    System::getInstance()->addTask(new CommandListener(COMMAND_LISTENER_PERIOD, getCommandListenerContext(SerialInterface::getInstance(), currentCommand)));
     System::getInstance()->addTask(new HvacSystem(HVAC_SYSTEM_PERIOD, getHvacSystemContextOperatingRoom(eventList, currentCommand)));
     System::getInstance()->addTask(new HvacSystem(HVAC_SYSTEM_PERIOD, getHvacSystemContextPreOperatingRoom(eventList, currentCommand)));
+    System::getInstance()->addTask(new AmbientLightSystem(AMBIENT_LIGHT_PERIOD, getAmbientLightContextOperatingRoom(eventList, currentCommand)));
+    System::getInstance()->addTask(new AmbientLightSystem(AMBIENT_LIGHT_PERIOD, getAmbientLightContextPreOperatingRoom(eventList, currentCommand)));
+    System::getInstance()->addTask(new GatewayExporter(GATEWAY_EXPORTER_PERIOD, getGatewayExporterContext(eventList, SerialInterface::getInstance())));
 }
 
 void loop() {

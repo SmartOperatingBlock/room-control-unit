@@ -25,13 +25,15 @@ Command* JsonCommandDeserializer::deserialize(const String rawCommand) {
         switch(commandType) {
             case static_cast<int>(CommandType::HEATING): {
                     const String roomId = doc["room_id"];
-                    const PowerStatus statusToSet = statusFromString(doc["status"]);
+                    const String rawStatus = doc["status"];
+                    const PowerStatus statusToSet = statusFromString(rawStatus);
                     result = new HeatingCommand(Room(roomId), statusToSet);
                 break;
             }
             case static_cast<int>(CommandType::COOLING): {
                     const String roomId = doc["room_id"];
-                    const PowerStatus statusToSet = statusFromString(doc["status"]);
+                    const String rawStatus = doc["status"];
+                    const PowerStatus statusToSet = statusFromString(rawStatus);
                     result = new CoolingCommand(Room(roomId), statusToSet);
                 break;
             }

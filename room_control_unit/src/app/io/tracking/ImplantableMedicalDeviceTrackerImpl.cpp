@@ -9,8 +9,8 @@
 #include "ImplantableMedicalDeviceTrackerImpl.h"
 #include "rfid/RfidTagReader.h"
 
-#define DEVICE_ID_BLOCK 4
-#define DEVICE_TYPE_BLOCK 5
+#define DEVICE_BLOCK 20
+#define SPLIT_CHAR "#"
 
 ImplantableMedicalDeviceTrackerImpl::ImplantableMedicalDeviceTrackerImpl(const int readerPin, const int resetPin) {
     this->tagReader = new RfidTagReader(readerPin, resetPin);
@@ -24,8 +24,10 @@ ImplantableMedicalDeviceTrackerImpl::~ImplantableMedicalDeviceTrackerImpl() {
 
 bool ImplantableMedicalDeviceTrackerImpl::checkNewDevice() {
     if(this->tagReader->isTagAvailable()) {
-        String deviceID = this->tagReader->readBlock(DEVICE_ID_BLOCK);
-        String rawDeviceType = this->tagReader->readBlock(DEVICE_TYPE_BLOCK);
+        String data = this->tagReader->readBlock(DEVICE_BLOCK);
+        int splitIndex = data.indexOf(SPLIT_CHAR);
+        String deviceID = data.substring(0, splitIndex);
+        String rawDeviceType = data.substring(splitIndex + 1);
 
         if(deviceID != "" && rawDeviceType != "") {
             ImplantableMedicalDeviceType deviceType = ImplantableMedicalDeviceType(rawDeviceType.toInt());

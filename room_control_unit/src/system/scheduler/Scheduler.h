@@ -12,7 +12,7 @@
 
 #include "../task/Task.h"
 #include <stdint.h>
-#define MAX_TASKS 10
+#define MAX_TASKS 15
 
 /*
     This class models the scheduler of the system.

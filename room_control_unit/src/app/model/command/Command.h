@@ -155,14 +155,16 @@ class AmbientLigthCommand: public AbstractCommand {
             @param dstRoom the room to which the command is destinated.
             @param intensityPercentage the intensity of the ambient light.
         */
-        AmbientLigthCommand(const Room dstRoom, const Percentage intensityPercentage): AbstractCommand(CommandType::VENTILATION, dstRoom), intensityPercentage(intensityPercentage) {}
+        AmbientLigthCommand(const Room dstRoom, const Percentage intensityPercentage): AbstractCommand(CommandType::AMBIENT_LIGHT, dstRoom), intensityPercentage(intensityPercentage) {}
 
         /*
             Get the wanted intensity.
 
             @return the intesity expressed as a percentage.
         */
-        Percentage getIntensityPercentage();
+        Percentage getIntensityPercentage() {
+            return this->intensityPercentage;
+        }
     private:
         const Percentage intensityPercentage;
 };
@@ -185,7 +187,9 @@ class SurgicalLightCommand: public AbstractCommand {
 
             @return the intesity expressed as a percentage.
         */
-        Percentage getIntensityPercentage();
+        Percentage getIntensityPercentage() {
+            return this->intensityPercentage;
+        }
     private:
         const Percentage intensityPercentage;
 };

@@ -60,6 +60,33 @@ class List {
         }
 
         /*
+            Delete an element from the list.
+
+            @param elem the element to delete.
+        */
+        void deleteElement(T elem, bool deepDelete = false) {
+            Node* prevPointer = nullptr;
+            Node* iteratorHead = this->head;
+            while(iteratorHead != nullptr) {
+                if(iteratorHead->value == elem) {
+                    Node* toDelete = iteratorHead;
+                    if(prevPointer == nullptr) {
+                        this->head = this->head->next;
+                    } else {
+                        prevPointer->next = toDelete->next;
+                    }
+                    if(deepDelete) {
+                        deleteIfPointer(toDelete->value);
+                    }
+                    delete toDelete;
+                    return;
+                }
+                prevPointer = iteratorHead;
+                iteratorHead = iteratorHead->next;
+            }
+        }
+
+        /*
             Compute the size of the List.
 
             @return the size of the list.

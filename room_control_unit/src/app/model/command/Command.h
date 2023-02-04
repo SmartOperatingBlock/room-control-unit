@@ -87,7 +87,9 @@ class HeatingCommand: public AbstractCommand {
 
             @return the status.
         */
-        PowerStatus getStatus();
+        PowerStatus getStatus() {
+            return this->powerStatus;
+        }
     private:
         const PowerStatus powerStatus;
 };
@@ -110,7 +112,9 @@ class CoolingCommand: public AbstractCommand {
 
             @return the status.
         */
-        PowerStatus getStatus();
+        PowerStatus getStatus() {
+            return this->powerStatus;
+        }
     private:
         const PowerStatus powerStatus;
 };
@@ -133,7 +137,9 @@ class VentilationCommand: public AbstractCommand {
 
             @return the intesity expressed as a percentage.
         */
-        Percentage getIntensityPercentage();
+        Percentage getIntensityPercentage() {
+            return this->intensityPercentage;
+        }
     private:
         const Percentage intensityPercentage;
 };

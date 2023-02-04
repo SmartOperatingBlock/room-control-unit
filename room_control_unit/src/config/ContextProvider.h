@@ -17,6 +17,7 @@
 #include "../app/io/environment/TemperatureHumiditySensor.h"
 #include "../app/io/environment/EnvironmentLuminositySensor.h"
 #include "../app/io/environment/PeoplePresenceSensor.h"
+#include "../app/io/tracking/PersonTrackerImpl.h"
 #include "../app/logic/baseio/HumiditySensor.h"
 #include "../app/logic/baseio/PresenceSensor.h"
 #include "../app/model/event/Event.h"
@@ -24,6 +25,7 @@
 #include "../app/logic/fsm/gatewayexporter/GatewayExporter.h"
 #include "../app/logic/fsm/luminositymonitoring/LuminosityMonitoring.h"
 #include "../app/logic/fsm/presencemonitoring/PresenceMonitoring.h"
+#include "../app/logic/fsm/peopletracking/PeopleTracking.h"
 
 
 
@@ -82,6 +84,19 @@ PresenceMonitoringContext* getPresenceMonitoringContext(List<Event*>* eventList)
         eventList,
         2,
         presenceSensors
+    };
+}
+
+PeopleTrackingContext* getPeopleTrackingContext(List<Event*>* eventList) {
+    PersonTracker** personTrackers = new PersonTracker*[2] {
+        new PersonTrackerImpl(ENTRANCE_READER_OR, READER_RESET_PIN, new Room(PRE_OPERATING_ROOM_ID), new Room(OPERATING_ROOM_ID)),
+        new PersonTrackerImpl(ENTRANCE_READER_PRE, READER_RESET_PIN, nullptr, new Room(PRE_OPERATING_ROOM_ID))
+    };
+
+    return new PeopleTrackingContext {
+        eventList,
+        2,
+        personTrackers
     };
 }
 

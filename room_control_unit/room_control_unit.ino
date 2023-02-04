@@ -12,10 +12,6 @@
 #include "src/app/model/event/Event.h"
 #include "src/config/ContextProvider.h"
 #include "src/app/io/communication/SerialInterface.h"
-#include "src/app/logic/fsm/thmonitoring/TemperatureHumidityMonitoring.h"
-#include "src/app/logic/fsm/gatewayexporter/GatewayExporter.h"
-#include "src/app/logic/fsm/luminositymonitoring/LuminosityMonitoring.h"
-#include "src/app/logic/fsm/presencemonitoring/PresenceMonitoring.h"
 
 void setup() {
     System::getInstance()->init();
@@ -26,6 +22,7 @@ void setup() {
     System::getInstance()->addTask(new GatewayExporter(GATEWAY_EXPORTER_PERIOD, getGatewayExporterContext(eventList, SerialInterface::getInstance())));
     System::getInstance()->addTask(new LuminosityMonitoring(LUMINOSITY_PERIOD, getLuminosityMonitoringContext(eventList)));
     System::getInstance()->addTask(new PresenceMonitoring(PRESENCE_MONITORING_PERIOD, getPresenceMonitoringContext(eventList)));
+    System::getInstance()->addTask(new PeopleTracking(PEOPLE_TRACKING_PERIOD, getPeopleTrackingContext(eventList)));
 }
 
 void loop() {

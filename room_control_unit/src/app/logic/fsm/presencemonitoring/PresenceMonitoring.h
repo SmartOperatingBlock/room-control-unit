@@ -35,8 +35,11 @@ class PresenceMonitoring: public AbstractFsm {
             @param context the local context of the fsm.
         */
         PresenceMonitoring(int period, PresenceMonitoringContext* context);
+        ~PresenceMonitoring();
     
     private:
+        PresenceMonitoringContext* const context;
+
         class M: public State {
             public:
                 M(PresenceMonitoringContext* context);

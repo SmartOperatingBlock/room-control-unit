@@ -27,6 +27,8 @@ class Pair {
         */
         Pair(X x, Y y): x(x), y(y) {}
 
+        ~Pair() {}
+
         /*
             Get the first element.
 

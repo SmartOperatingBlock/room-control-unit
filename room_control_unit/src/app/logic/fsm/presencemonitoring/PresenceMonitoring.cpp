@@ -9,8 +9,12 @@
 #include "PresenceMonitoring.h"
 #include "../../../../utils/ArrayStream.h"
 
-PresenceMonitoring::PresenceMonitoring(const int period, PresenceMonitoringContext* const context): AbstractFsm(period) {
+PresenceMonitoring::PresenceMonitoring(const int period, PresenceMonitoringContext* const context): AbstractFsm(period), context(context) {
     this->changeState(new M(context));
+}
+
+PresenceMonitoring::~PresenceMonitoring() {
+    delete this->context;
 }
 
 /*

@@ -30,6 +30,8 @@ class ImplantableMedicalDeviceTracker {
             @return the last detected device.
         */
         virtual ImplantableMedicalDevice getLastDeviceDetected() = 0;
+        
+        virtual ~ImplantableMedicalDeviceTracker() {}
 };
 
 #endif

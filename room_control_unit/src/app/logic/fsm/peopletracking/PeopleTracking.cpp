@@ -9,8 +9,12 @@
 #include "PeopleTracking.h"
 #include "../../../../utils/ArrayStream.h"
 
-PeopleTracking::PeopleTracking(const int period, PeopleTrackingContext* const context): AbstractFsm(period) {
+PeopleTracking::PeopleTracking(const int period, PeopleTrackingContext* const context): AbstractFsm(period), context(context) {
     this->changeState(new T(context));
+}
+
+PeopleTracking::~PeopleTracking() {
+    delete this->context;
 }
 
 /*
@@ -28,7 +32,8 @@ void PeopleTracking::T::run(Fsm* const parentFsm) {
                 Person newPerson = tracker->getLastPersonDetected();
                 Room* nextRoom = tracker->getNextRoom();
                 Room* previousRoom = tracker->getPreviousRoom();
-                if(ArrayStream<Pair<String, String>>(this->trackInfo.toArray(), this->trackInfo.size())
+                Pair<String, String>* trackingInfoArray = this->trackInfo.toArray();
+                if(ArrayStream<Pair<String, String>>(trackingInfoArray, this->trackInfo.size())
                     .exist(Pair<String, String>(nextRoom->getId(), newPerson.getId()))) {
                         this->trackInfo.deleteElement(Pair<String, String>(nextRoom->getId(), newPerson.getId()), true);
                         if(previousRoom == nullptr) {
@@ -44,6 +49,7 @@ void PeopleTracking::T::run(Fsm* const parentFsm) {
                         this->trackInfo.add(Pair<String, String>(nextRoom->getId(), newPerson.getId()));
                         this->context->eventList->add(new PersonTrack(newPerson, *nextRoom));
                     }
+                delete[] trackingInfoArray;
              }
         });
 }

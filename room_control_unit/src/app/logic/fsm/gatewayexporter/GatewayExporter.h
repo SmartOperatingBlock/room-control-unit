@@ -32,11 +32,15 @@ class GatewayExporter: public AbstractFsm {
             @param context the local context of the fsm.
         */
         GatewayExporter(int period, GatewayExporterContext* context);
+        ~GatewayExporter();
     
     private:
+        GatewayExporterContext* const context;
+
         class E: public State {
             public:
                 E(GatewayExporterContext* context);
+                ~E();
                 void run(Fsm* parentFsm);
             private:
                 GatewayExporterContext* const context;

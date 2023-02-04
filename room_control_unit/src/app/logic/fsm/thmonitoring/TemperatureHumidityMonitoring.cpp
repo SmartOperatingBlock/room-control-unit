@@ -10,8 +10,12 @@
 #include "../../../../utils/ArrayStream.h"
 #include "../../../model/event/Event.h"
 
-TemperatureHumidityMonitoring::TemperatureHumidityMonitoring(const int period, TemperatureHumidityMonitoringContext* const context): AbstractFsm(period) {
+TemperatureHumidityMonitoring::TemperatureHumidityMonitoring(const int period, TemperatureHumidityMonitoringContext* const context): AbstractFsm(period), context(context) {
     this->changeState(new M(context));
+}
+
+TemperatureHumidityMonitoring::~TemperatureHumidityMonitoring() {
+    delete this->context;
 }
 
 /*

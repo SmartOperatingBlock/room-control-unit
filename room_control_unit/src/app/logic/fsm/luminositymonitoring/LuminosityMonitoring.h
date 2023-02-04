@@ -35,8 +35,11 @@ class LuminosityMonitoring: public AbstractFsm {
             @param context the local context of the fsm.
         */
         LuminosityMonitoring(int period, LuminosityMonitoringContext* context);
-    
+        ~LuminosityMonitoring();
+
     private:
+        LuminosityMonitoringContext* const context;
+
         class M: public State {
             public:
                 M(LuminosityMonitoringContext* context);

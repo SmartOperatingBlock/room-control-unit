@@ -9,8 +9,12 @@
 #include "LuminosityMonitoring.h"
 #include "../../../../utils/ArrayStream.h"
 
-LuminosityMonitoring::LuminosityMonitoring(const int period, LuminosityMonitoringContext* const context): AbstractFsm(period) {
+LuminosityMonitoring::LuminosityMonitoring(const int period, LuminosityMonitoringContext* const context): AbstractFsm(period), context(context) {
     this->changeState(new M(context));
+}
+
+LuminosityMonitoring::~LuminosityMonitoring() {
+    delete this->context;
 }
 
 /*

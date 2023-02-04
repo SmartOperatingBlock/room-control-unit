@@ -25,6 +25,7 @@ class State {
             This is needed in case it is needed for example to change state.
         */
         virtual void run(Fsm* parentFsm) = 0;
+        virtual ~State() {}
 };
 
 

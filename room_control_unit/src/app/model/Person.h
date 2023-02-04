@@ -38,6 +38,8 @@ class Person {
             @param role the person role.
         */
         Person(const String id, const PersonRole role): id(id), role(role) {}
+
+        ~Person() {}
         
         /*
             Get the Person's ID.

@@ -17,6 +17,8 @@
 */
 class AbstractTask: virtual public Task {
     public:
+        ~AbstractTask() {}
+        
         int getPeriod() {
             return this->period;
         }

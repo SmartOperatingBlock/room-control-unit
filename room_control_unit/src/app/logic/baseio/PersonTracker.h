@@ -45,6 +45,8 @@ class PersonTracker {
             @return the room or nullptr if there is no room after the reader.
         */
         virtual Room* getNextRoom() = 0;
+
+        virtual ~PersonTracker() {}
 };
 
 #endif

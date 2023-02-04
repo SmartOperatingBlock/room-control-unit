@@ -37,8 +37,11 @@ class TemperatureHumidityMonitoring: public AbstractFsm {
             @param context the local context of the fsm.
         */
         TemperatureHumidityMonitoring(const int period, TemperatureHumidityMonitoringContext* context);
+        ~TemperatureHumidityMonitoring();
 
     private:
+        TemperatureHumidityMonitoringContext* const context;
+
         class M: public State {
             public:
                 M(TemperatureHumidityMonitoringContext* context);

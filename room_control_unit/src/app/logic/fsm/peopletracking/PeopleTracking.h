@@ -37,8 +37,11 @@ class PeopleTracking: public AbstractFsm {
             @param context the local context of the fsm.
         */
         PeopleTracking(int period, PeopleTrackingContext* context);
-    
+        ~PeopleTracking();
+
     private:
+        PeopleTrackingContext* const context;
+
         class T: public State {
             public:
                 T(PeopleTrackingContext* context);

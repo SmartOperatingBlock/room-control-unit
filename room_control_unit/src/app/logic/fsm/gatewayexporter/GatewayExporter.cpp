@@ -10,8 +10,12 @@
 #include "../../../../utils/ArrayStream.h"
 #include "../../presenter/serializer/JsonSerializer.h"
 
-GatewayExporter::GatewayExporter(const int period, GatewayExporterContext* const context): AbstractFsm(period) {
+GatewayExporter::GatewayExporter(const int period, GatewayExporterContext* const context): AbstractFsm(period), context(context) {
     this->changeState(new E(context));
+}
+
+GatewayExporter::~GatewayExporter() {
+    delete context;
 }
 
 /*
@@ -24,11 +28,17 @@ GatewayExporter::E::E(GatewayExporterContext* const context): context(context) {
     this->serializer = new JsonSerializer();
 }
 
+GatewayExporter::E::~E() {
+    delete this->serializer;
+}
+
 void GatewayExporter::E::run(Fsm* const parentFsm) {
     const int eventListSize = this->context->eventList->size();
     if(eventListSize != 0) {
-        ArrayStream<Event*>(this->context->eventList->toArray(), eventListSize)
+        Event** eventArray = this->context->eventList->toArray();
+        ArrayStream<Event*>(eventArray, eventListSize)
             .foreach([this](Event* ev) {this->context->externalGatewayInterface->send(this->serializer->serialize(ev));});
+        delete[] eventArray;
         this->context->eventList->clear(true);
     }
 }

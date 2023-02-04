@@ -20,6 +20,8 @@ PersonTrackerImpl::PersonTrackerImpl(const int readerPin, const int resetPin, Ro
 PersonTrackerImpl::~PersonTrackerImpl() {
     delete this->lastPersonDetected;
     delete this->tagReader;
+    delete this->previousRoom;
+    delete this->nextRoom;
 }
 
 bool PersonTrackerImpl::checkNewPerson() {

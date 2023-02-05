@@ -25,6 +25,7 @@
 #include "../app/io/environment/HeatingModule.h"
 #include "../app/io/environment/VentilationSystem.h"
 #include "../app/io/environment/LightImpl.h"
+#include "../app/io/environment/SurgicalLightImpl.h"
 #include "../app/logic/baseio/HumiditySensor.h"
 #include "../app/logic/baseio/PresenceSensor.h"
 #include "../app/model/event/Event.h"
@@ -37,6 +38,7 @@
 #include "../app/logic/fsm/commandlistener/CommandListener.h"
 #include "../app/logic/fsm/hvacsystem/HvacSystem.h"
 #include "../app/logic/fsm/ambientlightsystem/AmbientLightSystem.h"
+#include "../app/logic/fsm/orsurgicalightsystem/ORSurgicalLightSystem.h"
 
 
 
@@ -149,7 +151,7 @@ HvacSystemContext* getHvacSystemContextPreOperatingRoom(List<Event*>* eventList,
     };
 }
 
-AmbientLightSystemContext* getAmbientLightContextOperatingRoom(List<Event*>* eventList, Command** currentCommand) {
+AmbientLightSystemContext* getAmbientLightSystemContextOperatingRoom(List<Event*>* eventList, Command** currentCommand) {
     return new AmbientLightSystemContext {
         eventList,
         currentCommand,
@@ -158,12 +160,21 @@ AmbientLightSystemContext* getAmbientLightContextOperatingRoom(List<Event*>* eve
     };
 }
 
-AmbientLightSystemContext* getAmbientLightContextPreOperatingRoom(List<Event*>* eventList, Command** currentCommand) {
+AmbientLightSystemContext* getAmbientLightSystemContextPreOperatingRoom(List<Event*>* eventList, Command** currentCommand) {
     return new AmbientLightSystemContext {
         eventList,
         currentCommand,
         Room(PRE_OPERATING_ROOM_ID),
         new LightImpl(AMBIENT_LIGHT_PRE_ID, AMBIENT_LIGHT_PRE_PIN)
+    };
+}
+
+ORSurgicalLightSystemContext* getORSurgicalLightSystemContext(List<Event*>* eventList, Command** currentCommand) {
+    return new ORSurgicalLightSystemContext {
+        eventList,
+        currentCommand,
+        Room(OPERATING_ROOM_ID),
+        new SurgicalLightImpl(SURGICAL_LIGHT_ID, SURGICAL_LIGHT_PIN)
     };
 }
 

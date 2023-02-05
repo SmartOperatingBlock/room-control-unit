@@ -80,8 +80,8 @@ String JsonSerializer::serialize(PersonTrackExit *personTrackExit){
     const char* personRoleString[] = {"health_professional", "patient"};
     String output;
     DynamicJsonDocument doc(LARGE_SIZE);
-    doc["person_id"] = personTrackExit->getPerson().getId();
     doc["type"] = static_cast<int>(personTrackExit->getType());
+    doc["person_id"] = personTrackExit->getPerson().getId();
     doc["person_role"] = personRoleString[static_cast<int>(personTrackExit->getPerson().getRole())];
     doc["room_id"] =  nullptr;
     serializeJson(doc, output);
@@ -92,8 +92,8 @@ String JsonSerializer::serialize(PersonTrack *personTrack){
     const char* personRoleString[] = {"health_professional", "patient"};
     String output;
     DynamicJsonDocument doc(LARGE_SIZE);
-    doc["person_id"] = personTrack->getPerson().getId();
     doc["type"] = static_cast<int>(personTrack->getType());
+    doc["person_id"] = personTrack->getPerson().getId();
     doc["person_role"] = personRoleString[static_cast<int>(personTrack->getPerson().getRole())];
     doc["room_id"] =  personTrack->getRoom().getId();
     serializeJson(doc, output);

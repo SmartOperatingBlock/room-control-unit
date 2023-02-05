@@ -180,7 +180,7 @@ class SurgicalLightCommand: public AbstractCommand {
             @param dstRoom the room to which the command is destinated.
             @param intensityPercentage the intensity of the surgical light.
         */
-        SurgicalLightCommand(const Room dstRoom, const Percentage intensityPercentage): AbstractCommand(CommandType::VENTILATION, dstRoom), intensityPercentage(intensityPercentage) {}
+        SurgicalLightCommand(const Room dstRoom, const Percentage intensityPercentage): AbstractCommand(CommandType::SURGICAL_LIGHT, dstRoom), intensityPercentage(intensityPercentage) {}
 
         /*
             Get the wanted intensity.

@@ -49,14 +49,36 @@ class List {
 
         /*
             Add an element to the list.
+            The element will be inserted at the front of the list.
+
+            @param elem the new element.
+        */
+        void addFirst(const T elem) {
+            Node* newElem = new Node;
+            newElem->value = elem;
+            newElem->next = this->head;
+            this->head = newElem;
+        }
+
+        /*
+            Add an element to the list.
+            The element will be appended to the end of the list.
 
             @param elem the new element.
         */
         void add(const T elem) {
             Node* newElem = new Node;
             newElem->value = elem;
-            newElem->next = this->head;
-            this->head = newElem;
+            newElem->next = nullptr;
+            if(this->head == nullptr) {
+                this->head = newElem;
+            } else {
+                Node* lastNode = this->head;
+                while(lastNode->next != nullptr) {
+                    lastNode = lastNode->next;
+                }
+                lastNode->next = newElem;
+            }
         }
 
         /*

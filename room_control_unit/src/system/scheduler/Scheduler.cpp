@@ -38,6 +38,26 @@ bool Scheduler::addTask(Task* newTask) {
     return false;
 }
 
+bool Scheduler::deleteTask(Task* task) {
+    // Deleting a task with this code is a bit slow, but it's kept simple for educational purposes.
+    for(int i = 0; i < this->taskNumber; i++) {
+        //Check task
+        if(this->tasks[i] == task) {
+            // remove the task
+            delete this->tasks[i];
+            //Repositioning other tasks in order to not have gaps in the array
+            for(int j = i; j < this->taskNumber - 1; j++) {
+                this->tasks[j] = this->tasks[j+1];
+            }
+            this->taskNumber--;
+            // Correct the scheduling period after the deletion.
+            this->setPeriod();
+            return true;
+        }
+    }
+    return false;
+}
+
 void Scheduler::setPeriod() {
     //Get the period of all tasks
     int* tasksPeriod = ArrayStream<Task*>(this->tasks, this->taskNumber)

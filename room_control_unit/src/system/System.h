@@ -33,6 +33,12 @@ public:
     bool addTask(Task* task);
 
     /*
+        Delete a task in the System Scheduler
+        @param task the task to delete.
+    */
+    bool deleteTask(Task* task);
+
+    /*
         Init the system.
     */
     void init();

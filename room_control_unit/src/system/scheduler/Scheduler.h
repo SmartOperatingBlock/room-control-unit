@@ -56,6 +56,15 @@ class Scheduler {
         */
         bool addTask(Task* task);
 
+        /*
+            We can remove task at runtime.
+            The scheduler period will automatically adjust itself in order to be able to schedule
+            each task correctly and with the highest period possibile, maintaing correctness, in order to save energy.
+
+            @param task the task to remove.
+        */
+        bool deleteTask(Task* task);
+
     private:
         Task* tasks[MAX_TASKS]; // The list of task to be scheduled
         int taskNumber; // The current number of tasks

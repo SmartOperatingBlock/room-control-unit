@@ -27,6 +27,10 @@ bool System::addTask(Task* newTask) {
     return this->scheduler->addTask(newTask);
 }
 
+bool System::deleteTask(Task* newTask) {
+    return this->scheduler->deleteTask(newTask);
+}
+
 void System::init() {
     SPI.begin();
 }

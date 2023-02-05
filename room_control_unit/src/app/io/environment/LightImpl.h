@@ -11,7 +11,7 @@
 
 #include "../../logic/baseio/Light.h"
 
-class LightImpl: public Light {
+class LightImpl: virtual public Light {
     public:
         /*
             Constructor.

@@ -14,6 +14,6 @@
 /*
     Interface that models a Surgical Light.
 */
-class SurgicalLight: public Light {};
+class SurgicalLight: virtual public Light {};
 
 #endif

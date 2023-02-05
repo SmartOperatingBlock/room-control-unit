@@ -1,3 +1,32 @@
+## [1.9.0](https://github.com/SmartOperatingBlock/room-control-unit/compare/1.8.0...1.9.0) (2023-02-05)
+
+
+### Features
+
+* implement discovery task ([8afa4ca](https://github.com/SmartOperatingBlock/room-control-unit/commit/8afa4ca9db7e89dc7f2a4cae6a2c3c56ffd0f48f))
+
+
+### Bug Fixes
+
+* avoid size computation due to possible errors when dealing with double pointers ([a71260d](https://github.com/SmartOperatingBlock/room-control-unit/commit/a71260d5ae758001704de64114df6bb3876754e6))
+* solve ambiguity in inheritance ([175acd0](https://github.com/SmartOperatingBlock/room-control-unit/commit/175acd0f5712b92adcf8b2bde27c3b6b93ebf067))
+
+
+### Refactoring
+
+* add const to parameter ([f4afdcc](https://github.com/SmartOperatingBlock/room-control-unit/commit/f4afdcca7c829215acf89578810b709b78dcad37))
+* refactor init code ([0de8d98](https://github.com/SmartOperatingBlock/room-control-unit/commit/0de8d98c759b6375f9e86f4d413d3cd63ecee0de))
+
+
+### General maintenance
+
+* adapt stream to new constructor ([e0dd942](https://github.com/SmartOperatingBlock/room-control-unit/commit/e0dd94239b9620af9fe1405ba9d241028940cf4f))
+* add discovery task context ([149e8e7](https://github.com/SmartOperatingBlock/room-control-unit/commit/149e8e7f61fa6017d83f53389b896079d8a6a2fa))
+* add discovery task to the system ([1b23fa6](https://github.com/SmartOperatingBlock/room-control-unit/commit/1b23fa644247fb32ede217bc9eafea8f68fd2125))
+* add terminate method ([7aa83eb](https://github.com/SmartOperatingBlock/room-control-unit/commit/7aa83eb1de67c8ade0c50088254d9b7fa8d02577))
+* add the possibility to delete a task ([6247309](https://github.com/SmartOperatingBlock/room-control-unit/commit/62473091ee891e3c58194630a544131f8548bbe0))
+* allow to add on the front and on the tail ([2912a27](https://github.com/SmartOperatingBlock/room-control-unit/commit/2912a275cebdae2b867117a460eb8e2ee8ce55b7))
+
 ## [1.8.0](https://github.com/SmartOperatingBlock/room-control-unit/compare/1.7.0...1.8.0) (2023-02-05)
 
 

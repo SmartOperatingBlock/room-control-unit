@@ -1,3 +1,22 @@
+## [1.8.0](https://github.com/SmartOperatingBlock/room-control-unit/compare/1.7.0...1.8.0) (2023-02-05)
+
+
+### Features
+
+* implement surgical light system task ([bfcb6bd](https://github.com/SmartOperatingBlock/room-control-unit/commit/bfcb6bddb882151d5a2cc5eb174f9f64825d3548))
+
+
+### Bug Fixes
+
+* correct type of surgical light command ([eba2b13](https://github.com/SmartOperatingBlock/room-control-unit/commit/eba2b13487e0c8ac56bdba13471999d2de464c2c))
+
+
+### General maintenance
+
+* add surgical light system context ([1df47f7](https://github.com/SmartOperatingBlock/room-control-unit/commit/1df47f7bb88e65c2844fee3f70e91c61ca0dcac7))
+* add surgical light system to the system ([d44684f](https://github.com/SmartOperatingBlock/room-control-unit/commit/d44684fa3f9ba19925e50326364db220e338c0a1))
+* invert type and person id in json result ([670b4ce](https://github.com/SmartOperatingBlock/room-control-unit/commit/670b4ce1a1a2a1abcee8fc01f24e15e7f90221d4))
+
 ## [1.7.0](https://github.com/SmartOperatingBlock/room-control-unit/compare/1.6.0...1.7.0) (2023-02-04)
 
 

@@ -13,12 +13,14 @@
 #include "src/config/ContextProvider.h"
 #include "src/app/io/communication/SerialInterface.h"
 
+#define SERIAL_INTERFACE_BAUD_RATE 115200
+
 void setup() {
     System::getInstance()->init();
     List<Event*>* const eventList = new List<Event*>();
     Command* startCommand = nullptr;
     Command** currentCommand = &startCommand;
-    SerialInterface::getInstance()->init(115200);
+    SerialInterface::getInstance()->init(SERIAL_INTERFACE_BAUD_RATE);
     
     System::getInstance()->addTask(new CommandListener(COMMAND_LISTENER_PERIOD, getCommandListenerContext(SerialInterface::getInstance(), currentCommand)));
     System::getInstance()->addTask(new TemperatureHumidityMonitoring(TEMPERATURE_HUMIDITY_PERIOD, getTemperatureHumidityMonitoringContext(eventList)));
@@ -28,8 +30,9 @@ void setup() {
     System::getInstance()->addTask(new ORAdvancedMonitoring(OR_ADVANCE_MONITORING_PERIOD, getORAdvancedMonitoringContext(eventList)));
     System::getInstance()->addTask(new HvacSystem(HVAC_SYSTEM_PERIOD, getHvacSystemContextOperatingRoom(eventList, currentCommand)));
     System::getInstance()->addTask(new HvacSystem(HVAC_SYSTEM_PERIOD, getHvacSystemContextPreOperatingRoom(eventList, currentCommand)));
-    System::getInstance()->addTask(new AmbientLightSystem(AMBIENT_LIGHT_PERIOD, getAmbientLightContextOperatingRoom(eventList, currentCommand)));
-    System::getInstance()->addTask(new AmbientLightSystem(AMBIENT_LIGHT_PERIOD, getAmbientLightContextPreOperatingRoom(eventList, currentCommand)));
+    System::getInstance()->addTask(new AmbientLightSystem(AMBIENT_LIGHT_PERIOD, getAmbientLightSystemContextOperatingRoom(eventList, currentCommand)));
+    System::getInstance()->addTask(new AmbientLightSystem(AMBIENT_LIGHT_PERIOD, getAmbientLightSystemContextPreOperatingRoom(eventList, currentCommand)));
+    System::getInstance()->addTask(new ORSurgicalLightSystem(OR_SURGICAL_LIGHT_PERIOD, getORSurgicalLightSystemContext(eventList, currentCommand)));
     System::getInstance()->addTask(new GatewayExporter(GATEWAY_EXPORTER_PERIOD, getGatewayExporterContext(eventList, SerialInterface::getInstance())));
 }
 

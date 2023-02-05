@@ -15,7 +15,7 @@
 #include "src/utils/ArrayStream.h"
 
 #define SERIAL_INTERFACE_BAUD_RATE 115200
-#define TASK_NUMBER 12
+#define TASK_NUMBER 13
 
 void setup() {
     List<Event*>* const eventList = new List<Event*>();
@@ -26,6 +26,7 @@ void setup() {
     System::getInstance()->init();
     
     Task* taskArray[TASK_NUMBER] = {
+        new DiscoveryTask(getDiscoveryTaskContext(eventList)),
         new CommandListener(COMMAND_LISTENER_PERIOD, getCommandListenerContext(SerialInterface::getInstance(), currentCommand)),
         new TemperatureHumidityMonitoring(TEMPERATURE_HUMIDITY_PERIOD, getTemperatureHumidityMonitoringContext(eventList)),
         new LuminosityMonitoring(LUMINOSITY_PERIOD, getLuminosityMonitoringContext(eventList)),

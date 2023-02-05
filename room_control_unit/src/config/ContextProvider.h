@@ -39,26 +39,43 @@
 #include "../app/logic/fsm/hvacsystem/HvacSystem.h"
 #include "../app/logic/fsm/ambientlightsystem/AmbientLightSystem.h"
 #include "../app/logic/fsm/orsurgicalightsystem/ORSurgicalLightSystem.h"
+#include "../app/logic/handshake/DiscoveryTask.h"
+
+#define ROOM_COUNT 2
+#define ACTUATOR_COUNT 9
+
+// Declare actuators
+// Actuators can be shared by different tasks, so we could need them in different context.
+static VentilationSystem* ventilationSystemOR = new VentilationSystem(VENTILATION_OR_ID, VENTILATION_OR_PIN);
+static HeatingModule* heatingModuleOR = new HeatingModule(HEATING_OR_ID, HEATING_OR_PIN);
+static CoolingModule* coolingModuleOR = new CoolingModule(COOLING_OR_ID, COOLING_OR_PIN);
+static VentilationSystem* ventilationSystemPRE = new VentilationSystem(VENTILATION_PRE_ID, VENTILATION_PRE_PIN);
+static HeatingModule* heatingModulePRE = new HeatingModule(HEATING_PRE_ID, HEATING_PRE_PIN);
+static CoolingModule* coolingModulePRE = new CoolingModule(COOLING_PRE_ID, COOLING_PRE_PIN);
+static LightImpl* ambientLightOR = new LightImpl(AMBIENT_LIGHT_OR_ID, AMBIENT_LIGHT_OR_PIN);
+static LightImpl* ambientLightPRE = new LightImpl(AMBIENT_LIGHT_PRE_ID, AMBIENT_LIGHT_PRE_PIN);
+static SurgicalLightImpl* surgicalLightOR = new SurgicalLightImpl(SURGICAL_LIGHT_ID, SURGICAL_LIGHT_PIN);
 
 
+// Declaring different contexts.
 
 TemperatureHumidityMonitoringContext* getTemperatureHumidityMonitoringContext(List<Event*>* eventList) {
     TemperatureHumiditySensor* thOR = new TemperatureHumiditySensor(TEMPERATURE_HUMIDITY_OR);
     TemperatureHumiditySensor* thPRE = new TemperatureHumiditySensor(TEMPERATURE_HUMIDITY_PRE);
 
-    RoomEquipment<TemperatureSensor*>** temperatureSensors = new RoomEquipment<TemperatureSensor*>*[2] {
+    RoomEquipment<TemperatureSensor*>** temperatureSensors = new RoomEquipment<TemperatureSensor*>*[ROOM_COUNT] {
             new RoomEquipment<TemperatureSensor*>(thOR, Room(OPERATING_ROOM_ID)),
             new RoomEquipment<TemperatureSensor*>(thPRE, Room(PRE_OPERATING_ROOM_ID))
     };
 
-    RoomEquipment<HumiditySensor*>** humiditySensors = new RoomEquipment<HumiditySensor*>*[2] {
+    RoomEquipment<HumiditySensor*>** humiditySensors = new RoomEquipment<HumiditySensor*>*[ROOM_COUNT] {
             new RoomEquipment<HumiditySensor*>(thOR, Room(OPERATING_ROOM_ID)),
             new RoomEquipment<HumiditySensor*>(thPRE, Room(PRE_OPERATING_ROOM_ID))
     };
 
     return new TemperatureHumidityMonitoringContext {
         eventList,
-        2,
+        ROOM_COUNT,
         temperatureSensors,
         humiditySensors
     };
@@ -72,14 +89,14 @@ LuminosityMonitoringContext* getLuminosityMonitoringContext(List<Event*>* eventL
     LuminositySensor* lOR = new EnvironmentLuminositySensor(LUMINOSITY_SENSOR_OR);
     LuminositySensor* lPRE = new EnvironmentLuminositySensor(LUMINOSITY_SENSOR_PRE);
 
-    RoomEquipment<LuminositySensor*>** luminositySensors = new RoomEquipment<LuminositySensor*>*[2] {
+    RoomEquipment<LuminositySensor*>** luminositySensors = new RoomEquipment<LuminositySensor*>*[ROOM_COUNT] {
             new RoomEquipment<LuminositySensor*>(lOR, Room(OPERATING_ROOM_ID)),
             new RoomEquipment<LuminositySensor*>(lPRE, Room(PRE_OPERATING_ROOM_ID))
     };
 
     return new LuminosityMonitoringContext {
         eventList,
-        2,
+        ROOM_COUNT,
         luminositySensors
     };
 }
@@ -88,27 +105,27 @@ PresenceMonitoringContext* getPresenceMonitoringContext(List<Event*>* eventList)
     PresenceSensor* pOR = new PeoplePresenceSensor(PRESENCE_SENSOR_OR);
     PresenceSensor* pPRE = new PeoplePresenceSensor(PRESENCE_SENSOR_PRE);
 
-    RoomEquipment<PresenceSensor*>** presenceSensors = new RoomEquipment<PresenceSensor*>*[2] {
+    RoomEquipment<PresenceSensor*>** presenceSensors = new RoomEquipment<PresenceSensor*>*[ROOM_COUNT] {
             new RoomEquipment<PresenceSensor*>(pOR, Room(OPERATING_ROOM_ID)),
             new RoomEquipment<PresenceSensor*>(pPRE, Room(PRE_OPERATING_ROOM_ID))
     };
 
     return new PresenceMonitoringContext {
         eventList,
-        2,
+        ROOM_COUNT,
         presenceSensors
     };
 }
 
 PeopleTrackingContext* getPeopleTrackingContext(List<Event*>* eventList) {
-    PersonTracker** personTrackers = new PersonTracker*[2] {
+    PersonTracker** personTrackers = new PersonTracker*[ROOM_COUNT] {
         new PersonTrackerImpl(ENTRANCE_READER_OR, READER_RESET_PIN, new Room(PRE_OPERATING_ROOM_ID), new Room(OPERATING_ROOM_ID)),
         new PersonTrackerImpl(ENTRANCE_READER_PRE, READER_RESET_PIN, nullptr, new Room(PRE_OPERATING_ROOM_ID))
     };
 
     return new PeopleTrackingContext {
         eventList,
-        2,
+        ROOM_COUNT,
         personTrackers
     };
 }
@@ -134,9 +151,9 @@ HvacSystemContext* getHvacSystemContextOperatingRoom(List<Event*>* eventList, Co
         eventList,
         currentCommand,
         Room(OPERATING_ROOM_ID),
-        new VentilationSystem(VENTILATION_OR_ID, VENTILATION_OR_PIN),
-        new HeatingModule(HEATING_OR_ID, HEATING_OR_PIN),
-        new CoolingModule(COOLING_OR_ID, COOLING_OR_PIN)
+        ventilationSystemOR,
+        heatingModuleOR,
+        coolingModuleOR
     };
 }
 
@@ -145,9 +162,9 @@ HvacSystemContext* getHvacSystemContextPreOperatingRoom(List<Event*>* eventList,
         eventList,
         currentCommand,
         Room(PRE_OPERATING_ROOM_ID),
-        new VentilationSystem(VENTILATION_PRE_ID, VENTILATION_PRE_PIN),
-        new HeatingModule(HEATING_PRE_ID, HEATING_PRE_PIN),
-        new CoolingModule(COOLING_PRE_ID, COOLING_PRE_PIN)
+        ventilationSystemPRE,
+        heatingModulePRE,
+        coolingModulePRE
     };
 }
 
@@ -156,7 +173,7 @@ AmbientLightSystemContext* getAmbientLightSystemContextOperatingRoom(List<Event*
         eventList,
         currentCommand,
         Room(OPERATING_ROOM_ID),
-        new LightImpl(AMBIENT_LIGHT_OR_ID, AMBIENT_LIGHT_OR_PIN)
+        ambientLightOR        
     };
 }
 
@@ -165,7 +182,7 @@ AmbientLightSystemContext* getAmbientLightSystemContextPreOperatingRoom(List<Eve
         eventList,
         currentCommand,
         Room(PRE_OPERATING_ROOM_ID),
-        new LightImpl(AMBIENT_LIGHT_PRE_ID, AMBIENT_LIGHT_PRE_PIN)
+        ambientLightPRE
     };
 }
 
@@ -174,7 +191,27 @@ ORSurgicalLightSystemContext* getORSurgicalLightSystemContext(List<Event*>* even
         eventList,
         currentCommand,
         Room(OPERATING_ROOM_ID),
-        new SurgicalLightImpl(SURGICAL_LIGHT_ID, SURGICAL_LIGHT_PIN)
+        surgicalLightOR
+    };
+}
+
+DiscoveryTaskContext* getDiscoveryTaskContext(List<Event*>* eventList) {
+    return new DiscoveryTaskContext {
+        eventList,
+        new Room[ROOM_COUNT] { Room(OPERATING_ROOM_ID), Room(PRE_OPERATING_ROOM_ID) },
+        ROOM_COUNT,
+        new RoomEquipment<Actuator*>*[ACTUATOR_COUNT] {
+            new RoomEquipment<Actuator*>(ventilationSystemOR, Room(OPERATING_ROOM_ID)),
+            new RoomEquipment<Actuator*>(heatingModuleOR, Room(OPERATING_ROOM_ID)),
+            new RoomEquipment<Actuator*>(coolingModuleOR, Room(OPERATING_ROOM_ID)),
+            new RoomEquipment<Actuator*>(ventilationSystemPRE, Room(PRE_OPERATING_ROOM_ID)),
+            new RoomEquipment<Actuator*>(heatingModulePRE, Room(PRE_OPERATING_ROOM_ID)),
+            new RoomEquipment<Actuator*>(coolingModulePRE, Room(PRE_OPERATING_ROOM_ID)),
+            new RoomEquipment<Actuator*>(ambientLightOR, Room(OPERATING_ROOM_ID)),
+            new RoomEquipment<Actuator*>(ambientLightPRE, Room(PRE_OPERATING_ROOM_ID)),
+            new RoomEquipment<Actuator*>(surgicalLightOR, Room(OPERATING_ROOM_ID)),
+        },
+        ACTUATOR_COUNT
     };
 }
 

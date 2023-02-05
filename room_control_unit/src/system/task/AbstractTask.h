@@ -10,6 +10,7 @@
 #define __ABSTRACT_TASK__
 
 #include "Task.h"
+#include "../System.h"
 
 /*
     Abstract implementation of a task.
@@ -41,6 +42,10 @@ class AbstractTask: virtual public Task {
         */
         void tickImmetiadly() {
             this->timeElapsed = this->period;
+        }
+
+        void terminate() {
+            System::getInstance()->deleteTask(this);
         }
     private:
         int timeElapsed;

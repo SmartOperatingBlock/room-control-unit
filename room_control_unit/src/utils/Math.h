@@ -23,7 +23,7 @@ class MathHelper {
             @param size the size of the array.
             @return the gcd of the numbers inside the array.
         */
-        static int gcdOfArray(const int* array, const int size) {
+        static int gcdOfArray(int* const array, const int size) {
             int result = array[0];
             if(size > 0) {
                 for(int i=0; i<size; i++) {

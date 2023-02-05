@@ -22,17 +22,9 @@ class ArrayStream {
     public:
         /*
             Create an ArrayStream to perform stream operation on an array.
-            With this constructor size is automatically computed, so it is for statically-allocated arrays.
-
-            @param array the array.
-        */
-        ArrayStream(T* array): ArrayStream(array, sizeof(array)/sizeof(array[0])) {}
-
-        /*
-            Create an ArrayStream to perform stream operation on an array.
 
             @param array the array
-            @param size the size of the array (this is useful when dealing with dynamically-allocated arrays).
+            @param size the size of the array.
         */
         ArrayStream(T* array, int size): size(size) {
             this->array = new T[size];
@@ -64,7 +56,7 @@ class ArrayStream {
                 newArray[i] = func(this->array[i]);
             }
             this->cleanup(deepMap);
-            return ArrayStream<X>(newArray);
+            return ArrayStream<X>(newArray, this->size);
         }
 
         /*

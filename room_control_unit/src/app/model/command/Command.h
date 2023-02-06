@@ -44,17 +44,11 @@ class Command {
         virtual Room getRoom() = 0;
 };
 
-
+/*
+    Abstract implementation of command.
+*/
 class AbstractCommand: public Command {
     public:
-        /*
-            Constructor.
-
-            @param commandType the type of the command.
-            @param dstRoom the room to which the command is destinated.
-        */
-        AbstractCommand(const CommandType commandType, const Room dstRoom): commandType(commandType), dstRoom(dstRoom) {}
-
         CommandType getCommandType() {
             return this->commandType;
         }
@@ -62,6 +56,15 @@ class AbstractCommand: public Command {
         Room getRoom() {
             return this->dstRoom;
         }
+
+    protected:
+        /*
+            Constructor.
+
+            @param commandType the type of the command.
+            @param dstRoom the room to which the command is destinated.
+        */
+        AbstractCommand(const CommandType commandType, const Room dstRoom): commandType(commandType), dstRoom(dstRoom) {}
 
     private:
         const CommandType commandType;

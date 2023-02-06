@@ -37,7 +37,7 @@ class List {
             @param deepClean if it is set to true then also the elements will be deleted from memory.
         */
         void clear(bool deepClean = false) {
-            while(head != nullptr) {
+            while(this->head != nullptr) {
                 Node* n = this->head->next;
                 if(deepClean) {
                     deleteIfPointer(this->head->value);

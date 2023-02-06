@@ -85,7 +85,7 @@ void Scheduler::setPeriod() {
 void Scheduler::schedule() {
     //Check if we are enabled to perform tasks.
     if(schedulerTickEnabled) {
-        for(int i = 0; i<this->taskNumber; i++) {
+        for(int i = 0; i < this->taskNumber; i++) {
             if(this->tasks[i] != nullptr && this->tasks[i]->updateAndCheck(this->schedulerPeriod)) {
                 this->tasks[i]->tick();
             }

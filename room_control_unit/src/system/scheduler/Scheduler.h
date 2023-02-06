@@ -29,7 +29,7 @@
     In fact all the tasks will be executed outside the ISR, in order to permit the timer not to block 
     on the execution of a specific task being able to generate interrupts within the desired period.
 
-    All the features are implemented in the simpler way possible sufficient to reach the objective.
+    All the features are implemented in the simplest way possible sufficient to reach the objective.
 */
 class Scheduler {
     public:

@@ -21,7 +21,9 @@
 #include "../baseserialization/Serializer.h"
 #include "../baseserialization/Serializable.h"
 
-
+/*
+    The different types of event.
+*/
 enum class EventType {
     TEMPERATURE,
     HUMIDITY,
@@ -49,18 +51,21 @@ class Event : public Serializable {
         virtual ~Event() {}
 };
 
+/*
+    Abstract implementation of event.
+*/
 class AbstractEvent: public Event {
     public:
+        EventType getType() {
+            return this->eventType;
+        }
+    protected:
         /*
             Constructor.
 
             @param eventType the type of the event.
         */
         AbstractEvent(const EventType eventType): eventType(eventType) {}
-
-        EventType getType() {
-            return this->eventType;
-        }
     private:
         const EventType eventType;
 };
@@ -195,7 +200,7 @@ class PresenceEvent: public RoomEvent {
         PresenceEvent(const Room room, const bool isPresent): RoomEvent(room, EventType::PRESENCE), isPresent(isPresent) {}
 
         /*
-            Check is the event signal the presence of the absence in the room.
+            Check if the event signals the presence of the absence in the room.
 
             @return true if someone is in the room, false otherwise.
         */
@@ -238,7 +243,7 @@ class ActuatorStateEvent: public AbstractEvent {
         }
 
         /*
-            Get the status.
+            Get the power status.
 
             @return the status.
         */

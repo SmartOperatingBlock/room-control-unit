@@ -28,7 +28,7 @@ class RoomEntry;
 
 
 /**
- * Interface that model a visitor for events.
+ * Interface that models a visitor for events.
 */
 class Serializer {
 

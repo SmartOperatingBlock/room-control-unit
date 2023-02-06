@@ -15,14 +15,14 @@
 class Serializer;
 
 /**
- * Interface that model a serializable object.
+ * Interface that models a serializable object.
 */
 class Serializable {
 
     public:
 
         /**
-         * Function used to comunicate the type to the serializer.
+         * Function used to accept a the serializer implementing the double dispatch.
         */
         virtual String accept(Serializer *serializer) = 0;
 

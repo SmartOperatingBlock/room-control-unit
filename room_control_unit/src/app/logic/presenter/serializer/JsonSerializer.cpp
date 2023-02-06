@@ -15,11 +15,11 @@
 #define BASE_SIZE 64
 #define LARGE_SIZE 128
 
-String JsonSerializer::serialize(Serializable *serializable) {
+String JsonSerializer::serialize(Serializable* const serializable) {
     return serializable->accept(this);
 }
 
-String JsonSerializer::serialize(TemperatureEvent *temperatureEvent) {
+String JsonSerializer::serialize(TemperatureEvent* const temperatureEvent) {
     const char* temperatureUnitString[] = {"celsius"};
     String output;
     DynamicJsonDocument doc(BASE_SIZE);
@@ -32,7 +32,7 @@ String JsonSerializer::serialize(TemperatureEvent *temperatureEvent) {
 
 }
 
-String JsonSerializer::serialize(HumidityEvent *humidityEvent){
+String JsonSerializer::serialize(HumidityEvent* const humidityEvent){
     String output;
     DynamicJsonDocument doc(BASE_SIZE);
     doc["type"] = static_cast<int>(humidityEvent->getType());
@@ -42,7 +42,7 @@ String JsonSerializer::serialize(HumidityEvent *humidityEvent){
     return output;
 }
         
-String JsonSerializer::serialize(LuminosityEvent *luminosityEvent){
+String JsonSerializer::serialize(LuminosityEvent* const luminosityEvent){
     const char* luminosityUnitString[] = {"lux"};
     String output;
     DynamicJsonDocument doc(LARGE_SIZE);
@@ -54,7 +54,7 @@ String JsonSerializer::serialize(LuminosityEvent *luminosityEvent){
     return output;
 }
         
-String JsonSerializer::serialize(PresenceEvent *presenceEvent){
+String JsonSerializer::serialize(PresenceEvent* const presenceEvent){
     String output;
     DynamicJsonDocument doc(BASE_SIZE);
     doc["type"] = static_cast<int>(presenceEvent->getType());
@@ -64,7 +64,7 @@ String JsonSerializer::serialize(PresenceEvent *presenceEvent){
     return output;
 }
         
-String JsonSerializer::serialize(ActuatorStateEvent *actuatorStateEvent){
+String JsonSerializer::serialize(ActuatorStateEvent* const actuatorStateEvent){
     const char* powerStatus[] = {"on", "off"};
     String output;
     DynamicJsonDocument doc(LARGE_SIZE);
@@ -76,7 +76,7 @@ String JsonSerializer::serialize(ActuatorStateEvent *actuatorStateEvent){
     return output;
 }
 
-String JsonSerializer::serialize(PersonTrackExit *personTrackExit){
+String JsonSerializer::serialize(PersonTrackExit* const personTrackExit){
     const char* personRoleString[] = {"health_professional", "patient"};
     String output;
     DynamicJsonDocument doc(LARGE_SIZE);
@@ -88,7 +88,7 @@ String JsonSerializer::serialize(PersonTrackExit *personTrackExit){
     return output;
 }
 
-String JsonSerializer::serialize(PersonTrack *personTrack){
+String JsonSerializer::serialize(PersonTrack* const personTrack){
     const char* personRoleString[] = {"health_professional", "patient"};
     String output;
     DynamicJsonDocument doc(LARGE_SIZE);
@@ -100,7 +100,7 @@ String JsonSerializer::serialize(PersonTrack *personTrack){
     return output;
 }
 
-String JsonSerializer::serialize(ImplantableMedicalDeviceTrack *implantableMedicalDeviceTrack){
+String JsonSerializer::serialize(ImplantableMedicalDeviceTrack* const implantableMedicalDeviceTrack){
     const char* deviceTypeString[] = {"pace_marker"};
     String output;
     DynamicJsonDocument doc(LARGE_SIZE);
@@ -112,7 +112,7 @@ String JsonSerializer::serialize(ImplantableMedicalDeviceTrack *implantableMedic
     return output;
 }
 
-String JsonSerializer::serialize(PatientOnOperatingTable *patientOnOperatingTable){
+String JsonSerializer::serialize(PatientOnOperatingTable* const patientOnOperatingTable){
     String output;
     DynamicJsonDocument doc(BASE_SIZE);
     doc["type"] = static_cast<int>(patientOnOperatingTable->getType());
@@ -121,7 +121,7 @@ String JsonSerializer::serialize(PatientOnOperatingTable *patientOnOperatingTabl
     return output;
 }
 
-String JsonSerializer::serialize(NewActuator *newActuator){
+String JsonSerializer::serialize(NewActuator* const newActuator){
     const char* actuatorTypeString[] = {"ventilation", "heating", "cooling", "ambient_light", "surgical_light"};
     String output;
     DynamicJsonDocument doc(LARGE_SIZE);
@@ -133,7 +133,7 @@ String JsonSerializer::serialize(NewActuator *newActuator){
     return output;
 }
 
-String JsonSerializer::serialize(RoomEntry *roomEntry){
+String JsonSerializer::serialize(RoomEntry* const roomEntry){
     String output;
     DynamicJsonDocument doc(BASE_SIZE);
     doc["type"] = static_cast<int>(roomEntry->getType());

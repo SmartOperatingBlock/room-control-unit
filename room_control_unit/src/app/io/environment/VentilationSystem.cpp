@@ -37,7 +37,7 @@ void VentilationSystem::turn(const PowerStatus status) {
     }
 }
 
-void VentilationSystem::setSpeedPercentage(Percentage speedPercentage) {
+void VentilationSystem::setSpeedPercentage(const Percentage speedPercentage) {
     this->speedPercentage = speedPercentage;
     if(this->currentStatus == PowerStatus::ON) {
         this->turn(this->currentStatus);

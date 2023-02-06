@@ -28,7 +28,7 @@ Scheduler::Scheduler() {
     this->taskNumber = 0;
 }
 
-bool Scheduler::addTask(Task* newTask) {
+bool Scheduler::addTask(Task* const newTask) {
     if(this->taskNumber < MAX_TASKS) {
         this->tasks[this->taskNumber] = newTask;
         this->taskNumber++;
@@ -38,7 +38,7 @@ bool Scheduler::addTask(Task* newTask) {
     return false;
 }
 
-bool Scheduler::deleteTask(Task* task) {
+bool Scheduler::deleteTask(Task* const task) {
     // Deleting a task with this code is a bit slow, but it's kept simple for educational purposes.
     for(int i = 0; i < this->taskNumber; i++) {
         //Check task

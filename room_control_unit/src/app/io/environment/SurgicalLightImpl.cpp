@@ -10,7 +10,7 @@
 
 SurgicalLightImpl::SurgicalLightImpl(const String id, const int lightPin): LightImpl(id, lightPin) {}
 
-void SurgicalLightImpl::turnOn(Percentage intensityPercentage) {
+void SurgicalLightImpl::turnOn(const Percentage intensityPercentage) {
     LightImpl::turnOn(intensityPercentage);
 }
 

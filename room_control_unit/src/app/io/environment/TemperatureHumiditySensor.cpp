@@ -24,7 +24,7 @@ Humidity TemperatureHumiditySensor::getHumidity() {
 }
 
 void TemperatureHumiditySensor::readNewData() {
-    unsigned long readTime = millis();
+    const unsigned long readTime = millis();
     if(readTime - this->lastRead >= MAX_POLLING_PERIOD_MS) {
         this->sensor.read11(this->pin);
         this->lastRead = readTime;

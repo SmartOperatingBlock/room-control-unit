@@ -24,13 +24,13 @@ ImplantableMedicalDeviceTrackerImpl::~ImplantableMedicalDeviceTrackerImpl() {
 
 bool ImplantableMedicalDeviceTrackerImpl::checkNewDevice() {
     if(this->tagReader->isTagAvailable()) {
-        String data = this->tagReader->readBlock(DEVICE_BLOCK);
-        int splitIndex = data.indexOf(SPLIT_CHAR);
-        String deviceID = data.substring(0, splitIndex);
-        String rawDeviceType = data.substring(splitIndex + 1);
+        const String data = this->tagReader->readBlock(DEVICE_BLOCK);
+        const int splitIndex = data.indexOf(SPLIT_CHAR);
+        const String deviceID = data.substring(0, splitIndex);
+        const String rawDeviceType = data.substring(splitIndex + 1);
 
         if(deviceID != "" && rawDeviceType != "") {
-            ImplantableMedicalDeviceType deviceType = ImplantableMedicalDeviceType(rawDeviceType.toInt());
+            const ImplantableMedicalDeviceType deviceType = ImplantableMedicalDeviceType(rawDeviceType.toInt());
             delete this->lastImplantableMedicalDeviceDetected; // clean memory
             this->lastImplantableMedicalDeviceDetected = new ImplantableMedicalDevice(deviceID, deviceType);
             return true;

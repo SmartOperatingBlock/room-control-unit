@@ -23,11 +23,11 @@ System::System() {
     this->scheduler = new Scheduler();
 }
 
-bool System::addTask(Task* newTask) {
+bool System::addTask(Task* const newTask) {
     return this->scheduler->addTask(newTask);
 }
 
-bool System::deleteTask(Task* newTask) {
+bool System::deleteTask(Task* const newTask) {
     return this->scheduler->deleteTask(newTask);
 }
 

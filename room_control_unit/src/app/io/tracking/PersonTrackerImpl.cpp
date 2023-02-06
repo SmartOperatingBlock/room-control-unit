@@ -26,13 +26,13 @@ PersonTrackerImpl::~PersonTrackerImpl() {
 
 bool PersonTrackerImpl::checkNewPerson() {
     if(this->tagReader->isTagAvailable()) {
-        String data = this->tagReader->readBlock(PERSON_BLOCK);
-        int splitIndex = data.indexOf(SPLIT_CHAR);
-        String personID = data.substring(0, splitIndex);
-        String rawPersonType = data.substring(splitIndex + 1);
+        const String data = this->tagReader->readBlock(PERSON_BLOCK);
+        const int splitIndex = data.indexOf(SPLIT_CHAR);
+        const String personID = data.substring(0, splitIndex);
+        const String rawPersonType = data.substring(splitIndex + 1);
 
         if(personID != "" && rawPersonType != "") {
-            PersonRole personRole = rawPersonType == "health" ? PersonRole::HEALTH_PROFESSIONAL : PersonRole::PATIENT;
+            const PersonRole personRole = rawPersonType == "health" ? PersonRole::HEALTH_PROFESSIONAL : PersonRole::PATIENT;
             delete this->lastPersonDetected; // clean memory
             this->lastPersonDetected = new Person(personID, personRole);
             return true;

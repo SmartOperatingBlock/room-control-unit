@@ -115,7 +115,7 @@ class TemperatureEvent: public RoomEvent {
             return this->temperature;
         }
 
-        String accept(Serializer *serializer) {
+        String accept(Serializer* const serializer) {
             return serializer->serialize(this);
         }
 
@@ -145,7 +145,7 @@ class HumidityEvent: public RoomEvent {
             return this->humidity;
         }
 
-        String accept(Serializer *serializer) {
+        String accept(Serializer* const serializer) {
             return serializer->serialize(this);
         }
     private:
@@ -174,7 +174,7 @@ class LuminosityEvent: public RoomEvent {
             return this->luminosity;
         }
 
-        String accept(Serializer *serializer) {
+        String accept(Serializer* const serializer) {
             return serializer->serialize(this);
         }
 
@@ -203,7 +203,7 @@ class PresenceEvent: public RoomEvent {
             return this->isPresent;
         }
 
-        String accept(Serializer *serializer) {
+        String accept(Serializer* const serializer) {
             return serializer->serialize(this);
         }
     private:
@@ -255,7 +255,7 @@ class ActuatorStateEvent: public AbstractEvent {
             return this->intensityPercentage;
         }
 
-        String accept(Serializer *serializer) {
+        String accept(Serializer* const serializer) {
             return serializer->serialize(this);
         }
     private:
@@ -285,7 +285,7 @@ class PersonTrackExit: public AbstractEvent {
             return this->person;
         }
 
-        String accept(Serializer *serializer) {
+        String accept(Serializer* const serializer) {
             return serializer->serialize(this);
         }
 
@@ -315,7 +315,7 @@ class PersonTrack: public RoomEvent {
             return this->person;
         }
 
-        String accept(Serializer *serializer) {
+        String accept(Serializer* const serializer) {
             return serializer->serialize(this);
         }
     private:
@@ -365,7 +365,7 @@ class PatientOnOperatingTable: public RoomEvent {
         */
         PatientOnOperatingTable(const Room room): RoomEvent(room, EventType::PATIENT_ON_OPERATING_TABLE) {}
     
-        String accept(Serializer *serializer) {
+        String accept(Serializer* const serializer) {
             return serializer->serialize(this);
         }
 
@@ -393,7 +393,7 @@ class NewActuator: public RoomEvent {
             return this->actuator;
         }
     
-        String accept(Serializer *serializer) {
+        String accept(Serializer* const serializer) {
             return serializer->serialize(this);
         }
 
@@ -413,7 +413,7 @@ class RoomEntry: public RoomEvent {
         */
         RoomEntry(const Room room): RoomEvent(room, EventType::ROOM_ENTRY) {}
 
-        String accept(Serializer *serializer) {
+        String accept(Serializer* const serializer) {
             return serializer->serialize(this);
         }
 

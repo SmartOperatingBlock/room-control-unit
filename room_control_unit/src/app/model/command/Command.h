@@ -80,7 +80,7 @@ class HeatingCommand: public AbstractCommand {
             @param dstRoom the room to which the command is destinated.
             @param powerStatus the status to set the heating.
         */
-        HeatingCommand(const Room dstRoom, PowerStatus powerStatus): AbstractCommand(CommandType::HEATING, dstRoom), powerStatus(powerStatus) {}
+        HeatingCommand(const Room dstRoom, const PowerStatus powerStatus): AbstractCommand(CommandType::HEATING, dstRoom), powerStatus(powerStatus) {}
 
         /*
             Get the wanted status.
@@ -105,7 +105,7 @@ class CoolingCommand: public AbstractCommand {
             @param dstRoom the room to which the command is destinated.
             @param powerStatus the status to set the cooling.
         */
-        CoolingCommand(const Room dstRoom, PowerStatus powerStatus): AbstractCommand(CommandType::COOLING, dstRoom), powerStatus(powerStatus) {}
+        CoolingCommand(const Room dstRoom, const PowerStatus powerStatus): AbstractCommand(CommandType::COOLING, dstRoom), powerStatus(powerStatus) {}
 
         /*
             Get the wanted status.

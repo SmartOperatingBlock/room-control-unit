@@ -26,7 +26,7 @@ class ArrayStream {
             @param array the array
             @param size the size of the array.
         */
-        ArrayStream(T* array, int size): size(size) {
+        ArrayStream(T* const array, const int size): size(size) {
             this->array = new T[size];
             // Copy the array in order to handle cleaning internally.
             for(int i = 0; i < size; i++) {
@@ -50,7 +50,7 @@ class ArrayStream {
             @return the mapped stream.
         */
         template<typename X>
-        ArrayStream<X> map(X (*func)(T), bool deepMap = false) {
+        ArrayStream<X> map(X (*func)(T), const bool deepMap = false) {
             X newArray[this->size];
             for(int i = 0; i < this->size; i++) {
                 newArray[i] = func(this->array[i]);
@@ -68,7 +68,7 @@ class ArrayStream {
             @param deepClean if it is true then the previous elements inside the array will be deleted from memory.
             @return true if a matching element exists, false instead.
         */
-        bool exist(T elem, bool deepClean = false) {
+        bool exist(T elem, const bool deepClean = false) {
             for(int i = 0; i < this->size; i++) {
                 if(this->array[i] == elem) {
                     return true;
@@ -88,7 +88,7 @@ class ArrayStream {
             @param deepClean if it is true then the previous elements inside the array will be deleted from memory.
         */
         template<typename Lambda>
-        bool anyMatch(Lambda&& fun, bool deepClean = false) {
+        bool anyMatch(Lambda&& fun, const bool deepClean = false) {
             for(int i = 0; i < this->size; i++) {
                 if(fun(this->array[i])) {
                     return true;
@@ -105,7 +105,7 @@ class ArrayStream {
             @param deepClean if it is true then the previous elements inside the array will be deleted from memory.
             @return the sum.
         */
-        T sum(bool deepClean = false) {
+        T sum(const bool deepClean = false) {
             T sum;
             for(int i = 0; i < this->size; i++) {
                 sum += this->array[i];
@@ -134,7 +134,7 @@ class ArrayStream {
             @param deepClean if it is true then the previous elements inside the array (of the ArrayStream) will be deleted from memory.
             @return the array.
         */
-        T* toArray(bool deepClean = false) {
+        T* toArray(const bool deepClean = false) {
             T* returnedArray = new T[this->size];
             for(int i = 0; i < this->size; i++) {
                 returnedArray[i] = this->array[i];
@@ -147,7 +147,7 @@ class ArrayStream {
         T* array;
         const int size;
 
-        void cleanup(bool deep) {
+        void cleanup(const bool deep) {
             if(deep) {
                 for(int i = 0; i < this->size; i++) {
                     deleteIfPointer(this->array[i]);

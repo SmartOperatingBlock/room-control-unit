@@ -11,10 +11,11 @@
 
 
 /*
-    This class allow to perform stream's operation java-like with the
-    constructs that are avaible for the c++ implementation on the AVR CPU.
+    This class allows to perform java-like stream's operation with the
+    constructs that are available for the c++ implementation on the AVR CPU.
 
     Its implementation is simple without the intenction of being super efficient, not lazy.
+    
     @tparam T the type stored in the array.
 */
 template<typename T>

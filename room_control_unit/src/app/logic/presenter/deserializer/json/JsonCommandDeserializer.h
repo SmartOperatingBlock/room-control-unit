@@ -12,7 +12,7 @@
 #include "../CommandDeserializer.h"
 
 /*
-    Class that implement the deserialization of commands sent in the JSON format.
+    Class that implements the deserialization of commands sent in the JSON format.
 */
 class JsonCommandDeserializer: public CommandDeserializer {
     public:

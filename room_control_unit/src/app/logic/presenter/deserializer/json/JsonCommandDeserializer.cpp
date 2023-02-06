@@ -10,7 +10,7 @@
 #include "Arduino.h"
 #include "ArduinoJson.h"
 
-#define BASE_DESERIALIZATION_SIZE 64
+#define BASE_DESERIALIZATION_SIZE 128
 
 JsonCommandDeserializer::JsonCommandDeserializer() {};
 

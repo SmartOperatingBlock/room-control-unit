@@ -31,7 +31,7 @@ class JsonSerializer : public Serializer {
         
         String serialize(PresenceEvent *presenceEvent);
         
-        String serialize(ActuatorStateEvent *actuatorStateE);
+        String serialize(ActuatorStateEvent *actuatorStateEvent);
 
         String serialize(PersonTrackExit *personTrackExit);
 

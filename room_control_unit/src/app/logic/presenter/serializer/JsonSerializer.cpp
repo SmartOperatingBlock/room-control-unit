@@ -9,9 +9,7 @@
 #include "Arduino.h"
 #include "ArduinoJson.h"
 #include "JsonSerializer.h"
-#include "../../../model/event/Event.h"
 
-#define stringify( name ) #name
 #define BASE_SIZE 64
 #define LARGE_SIZE 128
 
@@ -29,7 +27,6 @@ String JsonSerializer::serialize(TemperatureEvent* const temperatureEvent) {
     doc["temperature_unit"] = temperatureUnitString[static_cast<int>(temperatureEvent->getTemperature().getTemperatureUnit())];
     serializeJson(doc, output);
     return output;
-
 }
 
 String JsonSerializer::serialize(HumidityEvent* const humidityEvent){
@@ -95,7 +92,7 @@ String JsonSerializer::serialize(PersonTrack* const personTrack){
     doc["type"] = static_cast<int>(personTrack->getType());
     doc["person_id"] = personTrack->getPerson().getId();
     doc["person_role"] = personRoleString[static_cast<int>(personTrack->getPerson().getRole())];
-    doc["room_id"] =  personTrack->getRoom().getId();
+    doc["room_id"] = personTrack->getRoom().getId();
     serializeJson(doc, output);
     return output;
 }
@@ -107,7 +104,7 @@ String JsonSerializer::serialize(ImplantableMedicalDeviceTrack* const implantabl
     doc["type"] = static_cast<int>(implantableMedicalDeviceTrack->getType());
     doc["device_id"] = implantableMedicalDeviceTrack->getDevice().getId();
     doc["device_type"] = deviceTypeString[static_cast<int>(implantableMedicalDeviceTrack -> getDevice().getType())];
-    doc["room_id"] =  implantableMedicalDeviceTrack->getRoom().getId();
+    doc["room_id"] = implantableMedicalDeviceTrack->getRoom().getId();
     serializeJson(doc, output);
     return output;
 }

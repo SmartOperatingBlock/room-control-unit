@@ -34,6 +34,12 @@ class MathHelper {
         }
         
     private:
+        /*
+            Local function step to compute gcd.
+
+            @param a first number.
+            @param b the second number.
+        */
         static int gcd(int a, int b) {
             int temp;
             while(b > 0) {

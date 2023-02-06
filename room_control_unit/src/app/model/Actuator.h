@@ -11,6 +11,9 @@
 
 #include "Arduino.h"
 
+/*
+    The supported types of actuator.
+*/
 enum class ActuatorType {
     VENTILATION,
     HEATING,

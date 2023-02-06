@@ -13,12 +13,12 @@
 #include "../../model/Room.h"
 
 /*
-    Interface that model a tracker device to track people.
+    Interface that models a tracker device to track people.
 */
 class PersonTracker {
     public:
         /*
-            Check if a new person is being tracked.
+            Check if a new person has been tracked.
 
             @return true if a new person is detected, false otherwise
         */

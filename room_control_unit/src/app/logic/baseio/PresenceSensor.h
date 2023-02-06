@@ -10,7 +10,7 @@
 #define __PRESENCE_SENSOR__
 
 /*
-    Interface that model a sensor used to detect presence.
+    Interface that models a sensor used to detect presence.
 */
 class PresenceSensor {
     public:

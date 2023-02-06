@@ -28,7 +28,7 @@ class Task {
 
         /*
             Update the internal time and decide if the task has to be executed.
-            @return true if the task must be executed, false instead.
+            @return true if the task must be executed, false otherwise.
         */
         virtual bool updateAndCheck(int schedulerPeriod) = 0;
         

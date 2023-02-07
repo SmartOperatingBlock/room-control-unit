@@ -119,12 +119,11 @@ String JsonSerializer::serialize(PatientOnOperatingTable* const patientOnOperati
 }
 
 String JsonSerializer::serialize(NewActuator* const newActuator){
-    const char* actuatorTypeString[] = {"ventilation", "heating", "cooling", "ambient_light", "surgical_light"};
     String output;
     DynamicJsonDocument doc(LARGE_SIZE);
     doc["type"] = static_cast<int>(newActuator->getType());
     doc["actuator_id"] = newActuator->getActuator()->getId();
-    doc["actuator_type"] = actuatorTypeString[static_cast<int>(newActuator->getActuator()->getType())];
+    doc["actuator_type"] = static_cast<int>(newActuator->getActuator()->getType());
     doc["room_id"] = newActuator->getRoom().getId();
     serializeJson(doc, output);
     return output;

@@ -1,3 +1,33 @@
+## [1.9.1](https://github.com/SmartOperatingBlock/room-control-unit/compare/1.9.0...1.9.1) (2023-02-07)
+
+
+### Refactoring
+
+* add const to safe the code where needed ([eeffc4e](https://github.com/SmartOperatingBlock/room-control-unit/commit/eeffc4e3c75ab3ab9b6136cb263267905f2446a8))
+* use this pointer to safe code ([246fa45](https://github.com/SmartOperatingBlock/room-control-unit/commit/246fa4587ae85732164d41e542611aa264e9f083))
+
+
+### Documentation
+
+* add documentation to actuator type ([b7273bd](https://github.com/SmartOperatingBlock/room-control-unit/commit/b7273bdc406a5da8ac02c02b6f029edb39274bd5))
+* correct typo ([eccce27](https://github.com/SmartOperatingBlock/room-control-unit/commit/eccce27271e0639e4541695a1e9577c30bf87726))
+* correct typos ([e26cad7](https://github.com/SmartOperatingBlock/room-control-unit/commit/e26cad7d306d45bf144ad4e47d486b654b4ca467))
+* document gcd internal function ([66c8f9a](https://github.com/SmartOperatingBlock/room-control-unit/commit/66c8f9a19f9c9cf59e75cf732cf3edd73d92e869))
+* update constructor docs ([cecaaef](https://github.com/SmartOperatingBlock/room-control-unit/commit/cecaaefc435ec9acbac90ea59236a3615a7d7747))
+* update serialization interfaces documentation ([659ff6d](https://github.com/SmartOperatingBlock/room-control-unit/commit/659ff6d81780326fea6f3de1c626397de753fd92))
+* update task documentation ([b74b2e0](https://github.com/SmartOperatingBlock/room-control-unit/commit/b74b2e0d1cd095052c41de55061bd7831b681826))
+
+
+### General maintenance
+
+* change actuator type serialization strategy ([c82a4d4](https://github.com/SmartOperatingBlock/room-control-unit/commit/c82a4d4ba42f05c941e740ba6286ed20939f4c99))
+* change visibility of abstract command constructor ([e0c4d26](https://github.com/SmartOperatingBlock/room-control-unit/commit/e0c4d26e6d2a6dfaefb3e87a6f1a791aa6c3ba02))
+* change visibility of abstract event constructor ([99f72a3](https://github.com/SmartOperatingBlock/room-control-unit/commit/99f72a37ee47656324b9e6b6fa2dc22f3b5ccd0c))
+* delete unused macro ([9944bca](https://github.com/SmartOperatingBlock/room-control-unit/commit/9944bca02b516b871b7a84154d10861a9c39c6ec))
+* increase deserializer buffer base size ([d6e98d6](https://github.com/SmartOperatingBlock/room-control-unit/commit/d6e98d6e728c09dcc84230ff68ff110b58589ff6))
+* make deconstructor virtual ([ed206c3](https://github.com/SmartOperatingBlock/room-control-unit/commit/ed206c3067ca58b8f4342531a7a28ad949ab27f4))
+* update types ([edc4a4f](https://github.com/SmartOperatingBlock/room-control-unit/commit/edc4a4f14a0b90eb5e739eb32298d11f4d586f32))
+
 ## [1.9.0](https://github.com/SmartOperatingBlock/room-control-unit/compare/1.8.0...1.9.0) (2023-02-05)
 
 

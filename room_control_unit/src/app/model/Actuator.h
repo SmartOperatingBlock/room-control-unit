@@ -15,9 +15,9 @@
     The supported types of actuator.
 */
 enum class ActuatorType {
-    VENTILATION,
     HEATING,
     COOLING,
+    VENTILATION,
     AMBIENT_LIGHT,
     SURGICAL_LIGHT
 };

@@ -9,6 +9,8 @@
 #include "ORSurgicalLightSystem.h"
 #include "../../../../utils/ArrayStream.h"
 
+#define MAX_LUX 200000
+
 ORSurgicalLightSystem::ORSurgicalLightSystem(const int period, ORSurgicalLightSystemContext* const context): AbstractFsm(period), context(context) {
     this->changeState(new SLOFF(context));
 }
@@ -35,8 +37,8 @@ ORSurgicalLightSystem::SLOFF::SLOFF(ORSurgicalLightSystemContext* const context)
 void ORSurgicalLightSystem::SLOFF::run(Fsm* const parentFsm) {
     if(*this->context->currentCommand != nullptr && (*this->context->currentCommand)->getCommandType() == CommandType::SURGICAL_LIGHT) {
         SurgicalLightCommand* command = static_cast<SurgicalLightCommand*>(*this->context->currentCommand);
-        if(command->getRoom() == this->context->room && command->getIntensityPercentage().get() != 0) {
-            parentFsm->changeState(new SLON(this->context, command->getIntensityPercentage()));
+        if(command->getRoom() == this->context->room && command->getIntensity().getLuminosityValue() != 0) {
+            parentFsm->changeState(new SLON(this->context, command->getIntensity()));
         }
     }
 }
@@ -45,19 +47,21 @@ void ORSurgicalLightSystem::SLOFF::run(Fsm* const parentFsm) {
     ----- SLON State -----
 */
 
-ORSurgicalLightSystem::SLON::SLON(ORSurgicalLightSystemContext* const context, const Percentage lightPercentage): context(context) {
-    this->context->surgicalLight->turnOn(lightPercentage);
-    this->context->eventList->add(new ActuatorStateEvent(this->context->surgicalLight, PowerStatus::ON, lightPercentage));
+ORSurgicalLightSystem::SLON::SLON(ORSurgicalLightSystemContext* const context, Luminosity lightIntensity): context(context) {
+    long constrainedLux = constrain(lightIntensity.getLuminosityValue(), 0, MAX_LUX); // Constrain the lux specified in the command within the handled range
+    long mappedValue = map(constrainedLux, 0, MAX_LUX, 0, 255); // Map the lux value to pwm
+    this->context->surgicalLight->turnOn(mappedValue);
+    this->context->eventList->add(new ActuatorStateEvent(this->context->surgicalLight, PowerStatus::ON, constrainedLux));
 }
 
 void ORSurgicalLightSystem::SLON::run(Fsm* const parentFsm) {
     if(*this->context->currentCommand != nullptr && (*this->context->currentCommand)->getCommandType() == CommandType::SURGICAL_LIGHT) {
         SurgicalLightCommand* command = static_cast<SurgicalLightCommand*>(*this->context->currentCommand);
         if(command->getRoom() == this->context->room) {
-            if(command->getIntensityPercentage().get() == 0) {
+            if(command->getIntensity().getLuminosityValue() == 0) {
                 parentFsm->changeState(new SLOFF(this->context));
             } else {
-                parentFsm->changeState(new SLON(this->context, command->getIntensityPercentage()));
+                parentFsm->changeState(new SLON(this->context, command->getIntensity()));
             }
         }
     }

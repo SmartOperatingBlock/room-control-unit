@@ -51,7 +51,7 @@ class ORSurgicalLightSystem: public AbstractFsm {
 
         class SLON: public State {
             public:
-                SLON(ORSurgicalLightSystemContext* context, Percentage lightPercentage);
+                SLON(ORSurgicalLightSystemContext* context, Luminosity lightIntensity);
                 void run(Fsm* parentFsm);
             private:
                 ORSurgicalLightSystemContext* const context;

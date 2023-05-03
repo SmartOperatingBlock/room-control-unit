@@ -9,6 +9,8 @@
 #include "AmbientLightSystem.h"
 #include "../../../../utils/ArrayStream.h"
 
+#define MAX_LUX 5000
+
 AmbientLightSystem::AmbientLightSystem(const int period, AmbientLightSystemContext* const context): AbstractFsm(period), context(context) {
     this->changeState(new ALOFF(context));
 }
@@ -35,8 +37,8 @@ AmbientLightSystem::ALOFF::ALOFF(AmbientLightSystemContext* const context): cont
 void AmbientLightSystem::ALOFF::run(Fsm* const parentFsm) {
     if(*this->context->currentCommand != nullptr && (*this->context->currentCommand)->getCommandType() == CommandType::AMBIENT_LIGHT) {
         AmbientLigthCommand* command = static_cast<AmbientLigthCommand*>(*this->context->currentCommand);
-        if(command->getRoom() == this->context->room && command->getIntensityPercentage().get() != 0) {
-            parentFsm->changeState(new ALON(this->context, command->getIntensityPercentage()));
+        if(command->getRoom() == this->context->room && command->getIntensity().getLuminosityValue() != 0) {
+            parentFsm->changeState(new ALON(this->context, command->getIntensity()));
         }
     }
 }
@@ -45,19 +47,21 @@ void AmbientLightSystem::ALOFF::run(Fsm* const parentFsm) {
     ----- ALON State -----
 */
 
-AmbientLightSystem::ALON::ALON(AmbientLightSystemContext* const context, const Percentage lightPercentage): context(context) {
-    this->context->ambientLight->turnOn(lightPercentage);
-    this->context->eventList->add(new ActuatorStateEvent(this->context->ambientLight, PowerStatus::ON, lightPercentage));
+AmbientLightSystem::ALON::ALON(AmbientLightSystemContext* const context, Luminosity lightIntensity): context(context) {
+    long constrainedLux = constrain(lightIntensity.getLuminosityValue(), 0, MAX_LUX); // Constrain the lux specified in the command within the handled range
+    long mappedValue = map(constrainedLux, 0, MAX_LUX, 0, 255); // Map the lux value to pwm
+    this->context->ambientLight->turnOn(mappedValue);
+    this->context->eventList->add(new ActuatorStateEvent(this->context->ambientLight, PowerStatus::ON, constrainedLux));
 }
 
 void AmbientLightSystem::ALON::run(Fsm* const parentFsm) {
     if(*this->context->currentCommand != nullptr && (*this->context->currentCommand)->getCommandType() == CommandType::AMBIENT_LIGHT) {
         AmbientLigthCommand* command = static_cast<AmbientLigthCommand*>(*this->context->currentCommand);
         if(command->getRoom() == this->context->room) {
-            if(command->getIntensityPercentage().get() == 0) {
+            if(command->getIntensity().getLuminosityValue() == 0) {
                 parentFsm->changeState(new ALOFF(this->context));
             } else {
-                parentFsm->changeState(new ALON(this->context, command->getIntensityPercentage()));
+                parentFsm->changeState(new ALON(this->context, command->getIntensity()));
             }
         }
     }

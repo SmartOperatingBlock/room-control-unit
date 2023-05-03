@@ -51,7 +51,7 @@ class AmbientLightSystem: public AbstractFsm {
 
         class ALON: public State {
             public:
-                ALON(AmbientLightSystemContext* context, Percentage lightPercentage);
+                ALON(AmbientLightSystemContext* context, Luminosity lightIntensity);
                 void run(Fsm* parentFsm);
             private:
                 AmbientLightSystemContext* const context;

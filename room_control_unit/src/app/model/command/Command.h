@@ -12,6 +12,7 @@
 #include "../Room.h"
 #include "../PowerStatus.h"
 #include "../Percentage.h"
+#include "../Luminosity.h"
 
 /*
     Enum of all the types of command.
@@ -156,20 +157,20 @@ class AmbientLigthCommand: public AbstractCommand {
             Constructor.
 
             @param dstRoom the room to which the command is destinated.
-            @param intensityPercentage the intensity of the ambient light.
+            @param intensity the intensity of the ambient light to set.
         */
-        AmbientLigthCommand(const Room dstRoom, const Percentage intensityPercentage): AbstractCommand(CommandType::AMBIENT_LIGHT, dstRoom), intensityPercentage(intensityPercentage) {}
+        AmbientLigthCommand(const Room dstRoom, const Luminosity intensity): AbstractCommand(CommandType::AMBIENT_LIGHT, dstRoom), intensity(intensity) {}
 
         /*
             Get the wanted intensity.
 
-            @return the intesity expressed as a percentage.
+            @return the intesity to set.
         */
-        Percentage getIntensityPercentage() {
-            return this->intensityPercentage;
+        Luminosity getIntensity() {
+            return this->intensity;
         }
     private:
-        const Percentage intensityPercentage;
+        const Luminosity intensity;
 };
 
 /*
@@ -181,20 +182,20 @@ class SurgicalLightCommand: public AbstractCommand {
             Constructor.
 
             @param dstRoom the room to which the command is destinated.
-            @param intensityPercentage the intensity of the surgical light.
+            @param intensity the intensity of the surgical light to set.
         */
-        SurgicalLightCommand(const Room dstRoom, const Percentage intensityPercentage): AbstractCommand(CommandType::SURGICAL_LIGHT, dstRoom), intensityPercentage(intensityPercentage) {}
+        SurgicalLightCommand(const Room dstRoom, const Luminosity intensity): AbstractCommand(CommandType::SURGICAL_LIGHT, dstRoom), intensity(intensity) {}
 
         /*
             Get the wanted intensity.
 
-            @return the intesity expressed as a percentage.
+            @return the intesity to set.
         */
-        Percentage getIntensityPercentage() {
-            return this->intensityPercentage;
+        Luminosity getIntensity() {
+            return this->intensity;
         }
     private:
-        const Percentage intensityPercentage;
+        const Luminosity intensity;
 };
 
 

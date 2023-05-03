@@ -10,7 +10,7 @@
 #include "../../../../utils/ArrayStream.h"
 
 HvacSystem::HvacSystem(const int period, HvacSystemContext* const context): AbstractFsm(period), context(context) {
-    this->changeState(new VON(context));
+    this->changeState(new VOFF(context));
 }
 
 HvacSystem::~HvacSystem() {

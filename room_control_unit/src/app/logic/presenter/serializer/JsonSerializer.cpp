@@ -68,7 +68,7 @@ String JsonSerializer::serialize(ActuatorStateEvent* const actuatorStateEvent){
     doc["type"] = static_cast<int>(actuatorStateEvent->getType());
     doc["actuator_id"] = actuatorStateEvent->getActuator()->getId();
     doc["state"] = powerStatus[static_cast<int>(actuatorStateEvent->getStatus())];
-    doc["intensity_percentage"] = actuatorStateEvent->getIntensity().get();
+    doc["intensity"] = actuatorStateEvent->getIntensity();
     serializeJson(doc, output);
     return output;
 }

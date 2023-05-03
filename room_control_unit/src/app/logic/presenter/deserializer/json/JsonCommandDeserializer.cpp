@@ -10,7 +10,7 @@
 #include "Arduino.h"
 #include "ArduinoJson.h"
 
-#define BASE_DESERIALIZATION_SIZE 128
+#define BASE_DESERIALIZATION_SIZE 256
 
 JsonCommandDeserializer::JsonCommandDeserializer() {};
 
@@ -45,14 +45,14 @@ Command* JsonCommandDeserializer::deserialize(const String rawCommand) {
             }
             case static_cast<int>(CommandType::AMBIENT_LIGHT): {
                     const String roomId = doc["room_id"];
-                    const int intensityPercentage = doc["status"];
-                    result = new AmbientLigthCommand(Room(roomId), Percentage(intensityPercentage));
+                    const long intensity = doc["status"];
+                    result = new AmbientLigthCommand(Room(roomId), Luminosity(intensity, LuminosityUnit::LUX));
                 break;
             }
             case static_cast<int>(CommandType::SURGICAL_LIGHT): {
                     const String roomId = doc["room_id"];
-                    const int intensityPercentage = doc["status"];
-                    result = new SurgicalLightCommand(Room(roomId), Percentage(intensityPercentage));
+                    const long intensity = doc["status"];
+                    result = new SurgicalLightCommand(Room(roomId), Luminosity(intensity, LuminosityUnit::LUX));
                 break;
             }
             default:

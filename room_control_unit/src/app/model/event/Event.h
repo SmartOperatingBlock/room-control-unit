@@ -227,11 +227,27 @@ class ActuatorStateEvent: public AbstractEvent {
             @param status the status of the actuator.
             @param intensity the intensity of work of the actuator.
         */
-        ActuatorStateEvent(Actuator* const actuator, const PowerStatus status, const Percentage intensityPercentage):
-            AbstractEvent(EventType::ACTUATOR_STATE), actuator(actuator), status(status), intensityPercentage(intensityPercentage) {}
+        ActuatorStateEvent(Actuator* const actuator, const PowerStatus status, const long intensity):
+            AbstractEvent(EventType::ACTUATOR_STATE), actuator(actuator), status(status), intensity(intensity) {}
         
+        /*
+            Constructor with intensity expressed as a percentage.
+
+            @param actuator the interested actuator.
+            @param status the status of the actuator.
+            @param intensityPercentage the intensity of work of the actuator expressed as a percentage.
+        */
+        ActuatorStateEvent(Actuator* const actuator, const PowerStatus status, Percentage intensityPercentage):
+            ActuatorStateEvent(actuator, status, intensityPercentage.get()) {}
+
+        /*
+            Constructor with only the actuator status.
+
+            @param actuator the interested actuator.
+            @param status the status of the actuator.
+        */
         ActuatorStateEvent(Actuator* const actuator, const PowerStatus status): 
-            ActuatorStateEvent(actuator, status, status == PowerStatus::ON ? Percentage(100) : Percentage(0)) {}
+            ActuatorStateEvent(actuator, status, status == PowerStatus::ON ? 100 : 0) {}
 
         /*
             Get the actuator.
@@ -254,10 +270,10 @@ class ActuatorStateEvent: public AbstractEvent {
         /*
             Get the intensity.
 
-            @return the insity.
+            @return the intensity.
         */
-        Percentage getIntensity() {
-            return this->intensityPercentage;
+        long getIntensity() {
+            return this->intensity;
         }
 
         String accept(Serializer* const serializer) {
@@ -266,7 +282,7 @@ class ActuatorStateEvent: public AbstractEvent {
     private:
         Actuator* const actuator;
         const PowerStatus status;
-        const Percentage intensityPercentage;
+        const long intensity;
 };
 
 /*

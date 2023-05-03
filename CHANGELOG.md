@@ -1,3 +1,34 @@
+## [1.9.2](https://github.com/SmartOperatingBlock/room-control-unit/compare/1.9.1...1.9.2) (2023-05-03)
+
+
+### Bug Fixes
+
+* handle luminosity intensity instead of luminosity percentage ([2824483](https://github.com/SmartOperatingBlock/room-control-unit/commit/2824483090766d5b3afed8ebd1dd66eed6630f29))
+* hvac system must start in off state ([d0d2fe8](https://github.com/SmartOperatingBlock/room-control-unit/commit/d0d2fe84761896c617b6201786a4709573958349))
+* use luminosity instead of percentage in lights command ([1297c3c](https://github.com/SmartOperatingBlock/room-control-unit/commit/1297c3cb4fab1ec06ad0e2b6e81f677949b91148))
+* use luminosity instead of percentage in lights command deserialization ([1d737e8](https://github.com/SmartOperatingBlock/room-control-unit/commit/1d737e8edd2ed5791d596264c07757a8d689a86f))
+
+
+### Dependency updates
+
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.17 ([fd90f35](https://github.com/SmartOperatingBlock/room-control-unit/commit/fd90f35e3f065f61074f2ac28548edb9ffdfe66c))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.19 ([fc224f3](https://github.com/SmartOperatingBlock/room-control-unit/commit/fc224f37e71bb7e1c8c6a930df2c6e31e996e6ec))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.20 ([85a2063](https://github.com/SmartOperatingBlock/room-control-unit/commit/85a2063a27f8ad66abb0e5865412c1a6ff386296))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.21 ([4e6d17e](https://github.com/SmartOperatingBlock/room-control-unit/commit/4e6d17eea5366db6c06c913f1a82742e575bf4ae))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.22 ([d45d409](https://github.com/SmartOperatingBlock/room-control-unit/commit/d45d4090863dcd2463ae223e8a4594f6f5707e7c))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.23 ([d0a43a6](https://github.com/SmartOperatingBlock/room-control-unit/commit/d0a43a60c594a5bea710df032ba7cc1229e373b8))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.24 ([d221587](https://github.com/SmartOperatingBlock/room-control-unit/commit/d221587902a29c43412e9f4ec62dec616b8fabb5))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.25 ([44b7680](https://github.com/SmartOperatingBlock/room-control-unit/commit/44b7680700a9ddc103b285240a7f2af23c712753))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.26 ([b4a20d2](https://github.com/SmartOperatingBlock/room-control-unit/commit/b4a20d292cc445294e2433db820e963a3550142c))
+* **deps:** update node.js to 18.15 ([3bc1a72](https://github.com/SmartOperatingBlock/room-control-unit/commit/3bc1a7261266cfae6475e2a37ef37d05eb5b9727))
+* **deps:** update node.js to 18.16 ([14963c1](https://github.com/SmartOperatingBlock/room-control-unit/commit/14963c11be402fef48891b3f3ade00fa5fbfb6c7))
+
+
+### Refactoring
+
+* add constructors and handle the intensity with long instead of percentage ([22e8b81](https://github.com/SmartOperatingBlock/room-control-unit/commit/22e8b81308abd5146492a2f08d9c45e9d040b8e9))
+* reflect update in actuator state event and use long instead of percentage ([abe54d4](https://github.com/SmartOperatingBlock/room-control-unit/commit/abe54d49c6c986280da12402595b462ef8bd79a0))
+
 ## [1.9.1](https://github.com/SmartOperatingBlock/room-control-unit/compare/1.9.0...1.9.1) (2023-02-07)
 
 

@@ -32,7 +32,7 @@ bool PersonTrackerImpl::checkNewPerson() {
         const String rawPersonType = data.substring(splitIndex + 1);
 
         if(personID != "" && rawPersonType != "") {
-            const PersonRole personRole = rawPersonType == "health" ? PersonRole::HEALTH_PROFESSIONAL : PersonRole::PATIENT;
+            const PersonRole personRole = PersonRole(rawPersonType.toInt());
             delete this->lastPersonDetected; // clean memory
             this->lastPersonDetected = new Person(personID, personRole);
             return true;

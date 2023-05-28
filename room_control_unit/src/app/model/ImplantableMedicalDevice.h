@@ -18,7 +18,12 @@ enum class ImplantableMedicalDeviceType {
     /*
         Pace maker.
     */
-    PACE_MAKER
+    PACE_MAKER,
+
+    /*
+        Catheter.
+    */
+    CATHETER,
 };
 
 /*

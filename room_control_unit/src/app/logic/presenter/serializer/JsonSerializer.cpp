@@ -98,7 +98,7 @@ String JsonSerializer::serialize(PersonTrack* const personTrack){
 }
 
 String JsonSerializer::serialize(ImplantableMedicalDeviceTrack* const implantableMedicalDeviceTrack){
-    const char* deviceTypeString[] = {"pace_marker"};
+    const char* deviceTypeString[] = {"pace_marker", "catheter"};
     String output;
     DynamicJsonDocument doc(LARGE_SIZE);
     doc["type"] = static_cast<int>(implantableMedicalDeviceTrack->getType());

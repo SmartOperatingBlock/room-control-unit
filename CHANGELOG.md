@@ -1,3 +1,20 @@
+## [1.10.0](https://github.com/SmartOperatingBlock/room-control-unit/compare/1.9.2...1.10.0) (2023-05-28)
+
+
+### Features
+
+* add catheter as implantable medical device ([03674e9](https://github.com/SmartOperatingBlock/room-control-unit/commit/03674e90970fb3893e04ea26faa844ae78610f70))
+
+
+### Build and continuous integration
+
+* **deps:** update arduino/setup-arduino-cli action to v1.1.2 ([50b8fcf](https://github.com/SmartOperatingBlock/room-control-unit/commit/50b8fcfcadba425e96f974197be9b3c788abb657))
+
+
+### Performance improvements
+
+* use a number type for person role in cards to save memory ([cd9de63](https://github.com/SmartOperatingBlock/room-control-unit/commit/cd9de6374eefa7308aa245bc9d197371b4a5752a))
+
 ## [1.9.2](https://github.com/SmartOperatingBlock/room-control-unit/compare/1.9.1...1.9.2) (2023-05-03)
 
 

@@ -1,3 +1,15 @@
+## [1.10.1](https://github.com/SmartOperatingBlock/room-control-unit/compare/1.10.0...1.10.1) (2023-05-29)
+
+
+### Bug Fixes
+
+* add initialization time ([7342caa](https://github.com/SmartOperatingBlock/room-control-unit/commit/7342caa9fb14d38b92798d3cf00d68847e52f4a4))
+
+
+### General maintenance
+
+* change default id of rooms ([191cc8b](https://github.com/SmartOperatingBlock/room-control-unit/commit/191cc8b8f47edab6ad0dc62253eed308b6f63bb9))
+
 ## [1.10.0](https://github.com/SmartOperatingBlock/room-control-unit/compare/1.9.2...1.10.0) (2023-05-28)
 
 

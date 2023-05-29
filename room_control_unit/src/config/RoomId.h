@@ -10,7 +10,7 @@
 #define __ROOM_ID__
 
 
-#define OPERATING_ROOM_ID "#1"
-#define PRE_OPERATING_ROOM_ID "#2"
+#define OPERATING_ROOM_ID "operatingRoom"
+#define PRE_OPERATING_ROOM_ID "preOperatingRoom"
 
 #endif

@@ -18,6 +18,7 @@
 #define TASK_NUMBER 13
 
 void setup() {
+    delay(5000);
     List<Event*>* const eventList = new List<Event*>();
     Command* startCommand = nullptr;
     Command** currentCommand = &startCommand;

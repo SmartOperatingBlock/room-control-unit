@@ -1,3 +1,10 @@
+## [1.10.2](https://github.com/SmartOperatingBlock/room-control-unit/compare/1.10.1...1.10.2) (2023-05-30)
+
+
+### Bug Fixes
+
+* typo in serializer ([673e1bc](https://github.com/SmartOperatingBlock/room-control-unit/commit/673e1bc9bb6156047de4880b43409f1f8535ad2c))
+
 ## [1.10.1](https://github.com/SmartOperatingBlock/room-control-unit/compare/1.10.0...1.10.1) (2023-05-29)
 
 

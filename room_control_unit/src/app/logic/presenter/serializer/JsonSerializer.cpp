@@ -56,7 +56,7 @@ String JsonSerializer::serialize(PresenceEvent* const presenceEvent){
     DynamicJsonDocument doc(BASE_SIZE);
     doc["type"] = static_cast<int>(presenceEvent->getType());
     doc["room_id"] = presenceEvent->getRoom().getId();
-    doc["persone_inside"] = presenceEvent->isSomeonePresent();
+    doc["person_inside"] = presenceEvent->isSomeonePresent();
     serializeJson(doc, output);
     return output;
 }
